@@ -1,0 +1,128 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent">
+
+
+
+
+    <RelativeLayout
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical"
+    android:id="@+id/mainlayout"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+        <Button
+            android:id="@+id/admin"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Bearbeitungsmodus"/>
+
+        <TextView
+        android:id="@+id/trennstrich"
+        android:layout_marginTop="60dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:text="|"/>
+
+    <TextView
+        android:id="@+id/station"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="60dp"
+        android:text="  Array A  "
+        android:layout_alignEnd="@+id/trennstrich"
+         />
+
+    <TextView
+        android:layout_marginTop="60dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:layout_alignStart="@+id/trennstrich"
+        android:text="  Array B"/>
+
+    <EditText
+        android:id="@+id/edittext"
+        android:layout_marginLeft="60dp"
+        android:layout_marginRight="60dp"
+        android:text="Überschrift 1
+
+Bohren!!!
+d
+d
+d
+ee
+e
+e
+e
+e
+e
+e
+e
+e
+e
+e
+e
+e
+
+"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/trennstrich"/>
+
+    <Button
+        android:id="@+id/picture"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Upload/change Image"
+        android:layout_marginLeft="60dp"
+        android:layout_marginRight="60dp"
+        android:src="@drawable/fhkufsteingrau"
+        android:layout_below="@id/edittext"/>
+
+    <TextView
+        android:id="@+id/link"
+        android:layout_marginTop="10dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/picture"
+        android:layout_centerHorizontal="true"
+        android:text="Hier zum Video"/>
+
+    <ProgressBar
+        android:id="@+id/progressBar"
+        style="?android:attr/progressBarStyle"
+        android:layout_marginTop="10dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true"
+        android:layout_below="@+id/link" />
+
+    <ImageButton
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@drawable/ic_shortcut_chevron_left"
+        android:layout_alignParentStart="true"
+        android:background="@color/colorWhite"
+        android:layout_centerVertical="true">
+
+    </ImageButton>
+
+    <ImageButton
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@drawable/ic_shortcut_chevron_right"
+        android:layout_alignParentEnd="true"
+        android:background="@color/colorWhite"
+        android:layout_centerVertical="true">
+    </ImageButton>
+
+
+
+</RelativeLayout>
+</ScrollView>
