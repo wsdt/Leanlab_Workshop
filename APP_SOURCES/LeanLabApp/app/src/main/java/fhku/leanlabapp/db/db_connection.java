@@ -1,6 +1,5 @@
 package fhku.leanlabapp.db;
 
-
 import android.util.Log;
 import java.io.BufferedReader;
 import java.io.DataInputStream;
@@ -12,19 +11,14 @@ import java.io.UnsupportedEncodingException;
 import java.net.HttpURLConnection;
 import java.net.URL;
 import java.net.URLEncoder;
-
 import javax.net.ssl.HttpsURLConnection;
 
+//https://stackoverflow.com/questions/1812891/java-escape-string-to-prevent-sql-injection
 
-public class makeRequest {
+public class db_connection {
     //IMPORTANT: DO NOT ADD HTTP OR HTTPS INTO THAT VARIABLE!
     private static final String WEBSERVICE_PHP = "localhost/PP_Webservice/db_connection.php";
 
-    /*
-    ############## FOR TESTING LOCALLY as PC #################
-    public static void main(String[] args) {
-        sendRequest("sql_statement=SELECT * FROM Product;","POST"); //this form is obligatory (name=value), multiple values are possible --> (name=value&name2=value2)
-    }*/
 
     public static String encodeParameter(String parameter) {
         String encodedParameter = "";
@@ -54,10 +48,10 @@ public class makeRequest {
         return encodedParameters; //return parameter1=value1&parameter2=value2 ...
     }
 
+
     //IMPORTANT: Variable 'parameters' should be sent to encodeParameters() before!
-    public static String sendGetRequest(final String parameters,String method,boolean useHTTPS) {
+    public static String sendRequestForResult(final String parameters, String method, boolean useHTTPS) {
         method = (!method.equals("POST") && !method.equals("GET")) ? "POST" : method; // wenn method falsch übergeben, dann mach POST
-        //parameters = URLEncoder.encode(parameters, "UTF-8"); //to encode string right
 
         URL url = null;
         String response = null;
@@ -65,8 +59,6 @@ public class makeRequest {
         if (!useHTTPS) {
             HttpURLConnection connection;
             OutputStreamWriter request = null;
-
-            //String parameters = "sql_statement="+sql; //"username="+var1+"&pwd="+var2; //when multiple parameters then concat
 
             try {
                 url = new URL("http://"+WEBSERVICE_PHP);
@@ -104,13 +96,14 @@ public class makeRequest {
         } else {
             //USE HTTPS
             //TODO: Untested
+
             try {
                 url = new URL("https://" + WEBSERVICE_PHP);
                 HttpsURLConnection connection = (HttpsURLConnection) url.openConnection();
                 connection.setRequestMethod(method);
 
                 connection.setRequestProperty("Content-length", String.valueOf(parameters.length()));
-                connection.setRequestProperty("Content-Type", "application/x-www- form-urlencoded");
+                connection.setRequestProperty("Content-Type", "application/x-www-form-urlencoded");
                 connection.setRequestProperty("User-Agent", "Mozilla/4.0 (compatible; MSIE 5.0;Windows98;DigExt)");
                 connection.setDoOutput(true);
                 connection.setDoInput(true);
@@ -133,7 +126,7 @@ public class makeRequest {
 
                 Log.i("sendRequest_HTTPS","Response-Code: " + connection.getResponseCode());
                 Log.i("sendRequest_HTTPS","Response-Message: " + connection.getResponseMessage());
-                Log.i("sendRequest_HTTP","Response-Content: "+response);
+                Log.i("sendRequest_HTTPS","Response-Content: "+response);
 
             } catch (IOException e) {
                 Log.e("sendRequest_HTTPS", "Could not send parameters to webservice!");
@@ -142,4 +135,14 @@ public class makeRequest {
         }
     return response;
     }
+
+    //From: https://commons.apache.org/proper/commons-lang/javadocs/api-2.6/src-html/org/apache/commons/lang/StringEscapeUtils.html#line.692
+    public static String escapeSql(String str) {
+        //Do not put here a sql string (unless you do not want it)
+        if (str==null) {
+            return null;
+        }
+        return str.replace("'","''");
+    }
+
 }
