@@ -2,9 +2,8 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
-      <module fileurl="file://$PROJECT_DIR$/.idea/LeanLabApp.iml" filepath="$PROJECT_DIR$/.idea/LeanLabApp.iml" />
-      <module fileurl="file://C:\Users\kevin\Desktop\Leanlab_Workshop\APP_SOURCES\LeanLabApp\LeanLabApp.iml" filepath="C:\Users\kevin\Desktop\Leanlab_Workshop\APP_SOURCES\LeanLabApp\LeanLabApp.iml" />
-      <module fileurl="file://C:\Users\kevin\Desktop\Leanlab_Workshop\APP_SOURCES\LeanLabApp\app\app.iml" filepath="C:\Users\kevin\Desktop\Leanlab_Workshop\APP_SOURCES\LeanLabApp\app\app.iml" />
+      <module fileurl="file://$PROJECT_DIR$/LeanLabApp.iml" filepath="$PROJECT_DIR$/LeanLabApp.iml" />
+      <module fileurl="file://$PROJECT_DIR$/app/app.iml" filepath="$PROJECT_DIR$/app/app.iml" />
     </modules>
   </component>
 </project>

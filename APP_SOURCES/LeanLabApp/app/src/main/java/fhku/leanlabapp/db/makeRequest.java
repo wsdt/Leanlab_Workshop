@@ -1,17 +1,24 @@
-package fhkufstein.ac.at.leanlab_app;
+package fhku.leanlabapp.db;
 
 
 import android.util.Log;
 import java.io.BufferedReader;
+import java.io.DataInputStream;
+import java.io.DataOutputStream;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.io.OutputStreamWriter;
+import java.io.UnsupportedEncodingException;
 import java.net.HttpURLConnection;
 import java.net.URL;
+import java.net.URLEncoder;
+
+import javax.net.ssl.HttpsURLConnection;
 
 
 public class makeRequest {
-    private static final String WEBSERVICE_PHP = "http://localhost/PP_Webservice/db_connection.php";
+    //IMPORTANT: DO NOT ADD HTTP OR HTTPS INTO THAT VARIABLE!
+    private static final String WEBSERVICE_PHP = "localhost/PP_Webservice/db_connection.php";
 
     /*
     ############## FOR TESTING LOCALLY as PC #################
@@ -19,20 +26,50 @@ public class makeRequest {
         sendRequest("sql_statement=SELECT * FROM Product;","POST"); //this form is obligatory (name=value), multiple values are possible --> (name=value&name2=value2)
     }*/
 
-    public static void sendRequest(final String parameters,String method,boolean useHTTPS) {
+    public static String encodeParameter(String parameter) {
+        String encodedParameter = "";
+        try {
+            encodedParameter = URLEncoder.encode(parameter, "UTF-8");
+        } catch (UnsupportedEncodingException e) {
+            Log.e("encodeParameter","UTF-8 encoding unknown!");
+        }
+        //Parameter will NOT be added to parameter list, if parameter is not encoded!
+        return encodedParameter;
+    }
+
+    public static String encodeParameters(String[] parameters) {
+        int counter = 0;
+        String encodedParameters = "";
+
+        for (String parameter : parameters) {
+            parameter = encodeParameter(parameter);
+
+            if (!(parameter.equals("") || parameter.isEmpty())) {
+                if ((counter++) != 0) {
+                    encodedParameters += "&";
+                }
+                encodedParameters += parameter; //Only add parameter if not empty (if encoded right and not empty)
+            }
+        }
+        return encodedParameters; //return parameter1=value1&parameter2=value2 ...
+    }
+
+    //IMPORTANT: Variable 'parameters' should be sent to encodeParameters() before!
+    public static String sendGetRequest(final String parameters,String method,boolean useHTTPS) {
         method = (!method.equals("POST") && !method.equals("GET")) ? "POST" : method; // wenn method falsch übergeben, dann mach POST
+        //parameters = URLEncoder.encode(parameters, "UTF-8"); //to encode string right
+
+        URL url = null;
+        String response = null;
 
         if (!useHTTPS) {
             HttpURLConnection connection;
             OutputStreamWriter request = null;
 
-            URL url = null;
-            String response = null;
-
             //String parameters = "sql_statement="+sql; //"username="+var1+"&pwd="+var2; //when multiple parameters then concat
 
             try {
-                url = new URL(WEBSERVICE_PHP);
+                url = new URL("http://"+WEBSERVICE_PHP);
                 connection = (HttpURLConnection) url.openConnection();
                 connection.setDoOutput(true);
                 connection.setRequestProperty("Content-Type", "application/x-www-form-urlencoded");
@@ -54,49 +91,55 @@ public class makeRequest {
                 //Response from server is saved here as String
                 response = sb.toString();
                 //Log.e("RESPONSE",response);
-                System.out.println(response);
+                //System.out.println(response);
+
+                Log.i("sendRequest_HTTP","Response-Code: " + connection.getResponseCode());
+                Log.i("sendRequest_HTTP","Response-Message: " + connection.getResponseMessage());
+                Log.i("sendRequest_HTTP","Response-Content: "+response);
 
             } catch (IOException e) {
-                Log.e("POST_ERROR", "Could not send parameters to webservice!");
+                Log.e("sendRequest_HTTP", "Could not send parameters to webservice!");
                 e.printStackTrace();
-
             }
         } else {
             //USE HTTPS
-            //TODO: Untested and not configured
-            String httpsURL = "https://www.abcd.com/auth/login/";
+            //TODO: Untested
+            try {
+                url = new URL("https://" + WEBSERVICE_PHP);
+                HttpsURLConnection connection = (HttpsURLConnection) url.openConnection();
+                connection.setRequestMethod(method);
 
-            String query = "email="+URLEncoder.encode("abc@xyz.com","UTF-8");
-            query += "&";
-            query += "password="+URLEncoder.encode("abcd","UTF-8") ;
+                connection.setRequestProperty("Content-length", String.valueOf(parameters.length()));
+                connection.setRequestProperty("Content-Type", "application/x-www- form-urlencoded");
+                connection.setRequestProperty("User-Agent", "Mozilla/4.0 (compatible; MSIE 5.0;Windows98;DigExt)");
+                connection.setDoOutput(true);
+                connection.setDoInput(true);
 
-            URL myurl = new URL(httpsURL);
-            HttpsURLConnection con = (HttpsURLConnection)myurl.openConnection();
-            con.setRequestMethod("POST");
+                DataOutputStream output = new DataOutputStream(connection.getOutputStream());
 
-            con.setRequestProperty("Content-length", String.valueOf(query.length()));
-            con.setRequestProperty("Content-Type","application/x-www- form-urlencoded");
-            con.setRequestProperty("User-Agent", "Mozilla/4.0 (compatible; MSIE 5.0;Windows98;DigExt)");
-            con.setDoOutput(true);
-            con.setDoInput(true);
+                output.writeBytes(parameters);
 
-            DataOutputStream output = new DataOutputStream(con.getOutputStream());
+                output.close();
 
+                DataInputStream input = new DataInputStream(connection.getInputStream());
 
-            output.writeBytes(query);
+                StringBuilder sb = new StringBuilder();
+                for (int c = input.read(); c != -1; c = input.read())
+                    //System.out.print((char) c);
+                     sb.append(c); //wrschl. wird jedes Zeichen einzeln hierhergesendet. Deshalb \n schwierig
+                input.close();
 
-            output.close();
+                response = sb.toString();
 
-            DataInputStream input = new DataInputStream( con.getInputStream() );
+                Log.i("sendRequest_HTTPS","Response-Code: " + connection.getResponseCode());
+                Log.i("sendRequest_HTTPS","Response-Message: " + connection.getResponseMessage());
+                Log.i("sendRequest_HTTP","Response-Content: "+response);
 
-
-
-            for( int c = input.read(); c != -1; c = input.read() )
-                System.out.print( (char)c );
-            input.close();
-
-            System.out.println("Resp Code:"+con .getResponseCode());
-            System.out.println("Resp Message:"+ con .getResponseMessage());
+            } catch (IOException e) {
+                Log.e("sendRequest_HTTPS", "Could not send parameters to webservice!");
+                e.printStackTrace();
+            }
         }
+    return response;
     }
 }
