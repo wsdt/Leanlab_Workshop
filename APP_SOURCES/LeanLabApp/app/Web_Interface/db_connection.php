@@ -30,9 +30,15 @@ if (!empty($_POST) || !empty($_GET)) {
     sendHeader("412", "Precondition Failed","The server does not meet one of the preconditions that the requester put on the request.");
 }
 
-function sendHeader($code, $reason, $description="{no description provided}") {
+function sendHeader($code="0", $reason="Unknown error", $description="{no description provided}") {
     //IMPORTANT: NO OUTPUT ALLOWED BEFORE CALLING THIS FUNCTION
     header(trim("HTTP/1.1 $code $reason"));
+	
+	echo "<script type='text/javascript'>";
+	foreach (getallheaders() as $name => $value) {
+    echo "console.log('$name: $value\\n');";
+	}
+	echo "</script>";
 
     echo "<h1>$code: $reason</h1> <p>The server responded with an error code of $code and provided following message for you: <br /><i>'$description'</i></p>";
     die();
