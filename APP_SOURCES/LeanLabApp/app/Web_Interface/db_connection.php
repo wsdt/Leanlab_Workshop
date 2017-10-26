@@ -19,21 +19,23 @@ if (!empty($_POST) || !empty($_GET)) {
             //########################################################
         } else {
             //access forbidden
-            sendHeader("403","Forbidden");
+            sendHeader("403","Forbidden","The request was valid, but the server is refusing action. The user might not have the necessary permissions for a resource, or may need an account of some sort.");
         }
     } else {
         //no valid request
-        sendHeader("401","No credentials provided");
+        sendHeader("401","No credentials provided","Authentication is required and has failed or has not yet been provided. 401 semantically means unauthenticated, i.e. the user does not have the necessary credentials.");
     }
 } else {
     //no request
-    sendHeader("412", "Precondition Failed");
+    sendHeader("412", "Precondition Failed","The server does not meet one of the preconditions that the requester put on the request.");
 }
 
-
-function sendHeader($code, $reason) {
+function sendHeader($code, $reason, $description="{no description provided}") {
     //IMPORTANT: NO OUTPUT ALLOWED BEFORE CALLING THIS FUNCTION
     header(trim("HTTP/1.1 $code $reason"));
+
+    echo "<h1>$code: $reason</h1> <p>The server responded with an error code of $code and provided following message for you: <br /><i>'$description'</i></p>";
+    die();
 }
 
 
@@ -47,7 +49,12 @@ class db_connection {
 
     // #################### BASIC FUNCTIONS ##################################
     private function openConnection() {
-        $con = new mysqli(DB_HOST,DB_USER,DB_PWD,DB_NAME) or die (mysqli_error($con));
+        $con = @new mysqli(DB_HOST,DB_USER,DB_PWD,DB_NAME);
+
+        if (mysqli_connect_errno()) {
+            sendHeader("504","Gateway Timeout","The server was acting as a gateway or proxy and did not receive a timely response from the upstream server.<br /><br />Additional information: ".mysqli_connect_error());
+        }
+
         mysqli_set_charset($con,"utf8");
         return $this->setCon($con); //setter is simultaneously a getter
     }
@@ -60,10 +67,14 @@ class db_connection {
         $isValid = false;
 
         $user_obj = db_connection::db_getUserObj($user);
-        if (password_verify($password,$user_obj['password'])) {
-            $isValid = true;
-        }
 
+        if (!empty($user_obj['password'])) {
+            if (password_verify($password, $user_obj['password'])) {
+                $isValid = true;
+            }
+        } else {
+            sendHeader("501","Not implemented","The server either does not recognize the request method, or it lacks the ability to fulfill the request. Usually this implies future availability (e.g., a new feature of a web-service API).");
+        }
         return $isValid;
     }
 
@@ -81,6 +92,11 @@ class db_connection {
         $sth = $con->query($send_sql->getQuery());
 
         $result = array();$i=0;
+
+        if (!is_object($sth)) {
+            sendHeader("404_SQL","Sent SQL Statement has no result.","If sql statement was not a query (INSERT; UPDATE,...) then this response is normal. It is also possible that your query delivered no results or the requested table does not exist in your database.");
+        }
+
         if ($sth->num_rows > 0) {
             while ($row = $sth->fetch_array(MYSQLI_BOTH)) {
                 $result[$i++] = $row;
