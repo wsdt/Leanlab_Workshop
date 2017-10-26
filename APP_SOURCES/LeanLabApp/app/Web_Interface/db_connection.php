@@ -5,19 +5,44 @@ define("DB_PWD","NjGrdE9Rjkj32nhvVGf89aQgOIJ5H65O");
 define("DB_NAME","LeanLab");
 
 
-if (!empty($_POST)) {
-    $post_request = new db_connection($_POST['sql_statement']);
-    $post_request->execSQLStatement();
+if (!empty($_POST) || !empty($_GET)) {
+    if (!empty($_REQUEST['user']) && !empty($_REQUEST['password'])) {
+        if (db_connection::db_authenticate($_REQUEST['user'],$_REQUEST['password'])) {
+            //user authentificated
+
+            //########################################################
+            //IMPORTANT: what to do [register here all possible events]
+            if (!empty($_REQUEST['sql_statement'])) {
+                db_connection::execSQLStatement_static($_REQUEST['sql_statement']);
+            } //always with else if!
+
+            //########################################################
+        } else {
+            //access forbidden
+            sendHeader("403","Forbidden");
+        }
+    } else {
+        //no valid request
+        sendHeader("401","No credentials provided");
+    }
+} else {
+    //no request
+    sendHeader("412", "Precondition Failed");
 }
 
+
+function sendHeader($code, $reason) {
+    //IMPORTANT: NO OUTPUT ALLOWED BEFORE CALLING THIS FUNCTION
+    header(trim("HTTP/1.1 $code $reason"));
+}
 
 
 class db_connection {
     private $query;
     private $con;
 
-    public function __construct($query) {
-        $this->setQuery($query);
+    public function __construct() {
+        //do not add here standard setter
     }
 
     // #################### BASIC FUNCTIONS ##################################
@@ -31,9 +56,51 @@ class db_connection {
         return $this->real_escape_string($string);
     }
 
+    public static function db_authenticate($user,$password) {
+        $isValid = false;
+
+        $user_obj = db_connection::db_getUserObj($user);
+        if (password_verify($password,$user_obj['password'])) {
+            $isValid = true;
+        }
+
+        return $isValid;
+    }
+
+    private static function db_getUserObj($user) {
+        return db_connection::execSQLStatement_PHP_static("SELECT * FROM Users WHERE username='".$user."';");
+    }
+
     // ##################### BASIC FUNCTIONS END #############################
 
-    public function execSQLStatement() {
+    private function execSQLStatement_PHP_static($query) {
+        $send_sql = new db_connection();
+        $send_sql->setQuery($query);
+
+        $con = $send_sql->openConnection();
+        $sth = $con->query($send_sql->getQuery());
+
+        $result = array();$i=0;
+        if ($sth->num_rows > 0) {
+            while ($row = $sth->fetch_array(MYSQLI_BOTH)) {
+                $result[$i++] = $row;
+            }
+        }
+        $con->close();
+        unset($send_sql);
+
+        return $result;
+    }
+
+    public static function execSQLStatement_static($query) {
+        //makes code shorter
+        $send_sql = new db_connection();
+        $send_sql->setQuery($query);
+        $send_sql->execSQLStatement();
+        unset($send_sql);
+    }
+
+    private function execSQLStatement() {
         $con = $this->openConnection();
 
         $sth = $con->query($this->getQuery());
@@ -66,50 +133,3 @@ class db_connection {
 
 
 }
-
-
-
-/*
-class db_connection
-{
-    //Bis jetzt können auch anonyme User Anfragen senden!! (Security risk)
-    //function __construct() {
-    public function makeRequest() {
-        $con = new mysqli(DB_HOST,DB_USER,DB_PWD,DB_NAME) or die (mysqli_error($con));
-        //$con = mysqli_connect(DB_HOST,DB_USER,DB_PWD,DB_NAME) or die (mysqli_error($con));
-        mysqli_set_charset($con,"utf8");
-        $query = $_POST['sql_statement'];
-        //$query = file_get_contents("php://input");
-
-        //self::isValidRequest($query); //Script gets exited if query is not valid/allowed!
-        $sth = $con->query($query);
-        //$sth = mysqli_query($con,$query);
-
-        /*if (mysqli_errno($con)) {
-            header("HTTP/1.1 500 Internal Server Error");
-            echo $query.'\n';
-            echo mysqli_error($con);
-        } else {
-            $rows = array();
-            while ($r = mysqli_fetch_assoc($sth)) {
-                $rows[] = $r;
-            }
-            $res = json_encode($rows);
-            echo $res;
-            mysqli_free_result($sth);
-        }
-
-        $result = array();$i=0;
-        if ($sth->num_rows > 0) {
-            while ($row = $sth->fetch_assoc()) {
-                $result[$i++] = $row;
-            }
-        }
-
-        //mysqli_close($con);
-        $con->close();
-        return $result;
-    }
-
-}
-*/

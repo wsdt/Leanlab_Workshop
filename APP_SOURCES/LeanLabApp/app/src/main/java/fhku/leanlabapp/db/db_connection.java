@@ -19,13 +19,21 @@ public class db_connection {
     //IMPORTANT: DO NOT ADD HTTP OR HTTPS INTO THAT VARIABLE!
     private static final String WEBSERVICE_PHP = "localhost/PP_Webservice/db_connection.php";
 
+    //User and password will be added to the parameter list, webservice only accepts post/get requests if db_user table contains same data as here mentioned (security)
+    private static final String USER = "default";
+    private static final String PASSWORD = "dD56hjJ5dSWf";
+    //Always use HTTPS requests!
 
-    public static String encodeParameter(String parameter) {
+
+    public static String encodeParameter(String parameter) { //parameter must not look like: "param1", "param1=val1&", ...
         String encodedParameter = "";
-        try {
-            encodedParameter = URLEncoder.encode(parameter, "UTF-8");
-        } catch (UnsupportedEncodingException e) {
-            Log.e("encodeParameter","UTF-8 encoding unknown!");
+
+        if (parameter.contains("=") && (!parameter.contains("&"))) { //only encode valid parameters (param1=val1)
+            try {
+                encodedParameter = URLEncoder.encode(parameter, "UTF-8");
+            } catch (UnsupportedEncodingException e) {
+                Log.e("encodeParameter", "UTF-8 encoding unknown!");
+            }
         }
         //Parameter will NOT be added to parameter list, if parameter is not encoded!
         return encodedParameter;
@@ -41,6 +49,8 @@ public class db_connection {
             if (!(parameter.equals("") || parameter.isEmpty())) {
                 if ((counter++) != 0) {
                     encodedParameters += "&";
+                } else {
+                    encodedParameters += "user="+USER+"&password="+PASSWORD+"&";
                 }
                 encodedParameters += parameter; //Only add parameter if not empty (if encoded right and not empty)
             }
@@ -49,7 +59,7 @@ public class db_connection {
     }
 
 
-    //IMPORTANT: Variable 'parameters' should be sent to encodeParameters() before!
+    //IMPORTANT: Variable 'parameters' must be sent to encodeParameters() before!
     public static String sendRequestForResult(final String parameters, String method, boolean useHTTPS) {
         method = (!method.equals("POST") && !method.equals("GET")) ? "POST" : method; // wenn method falsch übergeben, dann mach POST
 
@@ -57,6 +67,7 @@ public class db_connection {
         String response = null;
 
         if (!useHTTPS) {
+            Log.w("sendRequestForResult","Used HTTP (not secure). Please use HTTPS instead.");
             HttpURLConnection connection;
             OutputStreamWriter request = null;
 
