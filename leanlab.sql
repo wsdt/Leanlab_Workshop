@@ -49,4 +49,12 @@ CREATE TABLE Content (
     FOREIGN KEY (Typid) REFERENCES Typ (Typid),
     PRIMARY KEY (Contentid)   	
 	);
+    
+CREATE TABLE User (
+	Userid INT (10) NOT NULL auto_increment,
+    Username VARCHAR (50),
+    Password VARCHAR (100), /*Bcrypt hat 60 Zeichen */ 
+    PRIMARY KEY (Userid)    
+    ); 
+    
 
