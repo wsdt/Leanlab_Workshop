@@ -5,7 +5,22 @@ import android.util.Log;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+/*
+We get a JSON-String as return value, so if you need a JSONObject itself, then
+                use the built-in JsonConverter with:
 
+                    JsonConverter tmp = new JsonConverter(response); //response is a String
+                    tmp.convertStrToJson();
+                    JSONObject jsonobj = tmp.getJson_obj();
+
+                You can also convert a JSON Object to a String by:
+                    String json_str = json_obj.toString();
+
+                    OR the built in method: (advantage of the above: numeral additional methods, your JSON
+                    JsonConverter tmp = new JsonConverter(response); //response is a JSONObject
+                    tmp.convertJsonToStr();
+                    String json_str = tmp.getJson_str();
+*/
 
 public class JsonConverter {
     private String json_str;
