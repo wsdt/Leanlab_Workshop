@@ -6,8 +6,8 @@ define("DB_NAME","LeanLab");
 
 
 if (!empty($_POST) || !empty($_GET)) {
-    if (!empty($_REQUEST['user']) && !empty($_REQUEST['password'])) {
-        if (db_connection::db_authenticate($_REQUEST['user'],$_REQUEST['password'])) {
+    if (!empty($_REQUEST['Username']) && !empty($_REQUEST['Password'])) {
+        if (db_connection::db_authenticate($_REQUEST['Username'],$_REQUEST['Password'])) {
             //user authentificated
 
             //########################################################
@@ -85,7 +85,7 @@ class db_connection {
     }
 
     private static function db_getUserObj($user) {
-        return db_connection::execSQLStatement_PHP_static("SELECT * FROM Users WHERE username='".$user."';");
+        return db_connection::execSQLStatement_PHP_static("SELECT * FROM Users WHERE Username='".$user."';");
     }
 
     // ##################### BASIC FUNCTIONS END #############################

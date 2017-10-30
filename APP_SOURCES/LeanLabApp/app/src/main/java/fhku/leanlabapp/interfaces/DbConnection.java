@@ -81,7 +81,7 @@ public class DbConnection {
                 if ((counter++) != 0) {
                     encodedParameters += "&";
                 } else {
-                    encodedParameters += "user="+USER+"&password="+PASSWORD+"&";
+                    encodedParameters += "Username="+USER+"&Password="+PASSWORD+"&";
                 }
                 encodedParameters += parameter; //Only add parameter if not empty (if encoded right and not empty)
             }
