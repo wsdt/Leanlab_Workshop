@@ -1,4 +1,4 @@
-package fhku.leanlabapp.db;
+package fhku.leanlabapp.interfaces;
 
 import android.util.Log;
 import java.io.BufferedReader;
@@ -16,7 +16,7 @@ import javax.net.ssl.HttpsURLConnection;
 /*********************************************************************************
     HOW-TO-USE:
         ONLY SEND REQUESTS LIKE THIS: (parameters = ARRAY)
-            sendRequestForResult(encodeParameters(parameters), post|get, true|false);
+            String json_str = sendRequestForResult(encodeParameters(parameters), post|get, true|false);
 
             parameters[] has to look like this:
                 parameters[0] = "name1=value1"
@@ -30,7 +30,7 @@ import javax.net.ssl.HttpsURLConnection;
 
 //https://stackoverflow.com/questions/1812891/java-escape-string-to-prevent-sql-injection
 
-public class db_connection {
+public class DbConnection {
     //IMPORTANT: DO NOT ADD HTTP OR HTTPS INTO THAT VARIABLE!
     private static final String WEBSERVICE_PHP = "localhost/PP_Webservice/db_connection.php";
 
