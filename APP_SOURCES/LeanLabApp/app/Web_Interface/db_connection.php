@@ -14,7 +14,7 @@ if (!empty($_POST) || !empty($_GET)) {
             //IMPORTANT: what to do [register here all possible events]
             if (!empty($_REQUEST['qr_code'])) {
                 //TODO: Do QR-Code procedures
-                db_connection::execSQLStatement_static("SELECT * FROM Station WHERE Stationid=".escapeString($_REQUEST['qr_code']).";");
+                db_connection::execSQLStatement_static("SELECT * FROM Station WHERE Stationid=".db_connection::escapeString($_REQUEST['qr_code']).";");
             } else if (!empty($_REQUEST['sql_statement'])) {
                 db_connection::execSQLStatement_static($_REQUEST['sql_statement']); //Here no escapeString!
             } //always with else if!
@@ -47,11 +47,6 @@ function sendHeader($code="0", $reason="Unknown error", $description="{no descri
     die();
 }
 
-
-function escapeString($string) {
-    $con = new db_connection();
-    return $con->real_escape_string($string);
-}
 
 class db_connection {
     private $query;
@@ -88,8 +83,14 @@ class db_connection {
         return $isValid;
     }
 
+    public static function escapeString($string) {
+        $con = new db_connection();
+        $con = $con->openConnection();
+        return $con->real_escape_string($string);
+    }
+
     private static function db_getUserObj($user) {
-        return db_connection::execSQLStatement_PHP_static("SELECT * FROM Users WHERE Username='".escapeString($user)."';");
+        return db_connection::execSQLStatement_PHP_static("SELECT * FROM Users WHERE Username='".self::escapeString($user)."';");
     }
 
     // ##################### BASIC FUNCTIONS END #############################
