@@ -1,13 +1,10 @@
 package fhku.leanlabapp;
 
-import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
+import android.os.Bundle;
 
-/**
- * Created by Jojo on 24.10.2017.
- */
+public class Main2Activity extends AppCompatActivity {
 
-public class LastActivityAdmin extends AppCompatActivity{
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
