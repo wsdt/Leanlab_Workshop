@@ -13,6 +13,17 @@ import java.net.URL;
 import java.net.URLEncoder;
 import javax.net.ssl.HttpsURLConnection;
 
+/*********************************************************************************
+    HOW-TO-USE:
+        ONLY SEND REQUESTS LIKE THIS: (parameters = ARRAY)
+            sendRequestForResult(encodeParameters(parameters), post|get, true|false);
+
+            parameters[] has to look like this:
+                parameters[0] = "name1=value1"
+                parameters[1] = "name2=value2" ...
+**********************************************************************************/
+
+
 //https://stackoverflow.com/questions/1812891/java-escape-string-to-prevent-sql-injection
 
 public class db_connection {
