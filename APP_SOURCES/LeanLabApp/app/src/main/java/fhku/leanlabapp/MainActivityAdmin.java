@@ -12,6 +12,12 @@ import android.widget.RelativeLayout;
 public class MainActivityAdmin extends AppCompatActivity implements View.OnClickListener {
 
     @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_main2);
+    }
+
+    @Override
     public void onClick(View v) {
 
     }

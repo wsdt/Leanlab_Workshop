@@ -6,14 +6,17 @@ define("DB_NAME","LeanLab");
 
 
 if (!empty($_POST) || !empty($_GET)) {
-    if (!empty($_REQUEST['user']) && !empty($_REQUEST['password'])) {
-        if (db_connection::db_authenticate($_REQUEST['user'],$_REQUEST['password'])) {
+    if (!empty($_REQUEST['Username']) && !empty($_REQUEST['Password'])) {
+        if (db_connection::db_authenticate($_REQUEST['Username'],$_REQUEST['Password'])) {
             //user authentificated
 
             //########################################################
             //IMPORTANT: what to do [register here all possible events]
-            if (!empty($_REQUEST['sql_statement'])) {
-                db_connection::execSQLStatement_static($_REQUEST['sql_statement']);
+            if (!empty($_REQUEST['qr_code'])) {
+                //TODO: Do QR-Code procedures
+                db_connection::execSQLStatement_static("SELECT * FROM Station WHERE Stationid=".db_connection::escapeString($_REQUEST['qr_code']).";");
+            } else if (!empty($_REQUEST['sql_statement'])) {
+                db_connection::execSQLStatement_static($_REQUEST['sql_statement']); //Here no escapeString!
             } //always with else if!
 
             //########################################################
@@ -65,10 +68,6 @@ class db_connection {
         return $this->setCon($con); //setter is simultaneously a getter
     }
 
-    public function escapeString($string) {
-        return $this->real_escape_string($string);
-    }
-
     public static function db_authenticate($user,$password) {
         $isValid = false;
 
@@ -79,13 +78,19 @@ class db_connection {
                 $isValid = true;
             }
         } else {
-            sendHeader("501","Not implemented","The server either does not recognize the request method, or it lacks the ability to fulfill the request. Usually this implies future availability (e.g., a new feature of a web-service API).");
+            sendHeader("501","Not implemented","The server either does not recognize the request method, or it lacks the ability to fulfill the request. Usually this implies future availability (e.g., a new feature of a web-service API). It is also possible that the current user has no password!");
         }
         return $isValid;
     }
 
+    public static function escapeString($string) {
+        $con = new db_connection();
+        $con = $con->openConnection();
+        return $con->real_escape_string($string);
+    }
+
     private static function db_getUserObj($user) {
-        return db_connection::execSQLStatement_PHP_static("SELECT * FROM Users WHERE username='".$user."';");
+        return db_connection::execSQLStatement_PHP_static("SELECT * FROM Users WHERE Username='".self::escapeString($user)."';");
     }
 
     // ##################### BASIC FUNCTIONS END #############################
@@ -152,6 +157,7 @@ class db_connection {
         $this->con = $con; //Do not escape con!! (it should be a mysqli object)
         return $con;
     } //IMPORTANT: No GETTER for CON because there should be only one variable
+
 
 
 }
