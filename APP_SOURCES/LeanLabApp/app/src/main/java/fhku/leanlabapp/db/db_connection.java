@@ -21,6 +21,10 @@ import javax.net.ssl.HttpsURLConnection;
             parameters[] has to look like this:
                 parameters[0] = "name1=value1"
                 parameters[1] = "name2=value2" ...
+
+
+        To send a sql-statement add a parameter named like this:
+                parameters[21] = "sql_statement=SELECT * FROM TABLE;"
 **********************************************************************************/
 
 
