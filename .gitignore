@@ -1,2 +1,8 @@
+APP_SOURCES/LeanLabApp/.gradle/
+APP_SOURCES/LeanLabApp/.idea/
+APP_SOURCES/LeanLabApp/*/build/
+APP_SOURCES/LeanLabApp/local.properties
+APP_SOURCES/LeanLabApp/.signing
+APP_SOURCES/LeanLabApp/*.iml
+APP_SOURCES/LeanLabApp/.Trashes
 
-APP_SOURCES/LeanLabApp/.idea/misc.xml
