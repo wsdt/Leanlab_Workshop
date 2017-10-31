@@ -38,25 +38,5 @@ public class Product extends Mapper {
         this.productname = productname;
     }
 
-    //Mapper Interface methods
-    @Override
-    public Object mapJSONtoJavaClass(JSONObject jsonObj) {
 
-        return null;
-    }
-
-    @Override
-    public JSONObject mapJavaClasstoJSON(Object genObj) {
-        return null;
-    }
-
-    @Override
-    public Object mapJSONStrtoJavaClass(String jsonStr) throws IOException {
-        return this.readValue(jsonStr, this.getClass());
-    }
-
-    @Override
-    public String mapJavaClasstoJSONStr(Object genObj) {
-        return null;
-    }
 }

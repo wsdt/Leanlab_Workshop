@@ -124,7 +124,7 @@
             android:layout_centerHorizontal="true"
             android:layout_below="@+id/trennstrich1"
 
-            android:text="  Schritt 1 < Schritt 2 > Schritt 3 "/>
+            android:text="  Schritt 1 &lt; Schritt 2 &gt; Schritt 3 "/>
 
 
 
