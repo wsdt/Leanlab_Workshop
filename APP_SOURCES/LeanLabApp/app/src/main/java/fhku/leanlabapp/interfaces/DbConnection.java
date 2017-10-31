@@ -27,9 +27,9 @@ import javax.net.ssl.HttpsURLConnection;
                 parameters[21] = "sql_statement=SELECT * FROM TABLE;"
 
                 We get a JSON-String as return value, so if you need a JSONObject itself, then
-                use the built-in JsonConverter with:
+                use the built-in JsonStrConverter with:
 
-                    JsonConverter tmp = new JsonConverter(response); //response is a String
+                    JsonStrConverter tmp = new JsonStrConverter(response); //response is a String
                     tmp.convertStrToJson();
                     JSONObject jsonobj = tmp.getJson_obj();
 
@@ -37,7 +37,7 @@ import javax.net.ssl.HttpsURLConnection;
                     String json_str = json_obj.toString();
 
                     OR the built in method: (advantage of the above: numeral additional methods, your JSON
-                    JsonConverter tmp = new JsonConverter(response); //response is a JSONObject
+                    JsonStrConverter tmp = new JsonStrConverter(response); //response is a JSONObject
                     tmp.convertJsonToStr();
                     String json_str = tmp.getJson_str();
 
