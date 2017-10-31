@@ -1,11 +1,15 @@
 package fhku.leanlabapp.classes;
 
+import com.fasterxml.jackson.databind.ObjectMapper;
+
 import org.json.JSONObject;
+
+import java.io.IOException;
 
 import fhku.leanlabapp.interfaces.Mapper;
 
 
-public class Product implements Mapper {
+public class Product extends Mapper {
     private int productid;
     private String productname;
 
@@ -14,6 +18,8 @@ public class Product implements Mapper {
         this.setProductid(productid);
         this.setProductname(productname);
     }
+
+    public Product() {}
 
     //Getter/Setter ------------------------------
     public int getProductid() {
@@ -45,8 +51,8 @@ public class Product implements Mapper {
     }
 
     @Override
-    public Object mapJSONStrtoJavaClass(String jsonStr) {
-        return null;
+    public Object mapJSONStrtoJavaClass(String jsonStr) throws IOException {
+        return this.readValue(jsonStr, this.getClass());
     }
 
     @Override

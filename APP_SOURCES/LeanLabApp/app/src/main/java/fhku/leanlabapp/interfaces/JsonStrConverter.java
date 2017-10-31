@@ -34,16 +34,18 @@ public class JsonStrConverter {
         this.setJson_obj(json_obj);
     }
 
-    public void convertStrToJson() {
+    public JSONObject convertStrToJson() {
         try {
             this.setJson_obj(new JSONObject(this.getJson_str().replace("\"","\\\"")));
         } catch(JSONException e) {
             Log.e("convertStrToJson","Could not convert String to Json object. \nString: "+this.getJson_str()+"\nEscaped String: "+this.getJson_str().replace("\"","\\\""));
         }
+        return this.getJson_obj();
     }
 
-    public void convertJsonToStr() {
+    public String convertJsonToStr() {
         setJson_str(this.getJson_obj().toString());
+        return getJson_str();
     }
 
 
