@@ -11,11 +11,11 @@ public class Mapper extends ObjectMapper {
     /* Maps e.g. a Mysql object/JSON object/String into a Java class or other types. */
 
     public Object JsonObjtoObj(JSONObject jsonObj) {
-
+        return null;
     }
 
     public JSONObject ObjToJsonObj(Object genObj) {
-
+        return null;
     }
 
     public Object JsonStrtoObj(String jsonStr, Object obj) throws IOException {
@@ -23,7 +23,7 @@ public class Mapper extends ObjectMapper {
     }
 
     public String ObjtoJsonStr(Object genObj) {
-
+        return null;
     }
 
     public String JsonObjToJsonStr(JSONObject jsonObj) { //Dummy Method, if someone wants to convert a String to Json with the Mapper
