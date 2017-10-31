@@ -11,17 +11,13 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
-        <Button
-            android:id="@+id/admin"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="Admin"/>
+
 
 
 
         <TextView
             android:id="@+id/trennstrich"
-            android:layout_marginTop="60dp"
+            android:layout_marginTop="20dp"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_centerHorizontal="true"
@@ -31,13 +27,13 @@
             android:id="@+id/station"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="60dp"
+            android:layout_marginTop="20dp"
             android:text="  Array A  "
             android:layout_alignEnd="@+id/trennstrich"
             />
 
         <TextView
-            android:layout_marginTop="60dp"
+            android:layout_marginTop="20dp"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_centerHorizontal="true"
@@ -48,27 +44,7 @@
             android:id="@+id/edittext"
             android:layout_marginLeft="60dp"
             android:layout_marginRight="60dp"
-            android:text="Überschrift 1
-
-Bohren!!!
-d
-d
-d
-ee
-e
-e
-e
-e
-e
-e
-e
-e
-e
-e
-e
-e
-
-"
+            android:text="Überschrift 1"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_below="@+id/trennstrich"/>
@@ -91,15 +67,6 @@ e
             android:layout_centerHorizontal="true"
             android:text="Hier zum Video"/>
 
-        <ProgressBar
-            android:id="@+id/progressBar"
-            style="?android:attr/progressBarStyle"
-            android:layout_marginTop="10dp"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_alignParentBottom="true"
-            android:layout_centerHorizontal="true"
-            android:layout_below="@+id/link" />
 
         <ImageButton
             android:layout_width="wrap_content"
@@ -119,6 +86,47 @@ e
             android:background="@color/colorWhite"
             android:layout_centerVertical="true">
         </ImageButton>
+
+
+        <TextView
+            android:id="@+id/trennstrich1"
+            android:layout_marginTop="20dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerHorizontal="true"
+            android:layout_below="@+id/link"
+            android:text="|"/>
+
+        <TextView
+            android:id="@+id/schritt"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
+            android:text="  Schritt 2   "
+            android:layout_below="@+id/link"
+            android:layout_alignEnd="@+id/trennstrich"
+            />
+
+        <TextView
+            android:layout_marginTop="20dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerHorizontal="true"
+            android:layout_below="@+id/link"
+            android:layout_alignStart="@+id/trennstrich"
+            android:text="  Schritt 10  "/>
+
+
+        <TextView
+            android:layout_marginTop="20dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerHorizontal="true"
+            android:layout_below="@+id/trennstrich1"
+
+            android:text="  Schritt 1 < Schritt 2 > Schritt 3 "/>
+
+
 
 
 
