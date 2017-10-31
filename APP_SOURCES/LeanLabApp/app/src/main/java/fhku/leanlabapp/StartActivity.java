@@ -1,15 +1,11 @@
 package fhku.leanlabapp;
 
-            import android.content.Intent;
-            import android.os.Bundle;
-            import android.support.v7.app.AppCompatActivity;
-            import android.view.View;
-            import android.widget.Button;
-            import android.widget.Toast;
+import android.content.Intent;
+import android.os.Bundle;
+import android.support.v7.app.AppCompatActivity;
+import android.view.View;
+import android.widget.Button;
 
-/**
- * Created not by Jojo on 24.10.2017.
- */
 
 public class StartActivity extends AppCompatActivity {
 
@@ -24,6 +20,15 @@ public class StartActivity extends AppCompatActivity {
                 startActivity(new Intent(StartActivity.this, QrActivity.class));
             }
         });
+
+            /*String json = "{\"productid\" : \"1\",\"productname\":\"testname\"}";
+        Product tmp = new Product();
+        try {
+            tmp = (Product) tmp.mapJSONStrtoJavaClass(json);
+            Log.e("NOExc",tmp.getProductid()+"\nName: "+tmp.getProductname());
+        } catch (IOException e) {
+            Log.e("IOExc","error###############");
+        }*/
 
     }
 
