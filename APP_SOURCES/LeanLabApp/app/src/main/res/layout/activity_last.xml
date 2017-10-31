@@ -3,20 +3,55 @@
     android:orientation="vertical" android:layout_width="match_parent"
     android:layout_height="match_parent">
 
-    <android.support.v7.widget.AppCompatImageView
+    <TextView
+        android:id="@+id/erfolg"
+        android:layout_marginTop="50dp"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:src="@drawable/garfield"/>
+        android:layout_centerHorizontal="true"
+        android:textSize="25sp"
+        android:text="Super du hast alles gechafft"
+        />
 
-    <ProgressBar
-        android:id="@+id/progressBar2"
-        android:layout_width="100dp"
-        android:layout_height="100dp"
-        android:layout_marginStart="13dp"
-        android:layout_marginTop="200dp"
-        android:indeterminateTint="@color/colorBlack"
-        android:layout_alignParentTop="true"
-        android:layout_alignParentStart="true" />
+    <TextView
+        android:id="@+id/level"
+        android:layout_below="@+id/erfolg"
+        android:layout_marginTop="50dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:textSize="50sp"
+        android:text="Level 1"
+        />
+
+    <TextView
+        android:id="@+id/punkte"
+        android:layout_marginTop="20dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/level"
+        android:layout_toLeftOf="@+id/mitte"
+        android:text="Punkte 30       "/>
+
+    <TextView
+        android:id="@+id/mitte"
+        android:layout_marginTop="20dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/level"
+        android:layout_centerHorizontal="true"
+        android:text="|"/>
+
+    <TextView
+        android:id="@+id/punkte1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        android:text="        Punkte 80 "
+        android:layout_toRightOf="@+id/mitte"
+        android:layout_below="@+id/level"
+        />
+
 
 
 </RelativeLayout>
