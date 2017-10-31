@@ -7,9 +7,9 @@ import org.json.JSONObject;
 
 /*
 We get a JSON-String as return value, so if you need a JSONObject itself, then
-                use the built-in JsonConverter with:
+                use the built-in JsonStrConverter with:
 
-                    JsonConverter tmp = new JsonConverter(response); //response is a String
+                    JsonStrConverter tmp = new JsonStrConverter(response); //response is a String
                     tmp.convertStrToJson();
                     JSONObject jsonobj = tmp.getJson_obj();
 
@@ -17,20 +17,20 @@ We get a JSON-String as return value, so if you need a JSONObject itself, then
                     String json_str = json_obj.toString();
 
                     OR the built in method: (advantage of the above: numeral additional methods, your JSON
-                    JsonConverter tmp = new JsonConverter(response); //response is a JSONObject
+                    JsonStrConverter tmp = new JsonStrConverter(response); //response is a JSONObject
                     tmp.convertJsonToStr();
                     String json_str = tmp.getJson_str();
 */
 
-public class JsonConverter {
+public class JsonStrConverter {
     private String json_str;
     private JSONObject json_obj;
 
-    public JsonConverter(String json_str) {
+    public JsonStrConverter(String json_str) {
         this.setJson_str(json_str);
     }
 
-    public JsonConverter(JSONObject json_obj) {
+    public JsonStrConverter(JSONObject json_obj) {
         this.setJson_obj(json_obj);
     }
 
