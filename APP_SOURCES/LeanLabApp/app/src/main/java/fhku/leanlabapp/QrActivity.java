@@ -1,142 +1,74 @@
 package fhku.leanlabapp;
 
-import android.content.DialogInterface;
-import android.content.Intent;
+import android.Manifest;
 import android.content.pm.PackageManager;
-import android.hardware.Camera;
-import android.net.Uri;
-import android.os.Build;
 import android.support.v4.app.ActivityCompat;
 import android.support.v4.content.ContextCompat;
-import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.util.Log;
+import android.view.View;
 import android.widget.Toast;
 
 import com.google.zxing.Result;
 
+import fhku.leanlabapp.interfaces.MarshMallowPermission;
 import me.dm7.barcodescanner.zxing.ZXingScannerView;
 
-import static android.Manifest.permission.CAMERA;
+public class QrActivity extends AppCompatActivity implements ZXingScannerView.ResultHandler{
 
-public class QrActivity extends AppCompatActivity implements ZXingScannerView.ResultHandler {
-
-    private static final int REQUEST_CAMERA = 1;
-    private ZXingScannerView scannerView;
-    private static int camId = Camera.CameraInfo.CAMERA_FACING_BACK;
+    private ZXingScannerView zXingScannerView;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_qr);
 
-        scannerView = new ZXingScannerView(this);
-        setContentView(scannerView);
-        int currentApiVersion = Build.VERSION.SDK_INT;
+        MarshMallowPermission marshMallowPermission = new MarshMallowPermission(this);
 
-        if (currentApiVersion >= Build.VERSION_CODES.M) {
-            if (checkPermission()) {
-                Toast.makeText(getApplicationContext(), "Permission already granted!", Toast.LENGTH_LONG).show();
-            } else {
-                requestPermission();
-            }
-        }
-    }
+        if (marshMallowPermission.checkPermissionForCamera() == false) {
 
-    private boolean checkPermission() {
-        return (ContextCompat.checkSelfPermission(getApplicationContext(), CAMERA) == PackageManager.PERMISSION_GRANTED);
-    }
+            marshMallowPermission.requestPermissionForCamera();
 
-    private void requestPermission() {
-        ActivityCompat.requestPermissions(this, new String[]{CAMERA}, REQUEST_CAMERA);
-    }
+            zXingScannerView = new ZXingScannerView(getApplicationContext());
 
-    @Override
-    public void onResume() {
-        super.onResume();
+            setContentView(zXingScannerView);
 
-        int currentapiVersion = android.os.Build.VERSION.SDK_INT;
-        if (currentapiVersion >= android.os.Build.VERSION_CODES.M) {
-            if (checkPermission()) {
-                if (scannerView == null) {
-                    scannerView = new ZXingScannerView(this);
-                    setContentView(scannerView);
-                }
-                scannerView.setResultHandler(this);
-                scannerView.startCamera();
-            } else {
-                requestPermission();
-            }
+            zXingScannerView.setResultHandler(this);
+
+            zXingScannerView.startCamera();
+
+        } else {
+            zXingScannerView = new ZXingScannerView(getApplicationContext());
+
+            setContentView(zXingScannerView);
+
+            zXingScannerView.setResultHandler(this);
+
+            zXingScannerView.startCamera();
         }
     }
 
     @Override
-    public void onDestroy() {
-        super.onDestroy();
-        scannerView.stopCamera();
-    }
+    protected void onPause() {
 
-    public void onRequestPermissionsResult(int requestCode, String permissions[], int[] grantResults) {
-        switch (requestCode) {
-            case REQUEST_CAMERA:
-                if (grantResults.length > 0) {
+        super.onPause();
 
-                    boolean cameraAccepted = grantResults[0] == PackageManager.PERMISSION_GRANTED;
-                    if (cameraAccepted) {
-                        Toast.makeText(getApplicationContext(), "Permission Granted, Now you can access camera", Toast.LENGTH_LONG).show();
-                    } else {
-                        Toast.makeText(getApplicationContext(), "Permission Denied, You cannot access and camera", Toast.LENGTH_LONG).show();
-                        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
-                            if (shouldShowRequestPermissionRationale(CAMERA)) {
-                                showMessageOKCancel("You need to allow access to both the permissions",
-                                        new DialogInterface.OnClickListener() {
-                                            @Override
-                                            public void onClick(DialogInterface dialog, int which) {
-                                                if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
-                                                    requestPermissions(new String[]{CAMERA},
-                                                            REQUEST_CAMERA);
-                                                }
-                                            }
-                                        });
-                                return;
-                            }
-                        }
-                    }
-                }
-                break;
-        }
-    }
-
-    private void showMessageOKCancel(String message, DialogInterface.OnClickListener okListener) {
-        new android.support.v7.app.AlertDialog.Builder(QrActivity.this)
-                .setMessage(message)
-                .setPositiveButton("OK", okListener)
-                .setNegativeButton("Cancel", null)
-                .create()
-                .show();
+        zXingScannerView.stopCamera();
     }
 
     @Override
     public void handleResult(Result result) {
 
-        String toast = qrcode(result);
+        Toast.makeText(getApplicationContext(),result.getText(),Toast.LENGTH_SHORT).show();
 
-        //DB STATEMENT!!!
-
-
-        Toast.makeText(QrActivity.this, toast, Toast.LENGTH_SHORT).show();
-
-        onResume();
-
-    }
+        //Hier würde jetzt der Abgleich mit der Datenbank erfolgen
+        //Wenn die Richtige Station ausgewählt ist läd eine Activity mit den Schritten
+        //Wenn die Falsche Station ausgewählt ist wird eine Toast ausgesendet mit dies "dies ist nicht die Richtige station" o. ä.
+        //Wenn der QR nicht in der Datenbank ist kann eventuell eine Meldung kommen wie "dieser QR Code befindet sich nicht in der Datenbank, bitte Versuchen sie es erneut oder wenden sie sich an den administrator
 
 
-    public String qrcode(Result result) {
-        final String myResult = result.getText();
-        return myResult;
+        zXingScannerView.resumeCameraPreview(this);
+
+
     }
 }
-
-
-
-
