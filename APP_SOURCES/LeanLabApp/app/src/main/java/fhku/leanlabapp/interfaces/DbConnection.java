@@ -77,7 +77,7 @@ import javax.net.ssl.HttpsURLConnection;
      tmp.convertStrToJson();
      JSONObject products = tmp.getJson_obj();
 
- But that is only one possible solution. You could also convert the JSON string into a java object or array. 
+ But that is only one possible solution. You could also convert the JSON string into a java object or array.
 
 **********************************************************************************/
 

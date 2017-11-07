@@ -10,32 +10,32 @@ import fhku.leanlabapp.interfaces.Mapper;
 
 
 public class Product extends Mapper {
-    private int productid;
-    private String productname;
+    private int Productid;
+    private String Productname;
 
     //Constructor
-    public Product(int productid, String productname) {
-        this.setProductid(productid);
-        this.setProductname(productname);
+    public Product(int Productid, String Productname) {
+        this.setProductid(Productid);
+        this.setProductname(Productname);
     }
 
     public Product() {}
 
     //Getter/Setter ------------------------------
     public int getProductid() {
-        return productid;
+        return Productid;
     }
 
-    public void setProductid(int productid) {
-        this.productid = productid;
+    public void setProductid(int Productid) {
+        this.Productid = Productid;
     }
 
     public String getProductname() {
-        return productname;
+        return Productname;
     }
 
-    public void setProductname(String productname) {
-        this.productname = productname;
+    public void setProductname(String Productname) {
+        this.Productname = Productname;
     }
 
 

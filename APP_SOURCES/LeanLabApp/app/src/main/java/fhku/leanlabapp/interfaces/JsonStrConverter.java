@@ -36,7 +36,7 @@ public class JsonStrConverter {
 
     public JSONObject convertStrToJson() {
         try {
-            this.setJson_obj(new JSONObject(this.getJson_str().replace("\"","\\\"")));
+            this.setJson_obj(new JSONObject(this.getJson_str())); //.replace("\"","\\\"") scheinbar nicht deescapen!!
         } catch(JSONException e) {
             Log.e("convertStrToJson","Could not convert String to Json object. \nString: "+this.getJson_str()+"\nEscaped String: "+this.getJson_str().replace("\"","\\\""));
         }
