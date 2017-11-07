@@ -3,21 +3,12 @@ package fhku.leanlabapp;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
-import android.util.Log;
 import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.Spinner;
 import android.widget.TextView;
 
-import com.fasterxml.jackson.databind.DatabindContext;
-import com.fasterxml.jackson.databind.Module;
-
-import org.json.JSONObject;
-
-import java.io.IOException;
-
-import fhku.leanlabapp.classes.Product;
 
 
 public class StartActivity extends AppCompatActivity {
@@ -59,7 +50,7 @@ public class StartActivity extends AppCompatActivity {
             textView.setText(qrcode);
 
 
-        
+
             /*String json = "{\"productid\" : \"1\",\"productname\":\"testname\"}";
         Product tmp = new Product();
         try {
