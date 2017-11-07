@@ -75,5 +75,16 @@
         android:layout_alignTop="@+id/spinner"
         android:text="Button" />
 
+    <EditText
+        android:id="@+id/qrcode"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignStart="@+id/leanlab"
+        android:layout_below="@+id/leanlab"
+        android:layout_marginStart="11dp"
+        android:ems="10"
+        android:inputType="textPersonName"
+        android:text="Name" />
+
 
 </RelativeLayout>
