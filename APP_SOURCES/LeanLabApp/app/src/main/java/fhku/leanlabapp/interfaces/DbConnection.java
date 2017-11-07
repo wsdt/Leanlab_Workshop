@@ -41,6 +41,44 @@ import javax.net.ssl.HttpsURLConnection;
                     tmp.convertJsonToStr();
                     String json_str = tmp.getJson_str();
 
+ ++++++++++++++++++++++++++ FULL EXAMPLE +++++++++++++++++++++++++++++
+ We want to receive all data from a product from the server. So we need to make a sql query.
+     E.g. SELECT * FROM product;
+
+ To execute the query, we need to pack the data we want to send in an array. This makes it also
+ possible to send multiple data at once, so your app gets faster.
+
+     String[] parameters = {"sql_statement=SELECT * FROM product"}; //example for sending ONLY a sql statement --> USED IN OUR EXAMPLE
+     String[] parameters = {"vname=Kevin","nname="Riedl","Strasse","Roemerstrasse 3a"}; //example for sending multiple data
+     String[] parameters = {"sql_statement=SELECT * FROM product","vname=Kevin","nname="Riedl","Strasse","Roemerstrasse 3a"}; //you can also combine them
+
+ By implementing one of the lines above, we have a variable/array named 'parameters'.
+ Now we need to send our data to our webservice. This works with the method below.
+
+     String json_str = sendRequestForResult(encodeParameters(parameters), post|get, true|false);
+
+ The first parameter of 'sendRequestForResult' must be encodeParameters(ARRAY).
+ The second parameter let's you decide whether you want to send a POST or GET Request. If you send a invalid string, the method will automatically send a POST request.
+ The third parameter let's you decide whether you want to send your data encrypted with SSL (HTTPS) or not (HTTP). True is for HTTPS, False for HTTP
+
+ I always recommend to use HTTPS. If you want a response from the server you need to save the result in a string (e.g. String json_str = function)
+
+ So in our example we want to send the sql statement above (first example of parameter array) with an encrypted connection as a post request:
+     String json_str = sendRequestForResult(encodeParameters(parameters), post, true);
+
+ Gratulation! Now we have a JSON string with all rows and cols of our sql query.
+    E.g. { "row1":{"col1":"val1","col2":"val2"}, "row2":{"col1":"val1","col2":"val2"} }
+
+ But we have a small problem now: How can we use this data in our program? We must convert the String into something more useful, like a JSON_Object, an Array
+ or into an instance of an object (e.g. instance of class 'product').
+
+ So if we want to convert the Json String into a JSON_Object we would use:
+     JsonStrConverter tmp = new JsonStrConverter(json_str); //response is a String
+     tmp.convertStrToJson();
+     JSONObject products = tmp.getJson_obj();
+
+ But that is only one possible solution. You could also convert the JSON string into a java object or array. 
+
 **********************************************************************************/
 
 
