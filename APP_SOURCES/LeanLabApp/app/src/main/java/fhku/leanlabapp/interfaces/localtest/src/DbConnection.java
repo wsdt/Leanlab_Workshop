@@ -89,7 +89,6 @@ public class DbConnection {
 
 
     public static void main(String[] args) {
-        System.out.println("Started");
         String[] parameters = {"sql_statement=SELECT * FROM Product;"};
         String json_str = sendRequestForResult(encodeParameters(parameters), "post", false);
 
