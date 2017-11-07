@@ -1,6 +1,7 @@
 package fhku.leanlabapp;
 
 import android.Manifest;
+import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.support.v4.app.ActivityCompat;
 import android.support.v4.content.ContextCompat;
@@ -17,6 +18,7 @@ import me.dm7.barcodescanner.zxing.ZXingScannerView;
 public class QrActivity extends AppCompatActivity implements ZXingScannerView.ResultHandler{
 
     private ZXingScannerView zXingScannerView;
+    public static final String EXTRA_Message = "qrcode";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -60,6 +62,15 @@ public class QrActivity extends AppCompatActivity implements ZXingScannerView.Re
     public void handleResult(Result result) {
 
         Toast.makeText(getApplicationContext(),result.getText(),Toast.LENGTH_SHORT).show();
+
+        String qrcode = result.getText().toString();
+
+        Intent intent = new Intent(this, StartActivity.class);
+        intent.putExtra(EXTRA_Message, qrcode);
+        intent.putExtra("checker", "1");
+        startActivity(intent);
+
+
 
         //Hier würde jetzt der Abgleich mit der Datenbank erfolgen
         //Wenn die Richtige Station ausgewählt ist läd eine Activity mit den Schritten
