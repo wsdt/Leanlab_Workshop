@@ -58,9 +58,9 @@ public class Product {
         try {
             product = new Product(json.getInt("Productid"), json.getString("Productname"));
         } catch(JSONException e) {
-            Log.e("MapJsonToObject","JSON could not mapped to Object!");
+            Log.e("MapJsonToObject","JSON could not be mapped to Object!");
             e.printStackTrace();
-            throw new JsonToObjectMapper_Exception("JSON could not mapped to Object!");
+            throw new JsonToObjectMapper_Exception("JSON could not be mapped to Object!");
         }
         return product;
     }
