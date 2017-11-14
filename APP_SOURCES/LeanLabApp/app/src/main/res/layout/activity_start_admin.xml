@@ -36,7 +36,7 @@
         android:textSize="40sp" />
 
     <Spinner
-        android:id="@+id/spinner"
+        android:id="@+id/spinner1"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_below="@+id/leanlab"
@@ -50,7 +50,7 @@
         android:id="@+id/spinner2"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/spinner"
+        android:layout_below="@+id/spinner1"
         android:layout_centerHorizontal="true"
         android:layout_marginStart="200dp"
         android:layout_marginTop="21dp"
@@ -71,8 +71,8 @@
         android:id="@+id/add"
         android:layout_width="10dp"
         android:layout_height="10dp"
-        android:layout_alignEnd="@+id/spinner"
-        android:layout_alignBottom="@+id/spinner"
+        android:layout_alignEnd="@+id/spinner1"
+        android:layout_alignBottom="@+id/spinner1"
         android:src="@drawable/ic_shortcut_add"
         android:background="@color/colorWhite"/>
 
@@ -82,7 +82,7 @@
         android:layout_height="10dp"
         android:layout_marginStart="20dp"
         android:layout_alignStart="@+id/add"
-        android:layout_alignBottom="@+id/spinner"
+        android:layout_alignBottom="@+id/spinner1"
         android:src="@drawable/ic_shortcut_edit"
         android:background="@color/colorWhite"/>
 
@@ -92,7 +92,7 @@
         android:layout_height="10dp"
         android:layout_marginStart="20dp"
         android:layout_alignStart="@+id/edit"
-        android:layout_alignBottom="@+id/spinner"
+        android:layout_alignBottom="@+id/spinner1"
         android:src="@drawable/ic_shortcut_delete"
         android:background="@color/colorWhite"
         />
@@ -101,7 +101,7 @@
         android:id="@+id/add1"
         android:layout_width="10dp"
         android:layout_height="10dp"
-        android:layout_alignEnd="@+id/spinner"
+        android:layout_alignEnd="@+id/spinner1"
         android:layout_alignBottom="@+id/spinner2"
         android:src="@drawable/ic_shortcut_add"
         android:background="@color/colorWhite"/>
