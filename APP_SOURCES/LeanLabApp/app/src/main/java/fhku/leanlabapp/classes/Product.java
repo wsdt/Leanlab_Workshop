@@ -1,7 +1,13 @@
 package fhku.leanlabapp.classes;
 
 import android.util.Log;
+
+import org.json.JSONException;
+import org.json.JSONObject;
+
 import java.util.ArrayList;
+
+import fhku.leanlabapp.interfaces.JsonStrConverter;
 
 public class Product {
     private static final String LOG_TAG = "PRODUCT";
@@ -39,6 +45,24 @@ public class Product {
             Log.w(LOG_TAG,"Productname TOO long! Shortened it.");
         }
         this.Productname = Productname;
+    }
+
+    public static Product MapJsonToObject(String json) throws JsonToObjectMapper_Exception {
+        JsonStrConverter tmp = new JsonStrConverter(json);
+        tmp.convertStrToJson();
+        return MapJsonToObject(tmp.getJson_obj());
+    }
+
+    public static Product MapJsonToObject(JSONObject json) throws JsonToObjectMapper_Exception {
+        Product product;
+        try {
+            product = new Product(json.getInt("Productid"), json.getString("Productname"));
+        } catch(JSONException e) {
+            Log.e("MapJsonToObject","JSON could not mapped to Object!");
+            e.printStackTrace();
+            throw new JsonToObjectMapper_Exception("JSON could not mapped to Object!");
+        }
+        return product;
     }
 
 
