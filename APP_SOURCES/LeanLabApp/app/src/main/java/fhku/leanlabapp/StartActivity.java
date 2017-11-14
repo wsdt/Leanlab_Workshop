@@ -5,18 +5,23 @@ import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.View;
+import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.Spinner;
-import android.widget.TextView;
 
 import fhku.leanlabapp.interfaces.DbConnection;
 
+public class StartActivity extends AppCompatActivity implements AdapterView.OnItemClickListener, AdapterView.OnItemSelectedListener {
 
-public class StartActivity extends AppCompatActivity {
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+
+        String [] stations = bringMyStations();
+        String [] prodcuts = bringMyProducts();
+
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_start);
 
@@ -28,34 +33,46 @@ public class StartActivity extends AppCompatActivity {
             }
         });
 
-        Spinner spinner = (Spinner) findViewById(R.id.spinner);
+        //Getting the instance of Spinner and applying OnItemSelectedListener on it
+        Spinner spinner1 = (Spinner) findViewById(R.id.spinner1);
+        spinner1.setOnItemSelectedListener(this);
+
+        //Creating the ArrayAdapter instance having the country list
+        ArrayAdapter aa = new ArrayAdapter(this,android.R.layout.simple_spinner_item,stations);
+        aa.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        //Setting the ArrayAdapter data on the Spinner
+        spinner1.setAdapter(aa);
+
+
+        Spinner spinner2 = (Spinner) findViewById(R.id.spinner2);
+        spinner2.setOnItemSelectedListener(this);
+        ArrayAdapter bb = new ArrayAdapter(this,android.R.layout.simple_spinner_item,prodcuts);
+        bb.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        //Setting the ArrayAdapter data on the Spinner
+        spinner2.setAdapter(bb);
 
 
 
-        String [] arraySpinner = new String[] {
-                "1", "2", "3", "4", "5"
-        };
+        Intent intent = getIntent();
+
+        String qrcode = intent.getStringExtra(QrActivity.EXTRA_Message);
+
+        spinner1.setSelection(aa.getPosition(qrcode));
+
+        KevinTest();
+
+    }
 
 
+    @Override
+    public void onItemSelected(AdapterView<?> arg0, View arg1, int position,long id) {
 
-            ArrayAdapter<String> adapter = new ArrayAdapter<String>(this,
-                    android.R.layout.simple_spinner_item, arraySpinner);
-            spinner.setAdapter(adapter);
-
-            Intent intent = getIntent();
-
-            String qrcode = intent.getStringExtra(QrActivity.EXTRA_Message);
+    }
 
 
-
-            TextView textView = (TextView) findViewById(R.id.qrcode);
-            textView.setText(qrcode);
-
-
-
-
-            KevinTest();
-
+    @Override
+    public void onNothingSelected(AdapterView<?> arg0) {
+        // TODO Auto-generated method stub
     }
 
     public void KevinTest() {
@@ -69,5 +86,19 @@ public class StartActivity extends AppCompatActivity {
 
 
 
+    @Override
+    public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
+
+    }
+
+    public String [] bringMyStations(){
+        String [] stations = {"Station1", "Station2", "Station3", "Station4"};
+        return stations;
+    }
+
+    public String [] bringMyProducts(){
+        String [] products = {"Product1", "Product2", "Product3", "Product4"};
+        return products;
+    }
 
 }
