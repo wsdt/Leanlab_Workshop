@@ -1,15 +1,6 @@
 package fhku.leanlabapp.classes;
 
-import com.fasterxml.jackson.databind.ObjectMapper;
-
-import org.json.JSONObject;
-
-import java.io.IOException;
-
-import fhku.leanlabapp.interfaces.Mapper;
-
-
-public class Product extends Mapper {
+public class Product {
     private int Productid;
     private String Productname;
 

@@ -1,4 +1,4 @@
-package fhku.leanlabapp.interfaces;
+/*package fhku.leanlabapp.interfaces;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreType;
 import com.fasterxml.jackson.core.JsonProcessingException;
@@ -14,7 +14,7 @@ import java.io.IOException;
 
 
 public class Mapper extends ObjectMapper {
-    /* Maps e.g. a Mysql object/JSON object/String into a Java class or other types. */
+    /* Maps e.g. a Mysql object/JSON object/String into a Java class or other types. *
     @JsonIgnoreType
     private static class IgnoreMe {  };
 
@@ -31,7 +31,7 @@ public class Mapper extends ObjectMapper {
         JSONArray jsonArray = jsnobject.getJSONArray("locations");
         for (int i = 0; i < jsonArray.length(); i++) {
             JSONObject explrObject = jsonArray.getJSONObject(i);
-        }*/
+        }*
     }
     public String JsonStringArrayToString(String[] jsonArr) throws JsonProcessingException {
         //TODO: Might not work
@@ -67,3 +67,4 @@ public class Mapper extends ObjectMapper {
     }
 
 }
+*/
