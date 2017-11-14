@@ -3,12 +3,14 @@ package fhku.leanlabapp;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
+import android.util.Log;
 import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.Spinner;
 import android.widget.TextView;
 
+import fhku.leanlabapp.interfaces.DbConnection;
 
 
 public class StartActivity extends AppCompatActivity {
@@ -51,25 +53,18 @@ public class StartActivity extends AppCompatActivity {
 
 
 
-            /*String json = "{\"productid\" : \"1\",\"productname\":\"testname\"}";
-        Product tmp = new Product();
-        try {
-            /*Module temp = tmp.getIgnoreJacksonModule();
-            Log.e("IOExc","ModuleString:"+temp.toString());
-            tmp = (Product) tmp.JsonStrToObj(json,tmp);
-            Log.e("NOExc",tmp.getProductid()+"\nName: "+tmp.getProductname());*
-            JSONObject jsonobj=tmp.JsonStrToJsonObj(json);
-            Log.e("SUCCESS",jsonobj.get("Productid").toString());
 
-            json = tmp.JsonObjToJsonStr(jsonobj);
-            Log.e("SUCCESS","JSON STRING: "+json);
-        } catch (Exception e) {
-            Log.e("IOExc","ERROR: "+e.getMessage());
-            for (StackTraceElement m : e.getStackTrace()) {
-                Log.e("IOExc",m.toString());
+            KevinTest();
+
+    }
+
+    public void KevinTest() {
+        new Thread(new Runnable() {
+            public void run() {
+                String json_str = DbConnection.sendRequestForResult(DbConnection.encodeParameters(new String[] {"sql_statement=SELECT * FROM User"}),"post",false);
+                Log.e("WORKED","JSON"+json_str);
             }
-        }*/
-
+        }).start();
     }
 
 
