@@ -10,6 +10,8 @@ import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.Spinner;
 
+import java.util.concurrent.ExecutionException;
+
 import fhku.leanlabapp.interfaces.DbConnection;
 
 public class StartActivity extends AppCompatActivity implements AdapterView.OnItemClickListener, AdapterView.OnItemSelectedListener {
@@ -76,12 +78,13 @@ public class StartActivity extends AppCompatActivity implements AdapterView.OnIt
     }
 
     public void KevinTest() {
-        new Thread(new Runnable() {
-            public void run() {
-                String json_str = DbConnection.sendRequestForResult(DbConnection.encodeParameters(new String[] {"sql_statement=SELECT * FROM User"}),"post",false);
-                Log.e("WORKED","JSON"+json_str);
-            }
-        }).start();
+        try {
+            DbConnection.sendRequestForResult_ASYNC(new String[] {"SELECT * FROM User;"},"post",false);
+        } catch (ExecutionException e) {
+            e.printStackTrace();
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
     }
 
 

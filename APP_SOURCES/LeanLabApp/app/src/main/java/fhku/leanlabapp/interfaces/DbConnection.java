@@ -12,6 +12,12 @@ import java.io.UnsupportedEncodingException;
 import java.net.HttpURLConnection;
 import java.net.URL;
 import java.net.URLEncoder;
+import java.util.concurrent.Callable;
+import java.util.concurrent.ExecutionException;
+import java.util.concurrent.ExecutorService;
+import java.util.concurrent.Executors;
+import java.util.concurrent.Future;
+
 import javax.net.ssl.HttpsURLConnection;
 
 /*********************************************************************************
@@ -133,9 +139,24 @@ public class DbConnection {
         return encodedParameters; //return parameter1=value1&parameter2=value2 ...
     }
 
+    public static String sendRequestForResult_ASYNC(final String[] PARAMETERS, final String METHOD, final boolean useHTTPS) throws ExecutionException, InterruptedException {
+        ExecutorService executor = Executors.newSingleThreadExecutor();
+        Callable<String> callable = new Callable<String>() {
+            @Override
+            public String call() throws Exception {
+                return DbConnection.sendRequestForResult(encodeParameters(PARAMETERS),METHOD,useHTTPS);
+            }
+        };
+
+        Future<String> future = executor.submit(callable);
+        //future.get() returns JSON or raises an exception if thread dies, so safer
+        executor.shutdown();
+        return future.get();
+    }
+
 
     //IMPORTANT: Variable 'parameters' must be sent to encodeParameters() before!
-    public static String sendRequestForResult(final String parameters, String method, boolean useHTTPS) {
+    private static String sendRequestForResult(final String parameters, String method, boolean useHTTPS) {
         method = (!method.equals("POST") && !method.equals("GET")) ? "POST" : method; // wenn method falsch übergeben, dann mach POST
 
         URL url = null;
@@ -181,7 +202,6 @@ public class DbConnection {
             }
         } else {
             //USE HTTPS
-            //TODO: Untested
             Log.e("Certificate","WARNING: HTTPS is implemented, but will NOT work, because a SSL certificate is missing!");
 
             try {
