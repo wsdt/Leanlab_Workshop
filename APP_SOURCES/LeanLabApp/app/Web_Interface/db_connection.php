@@ -1,7 +1,7 @@
 <?php
 define("DB_HOST","localhost");
 define("DB_USER","root");
-define("DB_PWD","NjGrdE9Rjkj32nhvVGf89aQgOIJ5H65O");
+define("DB_PWD","");
 define("DB_NAME","LeanLab");
 
 
@@ -17,8 +17,10 @@ if (!empty($_POST) || !empty($_GET)) {
                 db_connection::execSQLStatement_static("SELECT * FROM Station WHERE Stationid=".db_connection::escapeString($_REQUEST['qr_code']).";");
             } else if (!empty($_REQUEST['sql_statement'])) {
                 db_connection::execSQLStatement_static($_REQUEST['sql_statement']); //Here no escapeString!
-            } //always with else if!
-
+				//always with else if!
+            } else {
+				sendHeader("109","510 - Not Extended / Empty Response","Further extensions to the request are required for the server to fulfil it.");
+			}
             //########################################################
         } else {
             //access forbidden
