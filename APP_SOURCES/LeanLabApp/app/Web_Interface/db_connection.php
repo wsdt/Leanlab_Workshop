@@ -35,7 +35,7 @@ if (!empty($_POST) || !empty($_GET)) {
     sendHeader("105", "412 - Precondition Failed","The server does not meet one of the preconditions that the requester put on the request.");
 }
 
-function sendHeader($code="0", $reason="Unknown error", $description="no description provided", $data="\"empty\"") {
+function sendHeader($code="0", $reason="Unknown error", $description="no description provided", $data="{}") {
     //IMPORTANT: NO OUTPUT ALLOWED BEFORE CALLING THIS FUNCTION
     //header(trim("HTTP/1.1 $code $reason")); //IMPORTANT: do not use error codes ABOVE 399 (must be < 400) UNLESS you want the Android APP to stop!
 	
