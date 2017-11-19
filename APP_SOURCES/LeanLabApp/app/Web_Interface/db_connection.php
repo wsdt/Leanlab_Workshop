@@ -1,8 +1,8 @@
 <?php
 define("DB_HOST","localhost");
-define("DB_USER","root");
-define("DB_PWD","");
-define("DB_NAME","LeanLab");
+define("DB_USER","labreader");
+define("DB_PWD","leanlab2017!");
+define("DB_NAME","Leanlab");
 
 
 if (!empty($_POST) || !empty($_GET)) {
