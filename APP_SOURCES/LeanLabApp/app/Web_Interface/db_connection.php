@@ -33,16 +33,11 @@ if (!empty($_POST) || !empty($_GET)) {
     sendHeader("105", "412 - Precondition Failed","The server does not meet one of the preconditions that the requester put on the request.");
 }
 
-function sendHeader($code="0", $reason="Unknown error", $description="{no description provided}") {
+function sendHeader($code="0", $reason="Unknown error", $description="no description provided", $data="\"empty\"") {
     //IMPORTANT: NO OUTPUT ALLOWED BEFORE CALLING THIS FUNCTION
-    header(trim("HTTP/1.1 $code $reason")); //IMPORTANT: do not use error codes ABOVE 399 (must be < 400) UNLESS you want the Android APP to stop!
+    //header(trim("HTTP/1.1 $code $reason")); //IMPORTANT: do not use error codes ABOVE 399 (must be < 400) UNLESS you want the Android APP to stop!
 	
-	/*echo "<script type='text/javascript'>";
-	foreach (getallheaders() as $name => $value) {
-    echo "console.log('$name: $value\\n');";
-	}
-	echo "</script>";*/
-	echo "{\"HEADER_RESP\":{\"Code\":\"$code\",\"Reason\":\"$reason\",\"Description\":\"The server responded with an error code of $code and provided following message for you: $description\"}}";
+	echo "{\"HEADER_RESP\":{\"Code\":\"$code\",\"Reason\":\"$reason\",\"Description\":\"The server responded with an error code of $code and provided following message for you: $description\"},\"DATA\":{\"ResultObj\":$data}}";
 
     //echo "<h1>$code: $reason</h1> <p>The server responded with an error code of $code and provided following message for you: <br /><i>'$description'</i></p>";
     die();
@@ -143,7 +138,8 @@ class db_connection {
         }
 
         $res = json_encode($result, JSON_FORCE_OBJECT); //so immer {} umschließend statt []
-        echo $res; //das wird in JAVA zurückgegeben
+        //echo $res; //das wird in JAVA zurückgegeben
+		sendHeader("200", "200 - OK","Request successful!",$res); //einheitliches JSON ausgeben
         mysqli_free_result($sth);
 
         $con->close();
