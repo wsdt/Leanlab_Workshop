@@ -7,9 +7,11 @@ import org.json.JSONObject;
 
 import java.util.ArrayList;
 
+import fhku.leanlabapp.classes.exceptions.JsonToObjectMapper_Exception;
 import fhku.leanlabapp.interfaces.JsonStrConverter;
+import fhku.leanlabapp.interfaces.Mapper;
 
-public class Product {
+public class Product extends Mapper{
     private static final String LOG_TAG = "PRODUCT";
     private int Productid;
     private String Productname;
@@ -47,22 +49,25 @@ public class Product {
         this.Productname = Productname;
     }
 
-    public static Product MapJsonToObject(String json) throws JsonToObjectMapper_Exception {
+    // MAPPING METHODS +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+    @Override
+    public Product MapJsonToObject(String json) throws JsonToObjectMapper_Exception {
         JsonStrConverter tmp = new JsonStrConverter(json);
         tmp.convertStrToJson();
         return MapJsonToObject(tmp.getJson_obj());
     }
 
-    public static Product MapJsonToObject(JSONObject json) throws JsonToObjectMapper_Exception {
-        Product product;
+    @Override
+    public Product MapJsonToObject(JSONObject json) throws JsonToObjectMapper_Exception {
+        Product obj;
         try {
-            product = new Product(json.getInt("Productid"), json.getString("Productname"));
+            obj = new Product(json.getInt("Productid"), json.getString("Productname"));
         } catch(JSONException e) {
             Log.e("MapJsonToObject","JSON could not be mapped to Object!");
             e.printStackTrace();
             throw new JsonToObjectMapper_Exception("JSON could not be mapped to Object!");
         }
-        return product;
+        return obj;
     }
 
 

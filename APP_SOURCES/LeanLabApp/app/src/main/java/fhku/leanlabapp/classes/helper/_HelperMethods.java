@@ -1,4 +1,4 @@
-package fhku.leanlabapp.classes;
+package fhku.leanlabapp.classes.helper;
 
 
 /**

@@ -1,10 +1,22 @@
-//package fhku.leanlabapp.interfaces;
+package fhku.leanlabapp.interfaces.database;
 
-//import android.util.Log;
-import java.io.*;
+import android.util.Log;
+import java.io.BufferedReader;
+import java.io.DataInputStream;
+import java.io.DataOutputStream;
+import java.io.IOException;
+import java.io.InputStreamReader;
+import java.io.OutputStreamWriter;
+import java.io.UnsupportedEncodingException;
 import java.net.HttpURLConnection;
 import java.net.URL;
 import java.net.URLEncoder;
+import java.util.concurrent.Callable;
+import java.util.concurrent.ExecutionException;
+import java.util.concurrent.ExecutorService;
+import java.util.concurrent.Executors;
+import java.util.concurrent.Future;
+
 import javax.net.ssl.HttpsURLConnection;
 
 /*********************************************************************************
@@ -80,21 +92,12 @@ import javax.net.ssl.HttpsURLConnection;
 
 public class DbConnection {
     //IMPORTANT: DO NOT ADD HTTP OR HTTPS INTO THAT VARIABLE!
-    private static final String WEBSERVICE_PHP = "localhost/PP_Webservice/db_connection.php";
+    private static final String WEBSERVICE_PHP = "leanlab.web.fh-kufstein.ac.at/db_connection.php";
 
     //User and password will be added to the parameter list, webservice only accepts post/get requests if db_user table contains same data as here mentioned (security)
     private static final String USER = "default";
     private static final String PASSWORD = "dD56hjJ5dSWf";
     //Always use HTTPS requests!
-
-
-    public static void main(String[] args) {
-        String[] parameters = {"sql_statement=SELECT * FROM Product;"};
-        String json_str = sendRequestForResult(encodeParameters(parameters), "post", false);
-
-        System.out.println(json_str);
-
-    }
 
 
     public static String encodeParameter(String parameter) { //parameter must not look like: "param1", "param1=val1&", ...
@@ -106,12 +109,12 @@ public class DbConnection {
                 // = bei attributzuweisung darf nicht encoded werden
                 encodedParameter = parameter_tmp[0]+"="+URLEncoder.encode(parameter_tmp[1], "UTF-8");
             } catch (UnsupportedEncodingException e) {
-               // Log.e("encodeParameter", "UTF-8 encoding unknown!");
+                // Log.e("encodeParameter", "UTF-8 encoding unknown!");
                 e.printStackTrace();
             }
-        } /*else {
-            // Log.e("encodeParameter", "Parameter will be ignored: "+parameter);
-        }*/
+        } else {
+         Log.e("encodeParameter", "Parameter will be ignored: "+parameter);
+        }
         //Parameter will NOT be added to parameter list, if parameter is not encoded!
         return encodedParameter;
     }
@@ -135,16 +138,31 @@ public class DbConnection {
         return encodedParameters; //return parameter1=value1&parameter2=value2 ...
     }
 
+    public static String sendRequestForResult_ASYNC(final String[] PARAMETERS, final String METHOD, final boolean useHTTPS) throws ExecutionException, InterruptedException {
+        ExecutorService executor = Executors.newSingleThreadExecutor();
+        Callable<String> callable = new Callable<String>() {
+            @Override
+            public String call() throws Exception {
+                return DbConnection.sendRequestForResult(encodeParameters(PARAMETERS),METHOD,useHTTPS);
+            }
+        };
+
+        Future<String> future = executor.submit(callable);
+        //future.get() returns JSON or raises an exception if thread dies, so safer
+        executor.shutdown();
+        return future.get();
+    }
+
 
     //IMPORTANT: Variable 'parameters' must be sent to encodeParameters() before!
-    public static String sendRequestForResult(final String parameters, String method, boolean useHTTPS) {
+    private static String sendRequestForResult(final String parameters, String method, boolean useHTTPS) {
         method = (!method.equals("POST") && !method.equals("GET")) ? "POST" : method; // wenn method falsch übergeben, dann mach POST
 
         URL url = null;
         String response = null;
 
         if (!useHTTPS) {
-            //Log.w("sendRequestForResult","Used HTTP (not secure). Please use HTTPS instead.");
+            Log.w("sendRequestForResult","Used HTTP (not secure). Please use HTTPS instead.");
             HttpURLConnection connection;
             OutputStreamWriter request = null;
 
@@ -160,7 +178,6 @@ public class DbConnection {
                 request.flush();
                 request.close();
                 String line = "";
-
                 InputStreamReader isr = new InputStreamReader(connection.getInputStream());
                 BufferedReader reader = new BufferedReader(isr);
 
@@ -174,17 +191,17 @@ public class DbConnection {
                 //Log.e("RESPONSE",response);
                 //System.out.println(response);
 
-                //Log.i("sendRequest_HTTP","Response-Code: " + connection.getResponseCode());
-                //Log.i("sendRequest_HTTP","Response-Message: " + connection.getResponseMessage());
-                //Log.i("sendRequest_HTTP","Response-Content: "+response);
+                Log.i("sendRequest_HTTP","Response-Code: " + connection.getResponseCode());
+                Log.i("sendRequest_HTTP","Response-Message: " + connection.getResponseMessage());
+                Log.i("sendRequest_HTTP","Response-Content: "+response);
 
             } catch (IOException e) {
-                //Log.e("sendRequest_HTTP", "Could not send parameters to webservice!");
+                Log.e("sendRequest_HTTP", "Could not send parameters to webservice!");
                 e.printStackTrace();
             }
         } else {
             //USE HTTPS
-            //TODO: Untested
+            Log.e("Certificate","WARNING: HTTPS is implemented, but will NOT work, because a SSL certificate is missing!");
 
             try {
                 url = new URL("https://" + WEBSERVICE_PHP);
@@ -194,7 +211,7 @@ public class DbConnection {
                 connection.setRequestProperty("Content-length", String.valueOf(parameters.length()));
                 connection.setRequestProperty("Content-Type", "application/x-www-form-urlencoded");
                 connection.setRequestProperty("User-Agent", "Mozilla/4.0 (compatible; MSIE 5.0;Windows98;DigExt)");
-                connection.setDoOutput(true);
+                connection.setDoOutput(method.equals("POST")); //if post then do output, if get then not
                 connection.setDoInput(true);
 
                 DataOutputStream output = new DataOutputStream(connection.getOutputStream());
@@ -213,12 +230,12 @@ public class DbConnection {
 
                 response = sb.toString();
 
-                //Log.i("sendRequest_HTTPS","Response-Code: " + connection.getResponseCode());
-                //Log.i("sendRequest_HTTPS","Response-Message: " + connection.getResponseMessage());
-                //Log.i("sendRequest_HTTPS","Response-Content: "+response);
+                Log.i("sendRequest_HTTPS","Response-Code: " + connection.getResponseCode());
+                Log.i("sendRequest_HTTPS","Response-Message: " + connection.getResponseMessage());
+                Log.i("sendRequest_HTTPS","Response-Content: "+response);
 
             } catch (IOException e) {
-                //Log.e("sendRequest_HTTPS", "Could not send parameters to webservice!");
+                Log.e("sendRequest_HTTPS", "Could not send parameters to webservice!");
                 e.printStackTrace();
             }
         }

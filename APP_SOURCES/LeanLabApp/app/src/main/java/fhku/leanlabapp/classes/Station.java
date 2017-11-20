@@ -2,9 +2,16 @@ package fhku.leanlabapp.classes;
 
 import android.util.Log;
 
+import org.json.JSONException;
+import org.json.JSONObject;
+
 import java.util.ArrayList;
 
-public class Station {
+import fhku.leanlabapp.classes.exceptions.JsonToObjectMapper_Exception;
+import fhku.leanlabapp.interfaces.JsonStrConverter;
+import fhku.leanlabapp.interfaces.Mapper;
+
+public class Station extends Mapper {
     private static final String LOG_TAG = "STATION";
     private int Stationid;
     private String Stationname;
@@ -40,6 +47,27 @@ public class Station {
             Log.w(LOG_TAG,"Stationname TOO long! Shortened it.");
         }
         this.Stationname = Stationname;
+    }
+
+    // MAPPING METHODS +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+    @Override
+    public Station MapJsonToObject(String json) throws JsonToObjectMapper_Exception {
+        JsonStrConverter tmp = new JsonStrConverter(json);
+        tmp.convertStrToJson();
+        return MapJsonToObject(tmp.getJson_obj());
+    }
+
+    @Override
+    public Station MapJsonToObject(JSONObject json) throws JsonToObjectMapper_Exception {
+        Station obj;
+        try {
+            obj = new Station(json.getInt("Stationid"), json.getString("Stationname"));
+        } catch(JSONException e) {
+            Log.e("MapJsonToObject","JSON could not be mapped to Object!");
+            e.printStackTrace();
+            throw new JsonToObjectMapper_Exception("JSON could not be mapped to Object!");
+        }
+        return obj;
     }
 
 

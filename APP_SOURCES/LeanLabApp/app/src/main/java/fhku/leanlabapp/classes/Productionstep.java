@@ -1,8 +1,17 @@
 package fhku.leanlabapp.classes;
 
+import android.util.Log;
+
+import org.json.JSONException;
+import org.json.JSONObject;
+
 import java.util.ArrayList;
 
-public class Productionstep {
+import fhku.leanlabapp.classes.exceptions.JsonToObjectMapper_Exception;
+import fhku.leanlabapp.interfaces.JsonStrConverter;
+import fhku.leanlabapp.interfaces.Mapper;
+
+public class Productionstep extends Mapper {
     private static final String LOG_TAG = "PRODUCTIONSTEP";
     private int Productionstepid;
     private int Productid;
@@ -44,5 +53,24 @@ public class Productionstep {
         this.Stationid = Stationid;
     }
 
+    // MAPPING METHODS +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+    @Override
+    public Productionstep MapJsonToObject(String json) throws JsonToObjectMapper_Exception {
+        JsonStrConverter tmp = new JsonStrConverter(json);
+        tmp.convertStrToJson();
+        return MapJsonToObject(tmp.getJson_obj());
+    }
 
+    @Override
+    public Productionstep MapJsonToObject(JSONObject json) throws JsonToObjectMapper_Exception {
+        Productionstep obj;
+        try {
+            obj = new Productionstep(json.getInt("Productionstepid"),json.getInt("Productid"),json.getInt("Stationid"));
+        } catch(JSONException e) {
+            Log.e("MapJsonToObject","JSON could not be mapped to Object!");
+            e.printStackTrace();
+            throw new JsonToObjectMapper_Exception("JSON could not be mapped to Object!");
+        }
+        return obj;
+    }
 }

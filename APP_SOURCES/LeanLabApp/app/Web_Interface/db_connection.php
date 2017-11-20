@@ -4,6 +4,8 @@ define("DB_USER","labreader");
 define("DB_PWD","leanlab2017!");
 define("DB_NAME","Leanlab");
 
+//require_once './rules/forbidden_sql_statements.php';
+
 
 if (!empty($_POST) || !empty($_GET)) {
     if (!empty($_REQUEST['Username']) && !empty($_REQUEST['Password'])) {

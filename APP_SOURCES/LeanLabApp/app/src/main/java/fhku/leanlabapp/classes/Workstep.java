@@ -1,8 +1,17 @@
 package fhku.leanlabapp.classes;
 
+import android.util.Log;
+
+import org.json.JSONException;
+import org.json.JSONObject;
+
 import java.util.ArrayList;
 
-public class Workstep {
+import fhku.leanlabapp.classes.exceptions.JsonToObjectMapper_Exception;
+import fhku.leanlabapp.interfaces.JsonStrConverter;
+import fhku.leanlabapp.interfaces.Mapper;
+
+public class Workstep extends Mapper {
     private static final String LOG_TAG = "PRODUCTIONSTEP";
     private int Workstepid;
     private int Productionstepid;
@@ -35,6 +44,27 @@ public class Workstep {
 
     public void setProductionstepid(int Productionstepid) {
         this.Productionstepid = Productionstepid;
+    }
+
+    // MAPPING METHODS +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+    @Override
+    public Workstep MapJsonToObject(String json) throws JsonToObjectMapper_Exception {
+        JsonStrConverter tmp = new JsonStrConverter(json);
+        tmp.convertStrToJson();
+        return MapJsonToObject(tmp.getJson_obj());
+    }
+
+    @Override
+    public Workstep MapJsonToObject(JSONObject json) throws JsonToObjectMapper_Exception {
+        Workstep obj;
+        try {
+            obj = new Workstep(json.getInt("Workstepid"), json.getInt("Productionstepid"));
+        } catch(JSONException e) {
+            Log.e("MapJsonToObject","JSON could not be mapped to Object!");
+            e.printStackTrace();
+            throw new JsonToObjectMapper_Exception("JSON could not be mapped to Object!");
+        }
+        return obj;
     }
 
 }

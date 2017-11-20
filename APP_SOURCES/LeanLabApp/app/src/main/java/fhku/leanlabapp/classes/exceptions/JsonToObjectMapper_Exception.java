@@ -1,4 +1,4 @@
-package fhku.leanlabapp.classes;
+package fhku.leanlabapp.classes.exceptions;
 
 /**
  * Created by kevin on 14.11.2017.

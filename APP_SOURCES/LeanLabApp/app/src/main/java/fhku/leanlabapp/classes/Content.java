@@ -1,9 +1,18 @@
 package fhku.leanlabapp.classes;
 
 import android.util.Log;
+
+import org.json.JSONException;
+import org.json.JSONObject;
+
 import java.util.ArrayList;
 
-public class Content {
+import fhku.leanlabapp.classes.exceptions.JsonToObjectMapper_Exception;
+import fhku.leanlabapp.classes.helper._HelperMethods;
+import fhku.leanlabapp.interfaces.JsonStrConverter;
+import fhku.leanlabapp.interfaces.Mapper;
+
+public class Content extends Mapper{
     private static final String LOG_TAG = "CONTENT";
     private int Contentid;
     private String Contenttext;
@@ -64,4 +73,27 @@ public class Content {
     public void setTypid(int typid) {
         this.Typid = typid;
     }
+
+    // MAPPING METHODS +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+    @Override
+    public Content MapJsonToObject(String json) throws JsonToObjectMapper_Exception {
+        JsonStrConverter tmp = new JsonStrConverter(json);
+        tmp.convertStrToJson();
+        return MapJsonToObject(tmp.getJson_obj());
+    }
+
+    @Override
+    public Content MapJsonToObject(JSONObject json) throws JsonToObjectMapper_Exception {
+        Content obj;
+        try {
+            obj = new Content(json.getInt("Contentid"), json.getString("Contenttext"),json.getInt("Workstepid"),json.getInt("Typid"));
+        } catch(JSONException e) {
+            Log.e("MapJsonToObject","JSON could not be mapped to Object!");
+            e.printStackTrace();
+            throw new JsonToObjectMapper_Exception("JSON could not be mapped to Object!");
+        }
+        return obj;
+    }
+
 }
+

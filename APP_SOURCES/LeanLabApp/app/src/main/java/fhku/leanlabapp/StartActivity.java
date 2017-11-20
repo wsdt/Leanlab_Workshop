@@ -10,13 +10,13 @@ import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.Spinner;
 
+import java.util.ArrayList;
 import java.util.concurrent.ExecutionException;
 
-import fhku.leanlabapp.interfaces.DbConnection;
+import fhku.leanlabapp.classes.User;
+import fhku.leanlabapp.interfaces.database.DbConnection;
 
 public class StartActivity extends AppCompatActivity implements AdapterView.OnItemClickListener, AdapterView.OnItemSelectedListener {
-
-
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -61,6 +61,8 @@ public class StartActivity extends AppCompatActivity implements AdapterView.OnIt
 
         spinner1.setSelection(aa.getPosition(qrcode));
 
+
+        //Für euch zum Austesten, Zeile einfach auskommentieren. KevinTest()-Funktion bitte NICHT löschen (dient auch mir vorerst noch als Referenz).
         KevinTest();
 
     }
@@ -78,11 +80,13 @@ public class StartActivity extends AppCompatActivity implements AdapterView.OnIt
     }
 
     public void KevinTest() {
+        //Beispiel SQL Abfrage für Tabelle Users und Ausgabe der ersten Zeile.
         try {
-            DbConnection.sendRequestForResult_ASYNC(new String[] {"SELECT * FROM User;"},"post",false);
-        } catch (ExecutionException e) {
-            e.printStackTrace();
-        } catch (InterruptedException e) {
+            User tmp = new User("tmp");
+            User.Loaded_Users = tmp.CastArrayListObjToSpecObj(tmp.MapJsonRowsToObject(DbConnection.sendRequestForResult_ASYNC(new String[] {"sql_statement=SELECT * FROM User;"},"post",false)),tmp);
+
+            Log.e("WORKED","Username: "+(User.Loaded_Users.get(0)).getUsername()+"/// Password: "+(User.Loaded_Users.get(0)).getPassword());
+        } catch (Exception e) {
             e.printStackTrace();
         }
     }
