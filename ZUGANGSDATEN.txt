@@ -1,0 +1,27 @@
+#########################################################################
+#########################################################################
+#################### DATEN VERTRAULICH BEHANDELN ########################
+#########################################################################
+#########################################################################
+
+Remote-Desktop-Verbindung: 
+	Server: s1-mysql-lean
+	User: WEBProjekt
+	Pwd: L3anL4b#
+
+Datenbank: 
+	DB_HOST: localhost
+	DB_USER: root
+	DB_PWD: L3anL4b#
+	DB_NAME: leanlabworking
+
+Web-Service: 192.168.12.115/LeanLabWorking/db_connection.php
+
+Java-App-Webservice-Auth: 
+	User: default
+	Pwd: dD56hjJ5dSWf
+
+WLAN-Zugriff: 
+	NAME: FH_LEANLAB
+	PWD: L3anL4b#
+
