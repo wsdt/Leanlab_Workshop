@@ -13,6 +13,7 @@ import android.widget.Spinner;
 import java.util.ArrayList;
 import java.util.concurrent.ExecutionException;
 
+import fhku.leanlabapp.classes.Station;
 import fhku.leanlabapp.classes.User;
 import fhku.leanlabapp.interfaces.database.DbConnection;
 
@@ -21,7 +22,7 @@ public class StartActivity extends AppCompatActivity implements AdapterView.OnIt
     @Override
     protected void onCreate(Bundle savedInstanceState) {
 
-        String [] stations = bringMyStations();
+        ArrayList stations = giveMeMyStations();
         String [] prodcuts = bringMyProducts();
 
         super.onCreate(savedInstanceState);
@@ -53,8 +54,6 @@ public class StartActivity extends AppCompatActivity implements AdapterView.OnIt
         //Setting the ArrayAdapter data on the Spinner
         spinner2.setAdapter(bb);
 
-
-
         Intent intent = getIntent();
 
         String qrcode = intent.getStringExtra(QrActivity.EXTRA_Message);
@@ -85,11 +84,28 @@ public class StartActivity extends AppCompatActivity implements AdapterView.OnIt
             User tmp = new User("tmp");
             User.Loaded_Users = tmp.MapJsonRowsToObject(DbConnection.sendRequestForResult_ASYNC(new String[] {"sql_statement=SELECT * FROM User;"},"post",false));
 
+
             Log.e("WORKED","Username: "+(User.Loaded_Users.get(0)).getUsername()+"/// Password: "+(User.Loaded_Users.get(0)).getPassword());
         } catch (Exception e) {
             e.printStackTrace();
         }
     }
+
+    public ArrayList giveMeMyStations(){
+        try {
+            Station station = new Station(1);
+            Station.Loaded_Stations = station.CastArrayListObjToSpecObj
+                    (station.MapJsonRowsToObject(DbConnection.sendRequestForResult_ASYNC
+                            (new String[] {"sql_statement=Select * From Station;"}, "post", false)),station);
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
+        return Station.Loaded_Stations;
+    }
+
+
 
 
 

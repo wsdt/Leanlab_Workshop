@@ -32,7 +32,7 @@ CREATE TABLE Workstep (
     PRIMARY KEY (Workstepid)
 	);
     
-CREATE TABLE TYP (
+CREATE TABLE Typ (
 	Typid INT(10) NOT NULL auto_increment,
     Typname VARCHAR (50),
     PRIMARY KEY (Typid)
@@ -57,6 +57,49 @@ CREATE TABLE User (
     PRIMARY KEY (Username)    
     ); 
 	
-INSERT INTO User VALUES('default','$2a$04$F0AYTWK54/jMvIY3a2Krm.gqQZwkBaoSyn7wuIjug13FwHoC5ARA.');
+INSERT INTO User VALUES
+	('default','$2a$04$F0AYTWK54/jMvIY3a2Krm.gqQZwkBaoSyn7wuIjug13FwHoC5ARA.');
     
+INSERT INTO Typ(Typname) VALUES
+	('Bild'),
+    ('Video'),
+    ('HTML5');
 
+INSERT INTO Station(Stationname) VALUES
+	('Station1'),
+	('Station2'),
+    ('Station3');
+    
+INSERT INTO Product(Productname) VALUES
+	('Uhr1'),
+    ('Uhr2'),
+    ('Uhr3');
+    
+INSERT INTO Productionstep(ProductID, StationID) VALUES
+	('1', '1'),
+    ('1', '2'),
+    ('1', '3'),
+    ('2', '1'),
+    ('2', '2'),
+    ('2', '3');
+    
+INSERT INTO Workstep(ProductionstepID) VALUES
+	('1'),
+    ('1'),
+    ('2'),
+    ('2'),
+	('3');
+
+INSERT INTO Content(Contenttext, Workstepid, Typid) VALUES
+	('/etc/local/usr/beispieluser/bilder/bild1.jpg', 1, 1),
+    ('/etc/local/usr/beispieluser/videos/video1.mpg', 1, 2),
+    ('Legen Sie den Zeiger auf die Uhr', 1, 3),
+    ('/etc/local/usr/beispieluser/bilder/bild2.jpg', 2, 1),
+    ('/etc/local/usr/beispieluser/videos/video2.mpg', 2, 2),
+    ('Schrauben Sie irgendeine Schraube fest', 2, 3),
+    ('/etc/local/usr/beispieluser/bilder/bild3.jpg', 3, 1),
+    ('/etc/local/usr/beispieluser/videos/video3.mpg', 3, 2),
+    ('Bringen Sie das Ziffernblatt an der Schraube an', 3, 3); 
+    
+    
+    
