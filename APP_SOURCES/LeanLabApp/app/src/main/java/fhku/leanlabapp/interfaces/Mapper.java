@@ -1,69 +1,68 @@
 package fhku.leanlabapp.interfaces;
 
-import com.fasterxml.jackson.annotation.JsonIgnoreType;
-import com.fasterxml.jackson.core.JsonProcessingException;
-import com.fasterxml.jackson.databind.Module;
-import com.fasterxml.jackson.databind.ObjectMapper;
-import com.fasterxml.jackson.databind.module.SimpleModule;
-
-import org.json.JSONArray;
+import org.json.JSONException;
 import org.json.JSONObject;
 
-import java.io.IOException;
+import java.util.ArrayList;
+import java.util.Iterator;
 
+import fhku.leanlabapp.classes.exceptions.JsonToObjectMapper_Exception;
 
+/**
+ * Created by kevin on 20.11.2017.
+ */
 
-public class Mapper extends ObjectMapper {
-    /* Maps e.g. a Mysql object/JSON object/String into a Java class or other types. */
-    @JsonIgnoreType
-    private static class IgnoreMe {  };
+public abstract class Mapper {
+    // MAPPING METHODS +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+    public abstract Object MapJsonToObject(String json) throws JsonToObjectMapper_Exception;
+    public abstract Object MapJsonToObject(JSONObject json) throws JsonToObjectMapper_Exception;
 
-    public Module getIgnoreJacksonModule() {
-        return new SimpleModule().setMixInAnnotation(ObjectMapper.class, IgnoreMe.class);
+    public ArrayList<Object> MapJsonRowsToObject(String json) throws JsonToObjectMapper_Exception {
+        JsonStrConverter tmp = new JsonStrConverter(json);
+        return MapJsonRowsToObject(tmp.convertStrToJson());
     }
 
+    public ArrayList<Object> MapJsonRowsToObject(JSONObject json) throws JsonToObjectMapper_Exception {
+        JSONObject json_data = GetJsonDataResult(json);
+        Iterator<?> keys = json_data.keys();
+        ArrayList<Object> all_rows_mapped = new ArrayList<>();
 
-    // Json String <==> String Array ------------------------------------------
-    public String[] JsonStrToStringArray(String jsonStr) throws IOException {
-        //TODO: Might not work
-        return this.readValue(jsonStr,String[].class);
-        /*JSONObject tmp = this.JsonStrToJsonObj(jsonStr);
-        JSONArray jsonArray = jsnobject.getJSONArray("locations");
-        for (int i = 0; i < jsonArray.length(); i++) {
-            JSONObject explrObject = jsonArray.getJSONObject(i);
-        }*/
+        //Thanks to: https://stackoverflow.com/questions/9151619/how-to-iterate-over-a-jsonobject
+        while (keys.hasNext()) {
+            String key = (String) keys.next();
+            try {
+                if (json_data.get(key) instanceof JSONObject) {
+                    all_rows_mapped.add(MapJsonToObject((JSONObject) json_data.get(key)));
+                }
+            } catch (JSONException e) {
+                e.printStackTrace();
+                throw new JsonToObjectMapper_Exception();
+            }
+        }
+        return all_rows_mapped;
     }
-    public String JsonStringArrayToString(String[] jsonArr) throws JsonProcessingException {
-        //TODO: Might not work
-        return this.writeValueAsString(jsonArr);
+    public String GetJsonDataResult(String json) throws JsonToObjectMapper_Exception {
+        JsonStrConverter tmp = new JsonStrConverter(json);
+        JSONObject json_data = GetJsonDataResult(tmp.convertStrToJson());
+        tmp.setJson_obj(json_data);
+        return tmp.convertJsonToStr();
     }
-
-    // Json Obj <==> Java Obj ------------------------------------------
-    public Object JsonObjtoObj(JSONObject jsonObj, Object obj) throws IOException {
-        //TODO: Might not work
-        return this.JsonStrToObj(this.JsonObjToJsonStr(jsonObj),obj);
+    public JSONObject GetJsonDataResult(JSONObject json) throws JsonToObjectMapper_Exception {
+        JSONObject json_data;
+        try {
+            json_data = json.getJSONObject("DATA");
+            json_data = json_data.getJSONObject("ResultObj"); //da verschachtelt
+        } catch (JSONException e) {
+            e.printStackTrace();
+            throw new JsonToObjectMapper_Exception();
+        }
+        return json_data;
     }
-    public JSONObject ObjToJsonObj(Object obj) throws JsonProcessingException {
-        //TODO: Might not work
-        return (new JsonStrConverter(this.ObjToJsonStr(obj))).convertStrToJson();
+    public <OBJ> ArrayList<OBJ> CastArrayListObjToSpecObj(ArrayList list, OBJ class_type) {
+        ArrayList<OBJ> new_list = new ArrayList<>();
+        for (Object o : list) {
+            new_list.add((OBJ) o);
+        }
+        return new_list;
     }
-
-    // Json String <==> Java Obj ------------------------------------------
-    public Object JsonStrToObj(String jsonStr, Object obj) throws IOException {
-        //TODO: Might not work
-        return this.readValue(jsonStr, obj.getClass());
-    }
-    public String ObjToJsonStr(Object obj) throws JsonProcessingException {
-        //TODO: Might not work
-        return this.writeValueAsString(obj);
-    }
-
-    // Json Obj <==> Java String ------------------------------------------
-    public String JsonObjToJsonStr(JSONObject jsonObj) { //Dummy Method, if someone wants to convert a String to Json with the Mapper
-        return (new JsonStrConverter(jsonObj)).convertJsonToStr();
-    }
-    public JSONObject JsonStrToJsonObj(String jsonStr) { //Dummy Method, if someone wants to convert a JSON to String with the Mapper
-        return (new JsonStrConverter(jsonStr)).convertStrToJson();
-    }
-
 }

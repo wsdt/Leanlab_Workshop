@@ -1,6 +1,6 @@
 
 
-package fhku.leanlabapp.interfaces;
+package fhku.leanlabapp.interfaces.compatibility;
 
 import android.Manifest;
 import android.app.Activity;
