@@ -1,6 +1,7 @@
 package fhku.leanlabapp;
 
 import android.content.Intent;
+import android.media.Image;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
@@ -8,6 +9,7 @@ import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
+import android.widget.ImageButton;
 import android.widget.Spinner;
 
 import java.util.ArrayList;
@@ -27,10 +29,19 @@ public class StartActivity extends AppCompatActivity implements AdapterView.OnIt
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_start);
 
-        Button b = (Button) findViewById(R.id.buttonqr1);
-        b.setOnClickListener(new View.OnClickListener() {
+        ImageButton b1 = (ImageButton) findViewById(R.id.buttonqr1);
+        ImageButton b2 = (ImageButton) findViewById(R.id.buttonqr2);
+
+        b1.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                startActivity(new Intent(StartActivity.this, QrActivity.class));
+            }
+        });
+
+        b2.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
                 startActivity(new Intent(StartActivity.this, QrActivity.class));
             }
         });
@@ -81,7 +92,11 @@ public class StartActivity extends AppCompatActivity implements AdapterView.OnIt
         //Beispiel SQL Abfrage für Tabelle Users und Ausgabe der ersten Zeile.
         try {
             User tmp = new User("tmp");
-            User.Loaded_Users = tmp.MapJsonRowsToObject(DbConnection.sendRequestForResult_ASYNC(new String[] {"sql_statement=SELECT * FROM User;"},"post",false));
+
+
+
+            User.Loaded_Users = tmp.MapJsonRowsToObject(DbConnection.sendRequestForResult_ASYNC(new String[]
+                    {"sql_statement=SELECT * FROM User;"},"post",false));
 
 
             Log.e("WORKED","Username: "+(User.Loaded_Users.get(0)).getUsername()+"/// Password: "+(User.Loaded_Users.get(0)).getPassword());
