@@ -25,6 +25,9 @@ import fhku.leanlabapp.interfaces.JsonStrConverter;
 import fhku.leanlabapp.interfaces.database.DbConnection;
 
 public class StartActivity extends AppCompatActivity implements AdapterView.OnItemClickListener {
+    public Spinner spinnerProducts;
+    public Spinner spinnerStations;
+
     public class OnItemSelectedListener implements AdapterView.OnItemSelectedListener {
         @Override
         public void onItemSelected(AdapterView<?> arg0, View arg1, int position,long id) {
@@ -54,8 +57,8 @@ public class StartActivity extends AppCompatActivity implements AdapterView.OnIt
 
 
         //Getting the instance of Spinner and applying OnItemSelectedListener on it
-        Spinner spinnerProducts = (Spinner) findViewById(R.id.spinnerProducts);
-        Spinner spinnerStations = (Spinner) findViewById(R.id.spinnerStations);
+        spinnerProducts = (Spinner) findViewById(R.id.spinnerProducts);
+        spinnerStations = (Spinner) findViewById(R.id.spinnerStations);
         spinnerProducts.setOnItemSelectedListener(new OnItemSelectedListener());
         spinnerStations.setOnItemSelectedListener(new OnItemSelectedListener());
 
@@ -80,23 +83,6 @@ public class StartActivity extends AppCompatActivity implements AdapterView.OnIt
 
     }
 
-
-    public void KevinTest() {
-        //Beispiel SQL Abfrage für Tabelle Users und Ausgabe der ersten Zeile.
-        try {
-            User tmp = new User("tmp");
-
-
-
-            User.Loaded_Users = tmp.MapJsonRowsToObject(DbConnection.sendRequestForResult_ASYNC(new String[]
-                    {"sql_statement=SELECT * FROM User;"},"post",false));
-
-
-            Log.e("WORKED","Username: "+(User.Loaded_Users.get(0)).getUsername()+"/// Password: "+(User.Loaded_Users.get(0)).getPassword());
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-    }
 
     public ArrayList loadStations(){
         try {
