@@ -22,7 +22,6 @@ public class StartActivity extends AppCompatActivity implements AdapterView.OnIt
     @Override
     protected void onCreate(Bundle savedInstanceState) {
 
-        ArrayList stations = giveMeMyStations();
         String [] prodcuts = bringMyProducts();
 
         super.onCreate(savedInstanceState);
@@ -41,7 +40,7 @@ public class StartActivity extends AppCompatActivity implements AdapterView.OnIt
         spinner1.setOnItemSelectedListener(this);
 
         //Creating the ArrayAdapter instance having the country list
-        ArrayAdapter aa = new ArrayAdapter(this,android.R.layout.simple_spinner_item,stations);
+        ArrayAdapter aa = new ArrayAdapter(this,android.R.layout.simple_spinner_item,loadStations());
         aa.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         //Setting the ArrayAdapter data on the Spinner
         spinner1.setAdapter(aa);
@@ -91,11 +90,12 @@ public class StartActivity extends AppCompatActivity implements AdapterView.OnIt
         }
     }
 
-    public ArrayList giveMeMyStations(){
+    public ArrayList loadStations(){
         try {
             Station station = new Station(1);
             Station.Loaded_Stations = station.MapJsonRowsToObject(DbConnection.sendRequestForResult_ASYNC
                             (new String[] {"sql_statement=Select * From Station;"}, "post", false));
+
 
         } catch (Exception e) {
             e.printStackTrace();
