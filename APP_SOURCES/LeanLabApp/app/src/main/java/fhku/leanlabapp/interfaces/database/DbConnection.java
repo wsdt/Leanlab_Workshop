@@ -61,19 +61,20 @@ import javax.net.ssl.HttpsURLConnection;
  By implementing one of the lines above, we have a variable/array named 'parameters'.
  Now we need to send our data to our webservice. This works with the method below.
 
-     String json_str = sendRequestForResult(encodeParameters(parameters), post|get, true|false);
+     String json_str = DbConnection.sendRequestForResult_ASYNC(parameters,"post"|"get",false|true));
 
- The first parameter of 'sendRequestForResult' must be encodeParameters(ARRAY).
+ The first parameter of 'sendRequestForResult' must be an array.
  The second parameter let's you decide whether you want to send a POST or GET Request. If you send a invalid string, the method will automatically send a POST request.
  The third parameter let's you decide whether you want to send your data encrypted with SSL (HTTPS) or not (HTTP). True is for HTTPS, False for HTTP
+    IMPORTANT: For HTTPS your server needs to support SSL, which might not be our case!
 
- I always recommend to use HTTPS. If you want a response from the server you need to save the result in a string (e.g. String json_str = function)
 
- So in our example we want to send the sql statement above (first example of parameter array) with an encrypted connection as a post request:
-     String json_str = sendRequestForResult(encodeParameters(parameters), post, true);
+ So in our example we want to send the sql statement above (first example of parameter array) with an unencrypted connection as a post request:
+     String json_str = DbConnection.sendRequestForResult_ASYNC(new String[] {"sql_statement=SELECT * FROM User;"},"post",false));
 
  Gratulation! Now we have a JSON string with all rows and cols of our sql query.
-    E.g. { "row1":{"col1":"val1","col2":"val2"}, "row2":{"col1":"val1","col2":"val2"} }
+    E.g."{\"HEADER_RESP\":{\"Code\":\"$code\",\"Reason\":\"$reason\",\"Description\":\"The server responded with an error code of $code and provided following message for you: $description\"},\"DATA\":{\"ResultObj\":$data}}";
+    $data might look like this: {"row1":{"col1":"val1","col2":"val2"}, "row2":{"col1":"val1","col2":"val2"}}
 
  But we have a small problem now: How can we use this data in our program? We must convert the String into something more useful, like a JSON_Object, an Array
  or into an instance of an object (e.g. instance of class 'product').
@@ -83,9 +84,12 @@ import javax.net.ssl.HttpsURLConnection;
      tmp.convertStrToJson();
      JSONObject products = tmp.getJson_obj();
 
- But that is only one possible solution. You could also convert the JSON string into a java object or array.
+ But that is only one possible solution. You could also convert the JSON string into a java object or map it onto a class instance.
+ E.g.:
+     User tmp = new User("tmp");
+     User.Loaded_Users = tmp.MapJsonRowsToObject(DbConnection.sendRequestForResult_ASYNC(new String[] {"sql_statement=SELECT * FROM User;"},"post",false));
 
-**********************************************************************************/
+ **********************************************************************************/
 
 
 //https://stackoverflow.com/questions/1812891/java-escape-string-to-prevent-sql-injection

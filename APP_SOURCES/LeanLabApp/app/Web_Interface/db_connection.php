@@ -1,8 +1,8 @@
 <?php
 define("DB_HOST","localhost");
-define("DB_USER","labreader");
-define("DB_PWD","leanlab2017!");
-define("DB_NAME","Leanlab");
+define("DB_USER","root");
+define("DB_PWD","L3anL4b#");
+define("DB_NAME","leanlabworking");
 
 //require_once './rules/forbidden_sql_statements.php';
 
@@ -97,7 +97,7 @@ class db_connection {
 
     // ##################### BASIC FUNCTIONS END #############################
 
-    private function execSQLStatement_PHP_static($query) {
+    private static function execSQLStatement_PHP_static($query) {
         $send_sql = new db_connection();
         $send_sql->setQuery($query);
 
