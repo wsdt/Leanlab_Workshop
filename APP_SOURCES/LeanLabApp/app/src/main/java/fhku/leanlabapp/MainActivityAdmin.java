@@ -13,13 +13,19 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
-
 import java.io.File;
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import fhku.leanlabapp.classes.Content;
+import fhku.leanlabapp.classes.HTMLEditor;
+import fhku.leanlabapp.classes.helper._HelperMethods;
+import fhku.leanlabapp.interfaces.database.DbConnection;
+import jp.wasabeef.richeditor.RichEditor;
 
 public class MainActivityAdmin extends AppCompatActivity implements View.OnClickListener {
 
+    RichEditor editor;
+    HTMLEditor editorHtml;
     private Button takePictureButton;
     private ImageView imageView;
     private Uri file;
@@ -28,6 +34,16 @@ public class MainActivityAdmin extends AppCompatActivity implements View.OnClick
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main_admin);
+
+        editorHtml = new HTMLEditor((RichEditor) findViewById(R.id.editor), (Button) findViewById(R.id.heading));
+        editorHtml.getEditor().setOnTextChangeListener(new RichEditor.OnTextChangeListener() {
+            @Override
+            public void onTextChange(String text) {
+                saveHtml(editorHtml.getEditor().getHtml(), 1);
+                getHtml(1);
+                saveToForm(Content.Loaded_Contents.get(1).getContenttext());
+            }
+        });
 
         takePictureButton = (Button) findViewById(R.id.picture);
         imageView = (ImageView) findViewById(R.id.image);
@@ -78,6 +94,32 @@ public class MainActivityAdmin extends AppCompatActivity implements View.OnClick
         String timeStamp = new SimpleDateFormat("yyyyMMdd_HHmmss").format(new Date());
         return new File(mediaStorageDir.getPath() + File.separator +
                 "IMG_"+ timeStamp + ".jpg");
+    }
+
+    private void saveHtml(String text, int contentId) {
+        try {
+            DbConnection.sendRequestForResult_ASYNC(new String[]{"sql_statement=UPDATE Content set Contenttext='" + _HelperMethods.escapeHTML(text) + "' WHERE Contentid=" + contentId + ";"}, "post", false);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
+    }
+
+    private void getHtml(int contentId) {
+        Content tmp= new Content(1);
+        try {
+            Content.Loaded_Contents = tmp.MapJsonRowsToObject((DbConnection.sendRequestForResult_ASYNC(new String[]{"sql_statement=SELECT Content WHERE Contentid=" + contentId + ";"}, "get", false)));
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
+    }
+
+    private void saveToForm(String form) {
+
+        editorHtml.getEditor().setHtml(form);
+
     }
 
     @Override
