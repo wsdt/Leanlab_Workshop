@@ -92,7 +92,8 @@ import javax.net.ssl.HttpsURLConnection;
 
 public class DbConnection {
     //IMPORTANT: DO NOT ADD HTTP OR HTTPS INTO THAT VARIABLE!
-    private static final String WEBSERVICE_PHP = "leanlab.web.fh-kufstein.ac.at/db_connection.php";
+    //DEBUG_PURPOSES: private static final String WEBSERVICE_PHP = "leanlab.web.fh-kufstein.ac.at/db_connection.php";
+    private static final String WEBSERVICE_PHP = "192.168.12.115/LeanLabWorking/db_connection.php"; //NEEDED LOGIN INTO WLAN: FH_LEANLAB / PWD: L3anL4b#
 
     //User and password will be added to the parameter list, webservice only accepts post/get requests if db_user table contains same data as here mentioned (security)
     private static final String USER = "default";
