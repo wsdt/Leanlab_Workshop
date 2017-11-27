@@ -82,8 +82,18 @@ public class StartActivity extends AppCompatActivity implements AdapterView.OnIt
         //Beispiel SQL Abfrage für Tabelle Users und Ausgabe der ersten Zeile.
         try {
             User tmp = new User("tmp");
+<<<<<<< Updated upstream
             User.Loaded_Users = tmp.MapJsonRowsToObject(DbConnection.sendRequestForResult_ASYNC(new String[] {"sql_statement=SELECT * FROM User;"},"post",false));
 
+=======
+<<<<<<< HEAD
+            User.Loaded_Users = tmp.CastArrayListObjToSpecObj(tmp.MapJsonRowsToObject(DbConnection.sendRequestForResult_ASYNC(
+                    new String[] {"sql_statement=SELECT * FROM UserActivity;"},"post",false)),tmp);
+=======
+            User.Loaded_Users = tmp.MapJsonRowsToObject(DbConnection.sendRequestForResult_ASYNC(new String[] {"sql_statement=SELECT * FROM User;"},"post",false));
+
+>>>>>>> origin/master
+>>>>>>> Stashed changes
 
             Log.e("WORKED","Username: "+(User.Loaded_Users.get(0)).getUsername()+"/// Password: "+(User.Loaded_Users.get(0)).getPassword());
         } catch (Exception e) {

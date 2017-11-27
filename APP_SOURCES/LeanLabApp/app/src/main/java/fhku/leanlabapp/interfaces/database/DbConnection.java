@@ -95,7 +95,7 @@ public class DbConnection {
     //DEBUG_PURPOSES: private static final String WEBSERVICE_PHP = "leanlab.web.fh-kufstein.ac.at/db_connection.php";
     private static final String WEBSERVICE_PHP = "192.168.12.115/LeanLabWorking/db_connection.php"; //NEEDED LOGIN INTO WLAN: FH_LEANLAB / PWD: L3anL4b#
 
-    //User and password will be added to the parameter list, webservice only accepts post/get requests if db_user table contains same data as here mentioned (security)
+    //UserActivity and password will be added to the parameter list, webservice only accepts post/get requests if db_user table contains same data as here mentioned (security)
     private static final String USER = "default";
     private static final String PASSWORD = "dD56hjJ5dSWf";
     //Always use HTTPS requests!
@@ -211,7 +211,7 @@ public class DbConnection {
 
                 connection.setRequestProperty("Content-length", String.valueOf(parameters.length()));
                 connection.setRequestProperty("Content-Type", "application/x-www-form-urlencoded");
-                connection.setRequestProperty("User-Agent", "Mozilla/4.0 (compatible; MSIE 5.0;Windows98;DigExt)");
+                connection.setRequestProperty("UserActivity-Agent", "Mozilla/4.0 (compatible; MSIE 5.0;Windows98;DigExt)");
                 connection.setDoOutput(method.equals("POST")); //if post then do output, if get then not
                 connection.setDoInput(true);
 
