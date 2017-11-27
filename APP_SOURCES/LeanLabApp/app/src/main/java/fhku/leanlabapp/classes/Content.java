@@ -20,7 +20,7 @@ public class Content extends Mapper{
     private int Typid;
 
     //IMPORTANT: Be sure to empty the arraylist if you use it, unless you except sth to be in there
-    public static ArrayList<Content> Loaded_Types = new ArrayList<>(); //do not add to list automatically (only if you need it)
+    public static ArrayList<Content> Loaded_Content = new ArrayList<>(); //do not add to list automatically (only if you need it)
 
     //Constructor
     public Content(int Contentid, String Contenttext, int Workstepid, int Typid) {

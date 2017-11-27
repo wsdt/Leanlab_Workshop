@@ -12,6 +12,7 @@ import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.Spinner;
+import android.widget.Toast;
 
 import org.json.JSONObject;
 
@@ -27,6 +28,7 @@ import fhku.leanlabapp.interfaces.database.DbConnection;
 public class StartActivity extends AppCompatActivity implements AdapterView.OnItemClickListener {
     public Spinner spinnerProducts;
     public Spinner spinnerStations;
+    private ArrayAdapter aa, bb;
 
     public class OnItemSelectedListener implements AdapterView.OnItemSelectedListener {
         @Override
@@ -51,11 +53,49 @@ public class StartActivity extends AppCompatActivity implements AdapterView.OnIt
         qrButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                startActivity(new Intent(StartActivity.this, QrActivity.class));
+                startActivityForResult(new Intent(StartActivity.this, QrActivity.class),QrActivity.REQUEST_CODE);
             }
         });
 
+        makeSpinnerInteractive();
+    }
 
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        Log.e("onActivityResult","Got a result");
+        switch(requestCode) {
+            case QrActivity.REQUEST_CODE:
+                if (resultCode == RESULT_OK) {
+                    //Setting the ArrayAdapter data on the Spinner
+                    Log.d("StartActivity_Result","Got valid qrcode: "+data.getStringExtra(QrActivity.EXTRA_Message));
+                    setScannedValues(data);
+                } else {
+                    Log.e("FetchQRCode","Could not fetch QRCode");
+                    Toast.makeText(this,"Could not fetch QRCode.",Toast.LENGTH_SHORT).show();
+                }
+                break;
+            default:
+                Log.e("RequestCode","Unknown Request Code");
+                Toast.makeText(this, "Unknown Request Code. ",Toast.LENGTH_SHORT).show();
+        }
+    }
+
+    private void setScannedValues(Intent data) {
+        int position = data.getIntExtra(QrActivity.EXTRA_Message+"_id",0);
+        String category = data.getStringExtra(QrActivity.EXTRA_Message+"_category");
+        Log.e("setScannedValues", "Pos.: "+aa.getItem(position));
+
+        //TODO: Gescannter Value noch nicht gesetzt!
+        if (category.equals("station")) {
+            spinnerStations.setSelection(aa.getPosition(position));
+        } else if (category.equals("product")) {
+            spinnerProducts.setSelection(bb.getPosition(position));
+        } else {
+            Log.e("setScannedValues","Could not set default value!");
+        }
+    }
+
+    private void makeSpinnerInteractive() {
         //Getting the instance of Spinner and applying OnItemSelectedListener on it
         spinnerProducts = (Spinner) findViewById(R.id.spinnerProducts);
         spinnerStations = (Spinner) findViewById(R.id.spinnerStations);
@@ -64,22 +104,13 @@ public class StartActivity extends AppCompatActivity implements AdapterView.OnIt
 
 
         //Creating the ArrayAdapter instance having the country list
-        ArrayAdapter aa = new ArrayAdapter(this,android.R.layout.simple_spinner_item,loadStations());
-        ArrayAdapter bb = new ArrayAdapter(this,android.R.layout.simple_spinner_item,loadProducts());
+        aa = new ArrayAdapter(this,android.R.layout.simple_spinner_item,loadStations());
+        bb = new ArrayAdapter(this,android.R.layout.simple_spinner_item,loadProducts());
         aa.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         bb.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         //Setting the ArrayAdapter data on the Spinner
         spinnerProducts.setAdapter(aa);
         spinnerStations.setAdapter(bb);
-
-
-        //Setting the ArrayAdapter data on the Spinner
-        Intent intent = getIntent();
-        String qrcode = intent.getStringExtra(QrActivity.EXTRA_Message);
-
-        spinnerStations.setSelection(aa.getPosition(qrcode));
-        spinnerProducts.setSelection(bb.getPosition(qrcode));
-
 
     }
 
