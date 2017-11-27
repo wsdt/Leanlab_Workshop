@@ -48,6 +48,19 @@ public class StartActivity extends AppCompatActivity implements AdapterView.OnIt
 
         ImageButton qrButton = (ImageButton) findViewById(R.id.qrButton);
 
+        Button button = (Button)findViewById(R.id.go);
+
+        button.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(getApplicationContext(), MainActivity.class);
+                intent.putExtra("product", "Uhr1");
+                intent.putExtra("station", "Station1");
+
+                startActivity(intent);
+            }
+        });
+
         qrButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
