@@ -51,13 +51,6 @@ public class Station extends Mapper {
 
     // MAPPING METHODS +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
     @Override
-    public Station MapJsonToObject(String json) throws JsonToObjectMapper_Exception {
-        JsonStrConverter tmp = new JsonStrConverter(json);
-        tmp.convertStrToJson();
-        return MapJsonToObject(tmp.getJson_obj());
-    }
-
-    @Override
     public Station MapJsonToObject(JSONObject json) throws JsonToObjectMapper_Exception {
         Station obj;
         try {

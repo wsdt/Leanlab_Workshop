@@ -55,13 +55,6 @@ public class Productionstep extends Mapper {
 
     // MAPPING METHODS +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
     @Override
-    public Productionstep MapJsonToObject(String json) throws JsonToObjectMapper_Exception {
-        JsonStrConverter tmp = new JsonStrConverter(json);
-        tmp.convertStrToJson();
-        return MapJsonToObject(tmp.getJson_obj());
-    }
-
-    @Override
     public Productionstep MapJsonToObject(JSONObject json) throws JsonToObjectMapper_Exception {
         Productionstep obj;
         try {

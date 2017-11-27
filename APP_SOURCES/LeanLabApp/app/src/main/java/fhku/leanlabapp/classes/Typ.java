@@ -51,13 +51,6 @@ public class Typ extends Mapper {
 
     // MAPPING METHODS +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
     @Override
-    public Typ MapJsonToObject(String json) throws JsonToObjectMapper_Exception {
-        JsonStrConverter tmp = new JsonStrConverter(json);
-        tmp.convertStrToJson();
-        return MapJsonToObject(tmp.getJson_obj());
-    }
-
-    @Override
     public Typ MapJsonToObject(JSONObject json) throws JsonToObjectMapper_Exception {
         Typ obj;
         try {

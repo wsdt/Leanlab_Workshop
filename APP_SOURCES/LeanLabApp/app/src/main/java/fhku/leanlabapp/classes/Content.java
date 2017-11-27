@@ -76,13 +76,6 @@ public class Content extends Mapper{
 
     // MAPPING METHODS +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
     @Override
-    public Content MapJsonToObject(String json) throws JsonToObjectMapper_Exception {
-        JsonStrConverter tmp = new JsonStrConverter(json);
-        tmp.convertStrToJson();
-        return MapJsonToObject(tmp.getJson_obj());
-    }
-
-    @Override
     public Content MapJsonToObject(JSONObject json) throws JsonToObjectMapper_Exception {
         Content obj;
         try {

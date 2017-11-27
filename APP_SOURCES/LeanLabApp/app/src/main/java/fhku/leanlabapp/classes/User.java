@@ -45,13 +45,6 @@ public class User extends Mapper{
 
     // MAPPING METHODS +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
     @Override
-    public User MapJsonToObject(String json) throws JsonToObjectMapper_Exception {
-        JsonStrConverter tmp = new JsonStrConverter(json);
-        tmp.convertStrToJson();
-        return MapJsonToObject(tmp.getJson_obj());
-    }
-
-    @Override
     public User MapJsonToObject(JSONObject json) throws JsonToObjectMapper_Exception {
         User obj;
         try {

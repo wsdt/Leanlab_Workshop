@@ -48,13 +48,6 @@ public class Workstep extends Mapper {
 
     // MAPPING METHODS +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
     @Override
-    public Workstep MapJsonToObject(String json) throws JsonToObjectMapper_Exception {
-        JsonStrConverter tmp = new JsonStrConverter(json);
-        tmp.convertStrToJson();
-        return MapJsonToObject(tmp.getJson_obj());
-    }
-
-    @Override
     public Workstep MapJsonToObject(JSONObject json) throws JsonToObjectMapper_Exception {
         Workstep obj;
         try {

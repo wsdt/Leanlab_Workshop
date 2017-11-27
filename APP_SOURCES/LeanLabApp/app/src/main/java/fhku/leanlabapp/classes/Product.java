@@ -51,13 +51,6 @@ public class Product extends Mapper{
 
     // MAPPING METHODS +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
     @Override
-    public Product MapJsonToObject(String json) throws JsonToObjectMapper_Exception {
-        JsonStrConverter tmp = new JsonStrConverter(json);
-        tmp.convertStrToJson();
-        return MapJsonToObject(tmp.getJson_obj());
-    }
-
-    @Override
     public Product MapJsonToObject(JSONObject json) throws JsonToObjectMapper_Exception {
         Product obj;
         try {
