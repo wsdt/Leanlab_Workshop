@@ -109,13 +109,13 @@ public class StartActivity extends AppCompatActivity implements AdapterView.OnIt
         ArrayList<String> stationlist = new ArrayList<>();
         if (Station.Loaded_Stations != null) {
             for (Station station : Station.Loaded_Stations) {
-                stationlist.add(stationlist.getProductname()+" ("+product.getProductid()+")");
+                stationlist.add(station.getStationname()+" ("+station.getStationid()+")");
             }
         } else {
-            Log.e("loadProducts","Could not load products!");
+            Log.e("loadStations","Could not load stations!");
         }
 
-        return Station.Loaded_Stations;
+        return stationlist;
     }
 
     public ArrayList loadProducts(){

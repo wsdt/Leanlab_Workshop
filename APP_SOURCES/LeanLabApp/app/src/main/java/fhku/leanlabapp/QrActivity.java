@@ -67,6 +67,7 @@ public class QrActivity extends AppCompatActivity implements ZXingScannerView.Re
         intent.putExtra("checker", "1");
         startActivity(intent);
 
+        //IMPORTANT: Needed syntax for 
 
 
         //Hier würde jetzt der Abgleich mit der Datenbank erfolgen
