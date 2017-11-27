@@ -40,19 +40,5 @@ dependencies {
     compile 'com.android.support:appcompat-v7:25.3.1'
     compile 'com.android.support.constraint:constraint-layout:1.0.2'
     testCompile 'junit:junit:4.12'
-<<<<<<< HEAD
-    compile(
-            [group: 'com.fasterxml.jackson.core', name: 'jackson-core', version: '2.9.2'],
-            [group: 'com.fasterxml.jackson.core', name: 'jackson-annotations', version: '2.9.2'],
-            [group: 'com.fasterxml.jackson.core', name: 'jackson-databind', version: '2.9.2']
-    )
-=======
-
-    /*compile (
-            [group: 'com.fasterxml.jackson.core', name: 'jackson-core', version: '2.9.2'],
-            [group: 'com.fasterxml.jackson.core', name: 'jackson-annotations', version: '2.9.2'],
-            [group: 'com.fasterxml.jackson.core', name: 'jackson-databind', version: '2.9.2']
-    )*/
-
->>>>>>> 572ed8acc3d6c981260e05c35ddf086a352a2c07
+    
 }

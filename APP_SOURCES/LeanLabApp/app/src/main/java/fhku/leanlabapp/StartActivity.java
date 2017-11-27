@@ -94,9 +94,8 @@ public class StartActivity extends AppCompatActivity implements AdapterView.OnIt
     public ArrayList giveMeMyStations(){
         try {
             Station station = new Station(1);
-            Station.Loaded_Stations = station.CastArrayListObjToSpecObj
-                    (station.MapJsonRowsToObject(DbConnection.sendRequestForResult_ASYNC
-                            (new String[] {"sql_statement=Select * From Station;"}, "post", false)),station);
+            Station.Loaded_Stations = station.MapJsonRowsToObject(DbConnection.sendRequestForResult_ASYNC
+                            (new String[] {"sql_statement=Select * From Station;"}, "post", false));
 
         } catch (Exception e) {
             e.printStackTrace();
