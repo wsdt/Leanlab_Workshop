@@ -60,7 +60,7 @@ CREATE TABLE User (
 INSERT INTO User VALUES
 	('default','$2a$04$F0AYTWK54/jMvIY3a2Krm.gqQZwkBaoSyn7wuIjug13FwHoC5ARA.');
     
-INSERT INTO TYP(Typname) VALUES
+INSERT INTO Typ(Typname) VALUES
 	('Bild'),
     ('Video'),
     ('HTML5');
