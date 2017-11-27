@@ -1,14 +1,18 @@
 package fhku.leanlabapp;
 
+import android.app.Activity;
 import android.content.Intent;
 import android.support.v4.app.ActivityCompat;
 import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.util.Log;
 import android.widget.Toast;
 
 import com.google.zxing.Result;
 
+import fhku.leanlabapp.classes.Product;
+import fhku.leanlabapp.classes.Station;
 import fhku.leanlabapp.interfaces.compatibility.MarshMallowPermission;
 import fhku.leanlabapp.interfaces.database.DbConnection;
 import me.dm7.barcodescanner.zxing.ZXingScannerView;
@@ -17,6 +21,7 @@ public class QrActivity extends AppCompatActivity implements ZXingScannerView.Re
 
     private ZXingScannerView zXingScannerView;
     public static final String EXTRA_Message = "qrcode";
+    public static final int REQUEST_CODE = 1;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -65,32 +70,41 @@ public class QrActivity extends AppCompatActivity implements ZXingScannerView.Re
 
 
         //IMPORTANT: Needed syntax for qrcode: station_{station_id} or product_{product_id}
-        if (qrcode.substring(0,7).equals("station_")) {
-            int stationId=Integer.parseInt(qrcode.substring(8,8));
-            if (stationId < 0) { Toast.makeText(this,"StationId not valid!",Toast.LENGTH_LONG).show();}
+        String qrcodeIdentifier = qrcode.substring(0,8);
+        boolean doesExist = false;
+        if (qrcodeIdentifier.equals("station_") || qrcodeIdentifier.equals("product_")) {
+            int id=Integer.parseInt(qrcode.substring(8,9));
+            String category = qrcode.substring(0,7);
+            if (id < 0) { Toast.makeText(this,"ID not valid!",Toast.LENGTH_LONG).show();}
 
+            if (qrcodeIdentifier.equals("station_")) {
+                for (Station tmp : Station.Loaded_Stations) {
+                    if (tmp.getStationid() == id) {
+                        doesExist = true;
+                    }
+                }
+            } else { //must be product_
+                for (Product tmp : Product.Loaded_Products) {
+                    if (tmp.getProductid() == id) {
+                        doesExist = true;
+                    }
+                }
+            }
 
-        } else if (qrcode.substring(0,7).equals("product_")) {
-            int productId=Integer.parseInt(qrcode.substring(8,8));
-            if (productId < 0) { Toast.makeText(this,"ProductId not valid!",Toast.LENGTH_LONG).show();}
+            Log.d("QRCode","QRCode syntactically valid: "+qrcode);
+            Log.d("QRCode","QRCode does exist in database. ");
 
+            Intent intent = new Intent(this, StartActivity.class);
+            intent.putExtra(EXTRA_Message, qrcode);
+            intent.putExtra(EXTRA_Message+"_id",id);
+            intent.putExtra(EXTRA_Message+"_category", category);
+            setResult(Activity.RESULT_OK,intent);
+            zXingScannerView.stopCameraPreview();
+            finishActivity(QrActivity.REQUEST_CODE);
         } else {
             Toast.makeText(this,"Scanned QRCode is not valid!",Toast.LENGTH_LONG).show();
         }
 
-
-        //Hier würde jetzt der Abgleich mit der Datenbank erfolgen
-        //Wenn die Richtige Station ausgewählt ist läd eine Activity mit den Schritten
-        //Wenn die Falsche Station ausgewählt ist wird eine Toast ausgesendet mit dies "dies ist nicht die Richtige station" o. ä.
-        //Wenn der QR nicht in der Datenbank ist kann eventuell eine Meldung kommen wie "dieser QR Code befindet sich nicht in der Datenbank, bitte Versuchen sie es erneut oder wenden sie sich an den administrator
-
-        Intent intent = new Intent(this, StartActivity.class);
-        intent.putExtra(EXTRA_Message, qrcode);
-        intent.putExtra("checker", "1");
-        startActivity(intent);
-
         zXingScannerView.resumeCameraPreview(this);
-
-
     }
 }
