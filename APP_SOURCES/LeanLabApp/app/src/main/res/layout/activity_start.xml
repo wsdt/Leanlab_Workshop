@@ -67,13 +67,26 @@
         android:text="GO!"
         android:textColor="@color/colorBlack" />
 
-    <Button
+    <ImageButton
         android:id="@+id/buttonqr1"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentEnd="true"
-        android:layout_alignTop="@+id/spinner1"
+        android:layout_width="40dp"
+        android:layout_height="40dp"
+        android:layout_marginLeft="10dp"
+        android:layout_toRightOf="@+id/spinner1"
+        android:background="@drawable/qr_image"
+        android:layout_above="@id/spinner2"
         android:text="Button" />
 
+
+    <ImageButton
+        android:id="@+id/buttonqr2"
+        android:layout_width="40dp"
+        android:layout_height="40dp"
+        android:layout_marginLeft="10dp"
+        android:layout_toRightOf="@+id/spinner2"
+        android:background="@drawable/qr_image"
+        android:layout_below="@id/spinner1"
+        android:layout_marginTop="10dp"
+        android:text="Button" />
 
 </RelativeLayout>
