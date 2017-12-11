@@ -101,6 +101,7 @@ public class QrActivity extends AppCompatActivity implements ZXingScannerView.Re
             setResult(Activity.RESULT_OK,intent);
             zXingScannerView.stopCameraPreview();
             finishActivity(QrActivity.REQUEST_CODE);
+            startActivity(intent);
         } else {
             Toast.makeText(this,"Scanned QRCode is not valid!",Toast.LENGTH_LONG).show();
         }

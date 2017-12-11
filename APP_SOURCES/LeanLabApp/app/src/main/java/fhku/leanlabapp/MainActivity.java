@@ -23,6 +23,8 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
+        TextView view1 = (TextView)findViewById(R.id.edittext);
+
         TextView viewstation = (TextView)findViewById(R.id.station);
 
         TextView viewproduct = (TextView)findViewById(R.id.product);
@@ -31,20 +33,28 @@ public class MainActivity extends AppCompatActivity {
 
         String station = intent.getStringExtra("station");
         String product = intent.getStringExtra("product");
+        String stationidtemp = intent.getStringExtra("stationid");
+        String productidtemp = intent.getStringExtra("productid");
+
+        int stationid = Integer.parseInt(stationidtemp);
+        int productid = Integer.parseInt(productidtemp);
+
+
 
         viewproduct.setText(product);
         viewstation.setText(station);
 
         loadWorksteps(product, station);
-        int a = Product.Loaded_Products.get(0).getProductid();
-        Toast.makeText(this,a,Toast.LENGTH_SHORT).show();
-        
+
+
+
+        /*
 
         Toast.makeText(getApplicationContext(), a, Toast.LENGTH_SHORT).show();
 
         int b  = Content.Loaded_Contents.get(0).getContentid();
 
-        Toast.makeText(getApplicationContext(), b, Toast.LENGTH_SHORT).show();
+        Toast.makeText(getApplicationContext(), b, Toast.LENGTH_SHORT).show();*/
 
         //Workstep.Loaded_Worksteps.get(0).getProductionstepid();
         //Toast.makeText(getApplicationContext(), int1, Toast.LENGTH_SHORT).show();
