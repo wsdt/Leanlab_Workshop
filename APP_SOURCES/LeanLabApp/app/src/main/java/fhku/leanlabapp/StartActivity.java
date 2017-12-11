@@ -29,10 +29,26 @@ public class StartActivity extends AppCompatActivity implements AdapterView.OnIt
     public Spinner spinnerProducts;
     public Spinner spinnerStations;
     private ArrayAdapter aa, bb;
+    String station = "";
+    String product = "";
+
+
 
     public class OnItemSelectedListener implements AdapterView.OnItemSelectedListener {
         @Override
         public void onItemSelected(AdapterView<?> arg0, View arg1, int position,long id) {
+
+            Spinner spinner = (Spinner) arg0;
+
+
+
+            if (spinner.getId() == R.id.spinnerStations) {
+                 station = spinnerStations.getItemAtPosition(position).toString();
+            } else if (spinner.getId() == R.id.spinnerProducts){
+                 product = spinnerProducts.getItemAtPosition(position).toString();
+            }
+
+            Log.i("info", station + " " + product);
 
         }
 
@@ -56,10 +72,14 @@ public class StartActivity extends AppCompatActivity implements AdapterView.OnIt
             @Override
             public void onClick(View view) {
                 Intent intent = new Intent(getApplicationContext(), MainActivity.class);
-                intent.putExtra("product", "Uhr1");
-                intent.putExtra("station", "Station1");
+                intent.putExtra("product", product);
+                intent.putExtra("station", station);
+
+                Log.i("intent to main", "Station: " + station + " Produkt: " + product);
 
                 startActivity(intent);
+
+
             }
         });
 
@@ -139,7 +159,7 @@ public class StartActivity extends AppCompatActivity implements AdapterView.OnIt
         ArrayList<String> stationlist = new ArrayList<>();
         if (Station.Loaded_Stations != null) {
             for (Station station : Station.Loaded_Stations) {
-                stationlist.add(station.getStationname()+" ("+station.getStationid()+")");
+                stationlist.add(station.getStationname());
             }
         } else {
             Log.e("loadStations","Could not load stations!");
@@ -161,7 +181,7 @@ public class StartActivity extends AppCompatActivity implements AdapterView.OnIt
         ArrayList<String> productlist = new ArrayList<>();
         if (Product.Loaded_Products != null) {
             for (Product product : Product.Loaded_Products) {
-                productlist.add(product.getProductname()+" ("+product.getProductid()+")");
+                productlist.add(product.getProductname());
             }
         } else {
             Log.e("loadProducts","Could not load products!");

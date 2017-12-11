@@ -3,6 +3,7 @@ package fhku.leanlabapp;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
+import android.util.Log;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -33,6 +34,11 @@ public class MainActivity extends AppCompatActivity {
 
         viewproduct.setText(product);
         viewstation.setText(station);
+        loadWorksteps(product, station);
+
+        Workstep.Loaded_Worksteps.get(0).getProductionstepid();
+        //Toast.makeText(getApplicationContext(), int1, Toast.LENGTH_SHORT).show();
+
 
         //was wir brauchen:
         //anzahl und ids von Worksteps eines productionstep
@@ -47,7 +53,7 @@ public class MainActivity extends AppCompatActivity {
         try {
 
             String sqlstatemnt = "sql_statement=Select * From Workstep Join Productionstep ON Workstep.Productionstepid Where Productionstep.Productionstepid = Workstep.Productionstepid AND Stationid = " + station + " AND Produktid = " +product+";";
-
+            Log.i("info", sqlstatemnt);
 
             Workstep workstep = new Workstep(1);
             Workstep.Loaded_Worksteps = workstep.MapJsonRowsToObject(DbConnection.sendRequestForResult_ASYNC(
