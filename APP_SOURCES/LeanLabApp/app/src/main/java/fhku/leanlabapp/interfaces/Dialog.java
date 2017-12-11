@@ -15,13 +15,8 @@ import java.util.concurrent.Callable;
 public class Dialog extends AlertDialog.Builder {
     private static Dialog lastInstance;
 
-    // DIALOG TYPES - START
-    /*public static final int DIALOG_YES_NO = 0;
-    public static final int DIALOG_OK = 1;*/
-    // DIALOG TYPES - END
-    
 
-    public static Dialog createDialog(@NonNull Context context, @NonNull String title, @NonNull String message, int icon/*, @Nullable final UserDefinedClass onClickFunctions*/) {
+    public static Dialog createDialog(@NonNull Context context, @NonNull String title, @NonNull String message, int icon) {
         //IMPORTANT: UserDefinedClass needs to implement called functions below! (create Interface)
 
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
