@@ -55,6 +55,7 @@ public class Product extends Mapper{
         Product obj;
         try {
             obj = new Product(json.getInt("Productid"), json.getString("Productname"));
+            obj = new Product(json.getInt("ProductID"), json.getString("Productname"));
         } catch(JSONException e) {
             Log.e("MapJsonToObject","JSON could not be mapped to Object!");
             e.printStackTrace();

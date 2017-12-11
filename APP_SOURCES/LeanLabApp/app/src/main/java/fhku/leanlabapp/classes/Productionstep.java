@@ -59,6 +59,7 @@ public class Productionstep extends Mapper {
         Productionstep obj;
         try {
             obj = new Productionstep(json.getInt("Productionstepid"),json.getInt("Productid"),json.getInt("Stationid"));
+            obj = new Productionstep(json.getInt("ProductionstepID"),json.getInt("ProductID"),json.getInt("StationID"));
         } catch(JSONException e) {
             Log.e("MapJsonToObject","JSON could not be mapped to Object!");
             e.printStackTrace();

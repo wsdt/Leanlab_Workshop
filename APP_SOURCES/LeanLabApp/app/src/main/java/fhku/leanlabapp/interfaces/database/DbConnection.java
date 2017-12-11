@@ -171,6 +171,7 @@ public class DbConnection  {
 
     //IMPORTANT: Variable 'parameters' must be sent to encodeParameters() before!
     private static String sendRequestForResult(final String parameters, String method, boolean useHTTPS, Context context) {
+    private static String sendRequestForResult(final String parameters, String method, boolean useHTTPS) {
         method = (!method.equals("POST") && !method.equals("GET")) ? "POST" : method; // wenn method falsch übergeben, dann mach POST
 
         URL url = null;
@@ -218,6 +219,9 @@ public class DbConnection  {
                     //TODO: Dialog is not shown but no exception is outputted
                     (Dialog.showDialog(context,"Connection failed","Please connect to the WiFi 'FH_LEANLAB' to access this application.", R.drawable.fh_kufstein_logo_transparent)).show();
                     Log.d("SocketTimeoutException","Tried to show dialog.");
+=======
+                   // (Dialog.showDialog(context,"Connection failed","Please connect to the WiFi 'FH_LEANLAB' to access this application.", R.drawable.fh_kufstein_logo_transparent)).show();
+>>>>>>> Stashed changes
                 } catch (NullPointerException f) {
                     Log.e("SocketTimeoutException","Context is null! Please call this function only with a valid Activity context!");
                     f.printStackTrace();
