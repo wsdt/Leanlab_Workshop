@@ -44,7 +44,7 @@ public class StartActivity extends AppCompatActivity implements AdapterView.OnIt
 
             Spinner spinner = (Spinner) arg0;
 
-
+            //TODO: Receive values from QRCode Activity and setText() to Spinner
 
             if (spinner.getId() == R.id.spinnerStations) {
                 product = spinnerStations.getItemAtPosition(position).toString();

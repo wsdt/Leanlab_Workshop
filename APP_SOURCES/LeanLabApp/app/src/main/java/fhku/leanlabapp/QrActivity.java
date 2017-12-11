@@ -69,6 +69,7 @@ public class QrActivity extends AppCompatActivity implements ZXingScannerView.Re
         String qrcodeIdentifier = qrcode.substring(0,8);
         boolean doesExist = false;
         if (qrcodeIdentifier.equals("station_") || qrcodeIdentifier.equals("product_")) {
+            Log.d("QRCode","ID: "+qrcode.substring(8));
             int id=Integer.parseInt(qrcode.substring(8));
             String category = qrcode.substring(0,7);
             if (id < 0) { Toast.makeText(this,"ID not valid!",Toast.LENGTH_LONG).show();}
