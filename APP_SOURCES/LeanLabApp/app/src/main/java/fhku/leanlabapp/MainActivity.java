@@ -12,9 +12,6 @@ import fhku.leanlabapp.classes.Product;
 import fhku.leanlabapp.classes.Workstep;
 import fhku.leanlabapp.interfaces.database.DbConnection;
 
-/**
- * Created by Jojo on 24.10.2017.
- */
 
 public class MainActivity extends AppCompatActivity {
     @Override
@@ -51,8 +48,7 @@ public class MainActivity extends AppCompatActivity {
 
             Workstep workstep = new Workstep(1);
             Workstep.Loaded_Worksteps = workstep.MapJsonRowsToObject(DbConnection.sendRequestForResult_ASYNC(
-                    new String[] {sqlstatemnt}, "get", false
-            ));
+                    new String[] {sqlstatemnt}, "get", false,this));
 
 
         }catch (Exception e){

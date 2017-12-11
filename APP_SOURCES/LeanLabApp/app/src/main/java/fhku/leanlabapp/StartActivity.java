@@ -132,7 +132,7 @@ public class StartActivity extends AppCompatActivity implements AdapterView.OnIt
         try {
             Station station = new Station(1);
             Station.Loaded_Stations = station.MapJsonRowsToObject(DbConnection.sendRequestForResult_ASYNC
-                            (new String[] {"sql_statement=Select * From Station;"}, "post", false));
+                            (new String[] {"sql_statement=Select * From Station;"}, "post", false,this));
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -152,8 +152,7 @@ public class StartActivity extends AppCompatActivity implements AdapterView.OnIt
         try {
             Product product1 = new Product(1);
             Product.Loaded_Products = product1.MapJsonRowsToObject(DbConnection.sendRequestForResult_ASYNC(
-                    new String[] {"sql_statement=Select * From Product;"}, "get", false
-            ));
+                    new String[] {"sql_statement=Select * From Product;"}, "get", false,this));
         }catch (Exception e){
             e.printStackTrace();
         }
