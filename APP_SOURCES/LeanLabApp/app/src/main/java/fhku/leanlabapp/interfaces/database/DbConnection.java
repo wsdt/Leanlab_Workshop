@@ -159,7 +159,11 @@ public class DbConnection  {
         Callable<String> callable = new Callable<String>() {
             @Override
             public String call() throws Exception {
+<<<<<<< Updated upstream
                 return DbConnection.sendRequestForResult(encodeParameters(PARAMETERS), METHOD, useHTTPS, CONTEXT);
+=======
+                return DbConnection.sendRequestForResult(encodeParameters(PARAMETERS), METHOD, useHTTPS);
+>>>>>>> Stashed changes
             }
         };
 
@@ -171,7 +175,7 @@ public class DbConnection  {
 
 
     //IMPORTANT: Variable 'parameters' must be sent to encodeParameters() before!
-    private static String sendRequestForResult(final String parameters, String method, boolean useHTTPS, Context context) {
+    private static String sendRequestForResult(final String parameters, String method, boolean useHTTPS) {
         method = (!method.equals("POST") && !method.equals("GET")) ? "POST" : method; // wenn method falsch übergeben, dann mach POST
 
         URL url = null;
@@ -215,6 +219,7 @@ public class DbConnection  {
             } catch (SocketTimeoutException e) {
                 //If exception then show pop up always on active/foreground activity
                 try {
+<<<<<<< Updated upstream
                     Looper.prepare(); //without that an exception will be raised
                     //TODO: Dialog is not shown but no exception is outputted
                     Dialog dialog = (Dialog.showDialog(context,"Connection failed","Please connect to the WiFi 'FH_LEANLAB' to access this application.", R.drawable.fh_kufstein_logofh));
@@ -226,6 +231,9 @@ public class DbConnection  {
                     });
                     dialog.show();
                     Log.d("SocketTimeoutException","Tried to show dialog.");
+=======
+                   // (Dialog.showDialog(context,"Connection failed","Please connect to the WiFi 'FH_LEANLAB' to access this application.", R.drawable.fh_kufstein_logo_transparent)).show();
+>>>>>>> Stashed changes
                 } catch (NullPointerException f) {
                     Log.e("SocketTimeoutException","Context is null! Please call this function only with a valid Activity context!");
                     f.printStackTrace();

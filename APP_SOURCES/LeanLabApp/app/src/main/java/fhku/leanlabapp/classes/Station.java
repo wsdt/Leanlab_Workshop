@@ -54,7 +54,7 @@ public class Station extends Mapper {
     public Station MapJsonToObject(JSONObject json) throws JsonToObjectMapper_Exception {
         Station obj;
         try {
-            obj = new Station(json.getInt("Stationid"), json.getString("Stationname"));
+            obj = new Station(json.getInt("StationID"), json.getString("Stationname"));
         } catch(JSONException e) {
             Log.e("MapJsonToObject","JSON could not be mapped to Object!");
             e.printStackTrace();

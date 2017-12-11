@@ -7,6 +7,7 @@ import android.util.Log;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import java.sql.ResultSet;
 import java.util.ArrayList;
 
 import fhku.leanlabapp.classes.Content;
@@ -35,6 +36,11 @@ public class MainActivity extends AppCompatActivity {
         viewstation.setText(station);
 
         loadWorksteps(product, station);
+        int a = Product.Loaded_Products.get(0).getProductid();
+        Toast.makeText(this,a,Toast.LENGTH_SHORT).show();
+        
+
+        Toast.makeText(getApplicationContext(), a, Toast.LENGTH_SHORT).show();
 
         int a  = Content.Loaded_Contents.get(0).getContentid();
 
@@ -71,6 +77,10 @@ public class MainActivity extends AppCompatActivity {
 
 
 
+<<<<<<< Updated upstream
+=======
+
+>>>>>>> Stashed changes
             //String sqlstatemnt = "sql_statement=Select * From Workstep Join Productionstep ON Workstep.Productionstepid Where Productionstep.Productionstepid = Workstep.Productionstepid AND Stationid = " + station + " AND Produktid = " +product+";";
             //Log.i("info", sqlstatemnt);
 
