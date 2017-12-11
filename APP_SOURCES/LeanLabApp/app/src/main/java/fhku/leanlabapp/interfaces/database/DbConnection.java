@@ -110,7 +110,7 @@ public class DbConnection  {
     //IMPORTANT: DO NOT ADD HTTP OR HTTPS INTO THAT VARIABLE!
     //DEBUG_PURPOSES: private static final String WEBSERVICE_PHP = "leanlab.web.fh-kufstein.ac.at/db_connection.php";
     private static final String WEBSERVICE_PHP = "192.168.12.115/LeanLabWorking/db_connection.php"; //NEEDED LOGIN INTO WLAN: FH_LEANLAB / PWD: L3anL4b#
-    private static final int TIMEOUT_SOCKET = 5000; // in ms, if over then connection gets stopped
+    private static final int TIMEOUT_SOCKET = 4000; // in ms, if over then connection gets stopped
 
     //UserActivity and password will be added to the parameter list, webservice only accepts post/get requests if db_user table contains same data as here mentioned (security)
     private static final String USER = "default";
@@ -157,7 +157,7 @@ public class DbConnection  {
     }
 
 
-    public static String sendRequestForResult_ASYNC(final String[] PARAMETERS, final String METHOD, final boolean useHTTPS, @Nullable final Context CONTEXT) throws ExecutionException, InterruptedException {
+    public static String sendRequestForResult_ASYNC(final String[] PARAMETERS, final String METHOD, final boolean useHTTPS, @NonNull final Context CONTEXT) throws ExecutionException, InterruptedException {
         ExecutorService executor = Executors.newSingleThreadExecutor();
         Callable<String> callable = new Callable<String>() {
             @Override
@@ -174,6 +174,14 @@ public class DbConnection  {
         try {
             result = future.get(TIMEOUT_SOCKET,TimeUnit.MILLISECONDS);
         } catch (Exception e) {
+            Dialog noConnection = Dialog.createDialog(CONTEXT,"Connection failed","Please connect to the WiFi 'FH_LEANLAB' to access this application.\n\nPlease try to reconnect with your WLAN.", R.drawable.fh_kufstein_logo_transparent);
+            noConnection.setPositiveButton(android.R.string.ok, new DialogInterface.OnClickListener() {
+                @Override
+                public void onClick(DialogInterface dialog, int which) {
+                    Log.i("sendRequestFR_Async","Timeout Dialog was confirmed with OK.");
+                }
+            });
+            noConnection.show();
             Log.e("sendRequestFR_Async","Future could not be retrieved.");
             e.printStackTrace();
         }
@@ -182,7 +190,7 @@ public class DbConnection  {
 
 
     //IMPORTANT: Variable 'parameters' must be sent to encodeParameters() before!
-    private static String sendRequestForResult(final String parameters, String method, boolean useHTTPS, Context context) {
+    private static String sendRequestForResult(final String parameters, String method, boolean useHTTPS, @NonNull Context context) {
         method = (!method.equals("POST") && !method.equals("GET")) ? "POST" : method; // wenn method falsch übergeben, dann mach POST
 
         URL url = null;
@@ -225,9 +233,9 @@ public class DbConnection  {
 
             } catch (SocketTimeoutException e) {
                 //If exception then show pop up always on active/foreground activity
-                try {
+                /*try {
                     Looper.prepare(); //without that an exception will be raised
-                    Dialog dialog = (Dialog.showDialog(context,"Connection failed","Please connect to the WiFi 'FH_LEANLAB' to access this application.", R.drawable.fh_kufstein_logofh));
+                    Dialog dialog = (Dialog.createDialog(context,"Connection failed","Please connect to the WiFi 'FH_LEANLAB' to access this application.", R.drawable.fh_kufstein_logofh));
                     dialog.setPositiveButton(android.R.string.ok, new DialogInterface.OnClickListener() {
                         @Override
                         public void onClick(DialogInterface dialog, int which) {
@@ -240,7 +248,7 @@ public class DbConnection  {
                 } catch (NullPointerException f) {
                     Log.e("SocketTimeoutException","Context is null! Please call this function only with a valid Activity context!");
                     f.printStackTrace();
-                }
+                }*/
 
                 //If timeout then show message
                 Log.e("sendRequest_HTTP", "Could not establish connection with database. Timeout of "+TIMEOUT_SOCKET+" ms exceeded.");
@@ -285,13 +293,6 @@ public class DbConnection  {
                 Log.i("sendRequest_HTTPS", "Response-Content: " + response);
 
             } catch (SocketTimeoutException e) {
-                try {
-                    (Dialog.showDialog(context,"Connection failed","Please connect to the WiFi 'FH_LEANLAB' to access this application.", R.drawable.fh_kufstein_logo_transparent)).show();
-                } catch (NullPointerException f) {
-                    Log.e("SocketTimeoutException","Context is null! Please call this function only with a valid Activity context!");
-                    f.printStackTrace();
-                }
-
                 //If timeout then show message
                 Log.e("sendRequest_HTTPS", "Could not establish connection with database. Timeout of "+TIMEOUT_SOCKET+" ms exceeded.");
                 e.printStackTrace();
