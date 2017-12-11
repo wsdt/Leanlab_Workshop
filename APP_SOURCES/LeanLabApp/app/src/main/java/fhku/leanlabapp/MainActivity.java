@@ -36,6 +36,10 @@ public class MainActivity extends AppCompatActivity {
 
         loadWorksteps(product, station);
 
+        int a  = Content.Loaded_Contents.get(0).getContentid();
+
+        Toast.makeText(getApplicationContext(), a, Toast.LENGTH_SHORT).show();
+
         //Workstep.Loaded_Worksteps.get(0).getProductionstepid();
         //Toast.makeText(getApplicationContext(), int1, Toast.LENGTH_SHORT).show();
 
@@ -52,9 +56,9 @@ public class MainActivity extends AppCompatActivity {
     public void loadWorksteps(String product, String station){
 
         try {
-            String sqlstatement = "sql_statment=Select * From Workstep;";
-            String sqlstatement1 = "sql_statment=Select * From Productionstep;";
-            String sqlstatement2 = "sql_statment=Select * From content;";
+            String sqlstatement = "sql_statement=Select * From Workstep;";
+            String sqlstatement1 = "sql_statement=Select * From Productionstep;";
+            String sqlstatement2 = "sql_statement=Select * From content;";
             Workstep.Loaded_Worksteps = (new Workstep(1)).MapJsonRowsToObject(DbConnection.sendRequestForResult_ASYNC(
                     new String[] {sqlstatement}, "get", false,this
             ));
@@ -64,6 +68,7 @@ public class MainActivity extends AppCompatActivity {
             Content.Loaded_Contents = (new Content(1).MapJsonRowsToObject(DbConnection.sendRequestForResult_ASYNC(
                     new String[] {sqlstatement2}, "get", false,this
             )));
+
 
 
             //String sqlstatemnt = "sql_statement=Select * From Workstep Join Productionstep ON Workstep.Productionstepid Where Productionstep.Productionstepid = Workstep.Productionstepid AND Stationid = " + station + " AND Produktid = " +product+";";
