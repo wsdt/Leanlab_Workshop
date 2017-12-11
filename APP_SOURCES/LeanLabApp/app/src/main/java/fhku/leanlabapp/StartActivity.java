@@ -73,6 +73,7 @@ public class StartActivity extends AppCompatActivity implements AdapterView.OnIt
                 Log.e("ONCREATE_D","Created dialog clicked.");
             }
         });
+        dialog.show();
         Log.e("ONCREATE_D","Created dialog.");
 
         ImageButton qrButton = (ImageButton) findViewById(R.id.qrButton);
