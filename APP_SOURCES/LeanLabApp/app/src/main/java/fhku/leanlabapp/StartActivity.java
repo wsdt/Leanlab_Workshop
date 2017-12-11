@@ -32,8 +32,6 @@ public class StartActivity extends AppCompatActivity implements AdapterView.OnIt
     String station = "";
     String product = "";
 
-
-
     public class OnItemSelectedListener implements AdapterView.OnItemSelectedListener {
         @Override
         public void onItemSelected(AdapterView<?> arg0, View arg1, int position,long id) {

@@ -1,8 +1,8 @@
-﻿DROP DATABASE Leanlab;
+﻿DROP DATABASE Leanlabworking;
 
-CREATE DATABASE Leanlab;
+CREATE DATABASE Leanlabworking;
 
-USE Leanlab;
+USE Leanlabworking;
 
 CREATE TABLE Product (
 	ProductID INT(10) NOT NULL auto_increment,
