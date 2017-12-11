@@ -98,7 +98,6 @@ public class MainActivityAdmin extends AppCompatActivity implements View.OnClick
 
     private void saveHtml(String text, int contentId) {
         try {
-            DbConnection.sendRequestForResult_ASYNC(new String[]{"sql_statement=UPDATE Content set Contenttext='" + _HelperMethods.escapeHTML(text) + "' WHERE Contentid=" + contentId + ";"}, "post", false,this);
             DbConnection.sendRequestForResult_ASYNC(new String[]{"sql_statement=UPDATE Content set Contenttext='" + _HelperMethods.escapeHTML(text) + "' WHERE ContentID=" + contentId + ";"}, "post", false,this);
         } catch (Exception e) {
             e.printStackTrace();
@@ -109,7 +108,6 @@ public class MainActivityAdmin extends AppCompatActivity implements View.OnClick
     private void getHtml(int contentId) {
         Content tmp= new Content(1);
         try {
-            Content.Loaded_Contents = tmp.MapJsonRowsToObject((DbConnection.sendRequestForResult_ASYNC(new String[]{"sql_statement=SELECT Content WHERE Contentid=" + contentId + ";"}, "get", false,this)));
             Content.Loaded_Contents = tmp.MapJsonRowsToObject((DbConnection.sendRequestForResult_ASYNC(new String[]{"sql_statement=SELECT Content WHERE ContentID=" + contentId + ";"}, "get", false,this)));
 
         } catch (Exception e) {

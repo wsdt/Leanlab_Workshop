@@ -80,7 +80,6 @@ public class Content extends Mapper{
     public Content MapJsonToObject(JSONObject json) throws JsonToObjectMapper_Exception {
         Content obj;
         try {
-            obj = new Content(json.getInt("Contentid"), json.getString("Contenttext"),json.getInt("Workstepid"),json.getInt("Typid"));
             obj = new Content(json.getInt("ContentID"), json.getString("Contenttext"),json.getInt("WorkstepID"),json.getInt("TypID"));
         } catch(JSONException e) {
             Log.e("MapJsonToObject","JSON could not be mapped to Object!");

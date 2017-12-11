@@ -51,7 +51,6 @@ public class Workstep extends Mapper {
     public Workstep MapJsonToObject(JSONObject json) throws JsonToObjectMapper_Exception {
         Workstep obj;
         try {
-            obj = new Workstep(json.getInt("Workstepid"), json.getInt("Productionstepid"));
             obj = new Workstep(json.getInt("WorkstepID"), json.getInt("ProductionstepID"));
         } catch(JSONException e) {
             Log.e("MapJsonToObject","JSON could not be mapped to Object!");

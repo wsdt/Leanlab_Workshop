@@ -77,6 +77,10 @@ public class MainActivity extends AppCompatActivity {
 
 
 
+<<<<<<< Updated upstream
+=======
+
+>>>>>>> Stashed changes
             //String sqlstatemnt = "sql_statement=Select * From Workstep Join Productionstep ON Workstep.Productionstepid Where Productionstep.Productionstepid = Workstep.Productionstepid AND Stationid = " + station + " AND Produktid = " +product+";";
             //Log.i("info", sqlstatemnt);
 

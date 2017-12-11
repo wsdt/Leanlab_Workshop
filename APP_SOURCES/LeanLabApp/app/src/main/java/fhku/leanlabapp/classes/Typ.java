@@ -54,7 +54,6 @@ public class Typ extends Mapper {
     public Typ MapJsonToObject(JSONObject json) throws JsonToObjectMapper_Exception {
         Typ obj;
         try {
-            obj = new Typ(json.getInt("Typid"), json.getString("Typname"));
             obj = new Typ(json.getInt("TypID"), json.getString("Typname"));
         } catch(JSONException e) {
             Log.e("MapJsonToObject","JSON could not be mapped to Object!");

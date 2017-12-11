@@ -1,4 +1,8 @@
+<<<<<<< Updated upstream
 ﻿DROP DATABASE Leanlabworking;
+=======
+﻿DROP DATABASE Leanlab;
+>>>>>>> Stashed changes
 
 CREATE DATABASE Leanlabworking;
 
