@@ -98,6 +98,7 @@ public class QrActivity extends AppCompatActivity implements ZXingScannerView.Re
                 setResult(Activity.RESULT_OK, intent);
                 zXingScannerView.stopCameraPreview();
                 finishActivity(QrActivity.REQUEST_CODE);
+                startActivity(intent);
             } else {
                 Log.e("QRCode","QRCode is valid but instance does not exist: "+category);
                 Toast.makeText(this,"Scanned "+category+" does not exist.",Toast.LENGTH_LONG).show();
