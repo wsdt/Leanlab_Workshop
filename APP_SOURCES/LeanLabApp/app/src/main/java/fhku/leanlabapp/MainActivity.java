@@ -42,9 +42,9 @@ public class MainActivity extends AppCompatActivity {
 
         Toast.makeText(getApplicationContext(), a, Toast.LENGTH_SHORT).show();
 
-        int a  = Content.Loaded_Contents.get(0).getContentid();
+        int b  = Content.Loaded_Contents.get(0).getContentid();
 
-        Toast.makeText(getApplicationContext(), a, Toast.LENGTH_SHORT).show();
+        Toast.makeText(getApplicationContext(), b, Toast.LENGTH_SHORT).show();
 
         //Workstep.Loaded_Worksteps.get(0).getProductionstepid();
         //Toast.makeText(getApplicationContext(), int1, Toast.LENGTH_SHORT).show();
@@ -74,15 +74,6 @@ public class MainActivity extends AppCompatActivity {
             Content.Loaded_Contents = (new Content(1).MapJsonRowsToObject(DbConnection.sendRequestForResult_ASYNC(
                     new String[] {sqlstatement2}, "get", false,this
             )));
-
-
-
-<<<<<<< Updated upstream
-=======
-
->>>>>>> Stashed changes
-            //String sqlstatemnt = "sql_statement=Select * From Workstep Join Productionstep ON Workstep.Productionstepid Where Productionstep.Productionstepid = Workstep.Productionstepid AND Stationid = " + station + " AND Produktid = " +product+";";
-            //Log.i("info", sqlstatemnt);
 
 
         }catch (Exception e){

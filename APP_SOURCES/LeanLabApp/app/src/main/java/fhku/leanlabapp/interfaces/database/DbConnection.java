@@ -24,6 +24,9 @@ import java.util.concurrent.ExecutionException;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 import java.util.concurrent.Future;
+import java.util.concurrent.TimeUnit;
+import java.util.concurrent.TimeoutException;
+
 import javax.net.ssl.HttpsURLConnection;
 import fhku.leanlabapp.R;
 import fhku.leanlabapp.interfaces.Dialog;
@@ -159,23 +162,27 @@ public class DbConnection  {
         Callable<String> callable = new Callable<String>() {
             @Override
             public String call() throws Exception {
-<<<<<<< Updated upstream
                 return DbConnection.sendRequestForResult(encodeParameters(PARAMETERS), METHOD, useHTTPS, CONTEXT);
-=======
-                return DbConnection.sendRequestForResult(encodeParameters(PARAMETERS), METHOD, useHTTPS);
->>>>>>> Stashed changes
             }
         };
 
         Future<String> future = executor.submit(callable);
         //future.get() returns JSON or raises an exception if thread dies, so safer
         executor.shutdown();
-        return future.get();
+
+        String result = null;
+        try {
+            result = future.get(TIMEOUT_SOCKET,TimeUnit.MILLISECONDS);
+        } catch (Exception e) {
+            Log.e("sendRequestFR_Async","Future could not be retrieved.");
+            e.printStackTrace();
+        }
+        return result;
     }
 
 
     //IMPORTANT: Variable 'parameters' must be sent to encodeParameters() before!
-    private static String sendRequestForResult(final String parameters, String method, boolean useHTTPS) {
+    private static String sendRequestForResult(final String parameters, String method, boolean useHTTPS, Context context) {
         method = (!method.equals("POST") && !method.equals("GET")) ? "POST" : method; // wenn method falsch übergeben, dann mach POST
 
         URL url = null;
@@ -219,21 +226,17 @@ public class DbConnection  {
             } catch (SocketTimeoutException e) {
                 //If exception then show pop up always on active/foreground activity
                 try {
-<<<<<<< Updated upstream
                     Looper.prepare(); //without that an exception will be raised
-                    //TODO: Dialog is not shown but no exception is outputted
                     Dialog dialog = (Dialog.showDialog(context,"Connection failed","Please connect to the WiFi 'FH_LEANLAB' to access this application.", R.drawable.fh_kufstein_logofh));
                     dialog.setPositiveButton(android.R.string.ok, new DialogInterface.OnClickListener() {
                         @Override
                         public void onClick(DialogInterface dialog, int which) {
-                            Log.e("ONCREATE_D","Created dialog clicked.");
+                            Log.i("SocketTimeoutException","Timeout Dialog was confirmed with OK.");
                         }
                     });
                     dialog.show();
                     Log.d("SocketTimeoutException","Tried to show dialog.");
-=======
-                   // (Dialog.showDialog(context,"Connection failed","Please connect to the WiFi 'FH_LEANLAB' to access this application.", R.drawable.fh_kufstein_logo_transparent)).show();
->>>>>>> Stashed changes
+
                 } catch (NullPointerException f) {
                     Log.e("SocketTimeoutException","Context is null! Please call this function only with a valid Activity context!");
                     f.printStackTrace();
