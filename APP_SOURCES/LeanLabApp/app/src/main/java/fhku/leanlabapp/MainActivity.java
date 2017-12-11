@@ -9,7 +9,9 @@ import android.widget.Toast;
 
 import java.util.ArrayList;
 
+import fhku.leanlabapp.classes.Content;
 import fhku.leanlabapp.classes.Product;
+import fhku.leanlabapp.classes.Productionstep;
 import fhku.leanlabapp.classes.Workstep;
 import fhku.leanlabapp.interfaces.database.DbConnection;
 
@@ -34,10 +36,12 @@ public class MainActivity extends AppCompatActivity {
 
         viewproduct.setText(product);
         viewstation.setText(station);
+
         loadWorksteps(product, station);
 
-        Workstep.Loaded_Worksteps.get(0).getProductionstepid();
+        //Workstep.Loaded_Worksteps.get(0).getProductionstepid();
         //Toast.makeText(getApplicationContext(), int1, Toast.LENGTH_SHORT).show();
+
 
 
         //was wir brauchen:
@@ -51,14 +55,23 @@ public class MainActivity extends AppCompatActivity {
     public void loadWorksteps(String product, String station){
 
         try {
-
-            String sqlstatemnt = "sql_statement=Select * From Workstep Join Productionstep ON Workstep.Productionstepid Where Productionstep.Productionstepid = Workstep.Productionstepid AND Stationid = " + station + " AND Produktid = " +product+";";
-            Log.i("info", sqlstatemnt);
-
-            Workstep workstep = new Workstep(1);
-            Workstep.Loaded_Worksteps = workstep.MapJsonRowsToObject(DbConnection.sendRequestForResult_ASYNC(
-                    new String[] {sqlstatemnt}, "get", false
+            String sqlstatement = "sql_statment=Select * From Workstep;";
+            String sqlstatement1 = "sql_statment=Select * From Productionstep;";
+            String sqlstatement2 = "sql_statment=Select * From content;";
+            Workstep.Loaded_Worksteps = (new Workstep(1)).MapJsonRowsToObject(DbConnection.sendRequestForResult_ASYNC(
+                    new String[] {sqlstatement}, "get", false
             ));
+            Productionstep.Loaded_Productionsteps = (new Productionstep(1).MapJsonRowsToObject(DbConnection.sendRequestForResult_ASYNC(
+                    new String[] {sqlstatement1}, "get", false
+            )));
+            Content.Loaded_Contents = (new Content(1).MapJsonRowsToObject(DbConnection.sendRequestForResult_ASYNC(
+                    new String[] {sqlstatement2}, "get", false
+            )));
+
+            
+
+            //String sqlstatemnt = "sql_statement=Select * From Workstep Join Productionstep ON Workstep.Productionstepid Where Productionstep.Productionstepid = Workstep.Productionstepid AND Stationid = " + station + " AND Produktid = " +product+";";
+            //Log.i("info", sqlstatemnt);
 
 
         }catch (Exception e){
