@@ -19,6 +19,8 @@ import org.json.JSONObject;
 
 import java.util.ArrayList;
 import java.util.concurrent.ExecutionException;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 import fhku.leanlabapp.classes.Product;
 import fhku.leanlabapp.classes.Station;
@@ -32,7 +34,9 @@ public class StartActivity extends AppCompatActivity implements AdapterView.OnIt
     public Spinner spinnerStations;
     private ArrayAdapter aa, bb;
     String station = "";
+    String stationid = "";
     String product = "";
+    String productid = "";
 
     public class OnItemSelectedListener implements AdapterView.OnItemSelectedListener {
         @Override
@@ -43,12 +47,30 @@ public class StartActivity extends AppCompatActivity implements AdapterView.OnIt
 
 
             if (spinner.getId() == R.id.spinnerStations) {
-                 station = spinnerStations.getItemAtPosition(position).toString();
+                product = spinnerStations.getItemAtPosition(position).toString();
+                String tmp = product;
+
+                Pattern p = Pattern.compile("[+-]?[0-9]+");
+                Matcher m = p.matcher(tmp);
+
+                while ( m.find() ) {
+                    productid = tmp.substring(m.start(), m.end());
+                }
+
+
             } else if (spinner.getId() == R.id.spinnerProducts){
-                 product = spinnerProducts.getItemAtPosition(position).toString();
+                station = spinnerProducts.getItemAtPosition(position).toString();
+                String tmp = station;
+
+                Pattern p = Pattern.compile("[+-]?[0-9]+");
+                Matcher m = p.matcher(tmp);
+
+                while ( m.find() ) {
+                    stationid = tmp.substring(m.start(), m.end());
+                }
             }
 
-            Log.i("info", station + " " + product);
+            Log.i("go", "Station: + " + station + " Stationid: " + stationid + " Produkt: " + product + " Produktid: " + productid);
 
         }
 
@@ -74,7 +96,9 @@ public class StartActivity extends AppCompatActivity implements AdapterView.OnIt
             public void onClick(View view) {
                 Intent intent = new Intent(getApplicationContext(), MainActivity.class);
                 intent.putExtra("product", product);
+                intent.putExtra("productid", productid);
                 intent.putExtra("station", station);
+                intent.putExtra("stationid", stationid);
 
                 Log.i("intent to main", "Station: " + station + " Produkt: " + product);
 
@@ -160,7 +184,8 @@ public class StartActivity extends AppCompatActivity implements AdapterView.OnIt
         ArrayList<String> stationlist = new ArrayList<>();
         if (Station.Loaded_Stations != null) {
             for (Station station : Station.Loaded_Stations) {
-                stationlist.add(station.getStationname());
+                stationlist.add(station.getStationname()+" ("+station.getStationid()+")");
+
             }
         } else {
             Log.e("loadStations","Could not load stations!");
@@ -181,7 +206,7 @@ public class StartActivity extends AppCompatActivity implements AdapterView.OnIt
         ArrayList<String> productlist = new ArrayList<>();
         if (Product.Loaded_Products != null) {
             for (Product product : Product.Loaded_Products) {
-                productlist.add(product.getProductname());
+                productlist.add(product.getProductname()+" ("+product.getProductid()+")");
             }
         } else {
             Log.e("loadProducts","Could not load products!");
