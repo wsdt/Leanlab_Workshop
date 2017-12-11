@@ -63,17 +63,13 @@ public class QrActivity extends AppCompatActivity implements ZXingScannerView.Re
 
     @Override
     public void handleResult(Result result) {
-
-        Toast.makeText(getApplicationContext(),result.getText(),Toast.LENGTH_SHORT).show();
-
-        String qrcode = result.getText().toString();
-
+        String qrcode = result.getText();
 
         //IMPORTANT: Needed syntax for qrcode: station_{station_id} or product_{product_id}
         String qrcodeIdentifier = qrcode.substring(0,8);
         boolean doesExist = false;
         if (qrcodeIdentifier.equals("station_") || qrcodeIdentifier.equals("product_")) {
-            int id=Integer.parseInt(qrcode.substring(8,9));
+            int id=Integer.parseInt(qrcode.substring(8));
             String category = qrcode.substring(0,7);
             if (id < 0) { Toast.makeText(this,"ID not valid!",Toast.LENGTH_LONG).show();}
 
@@ -90,17 +86,22 @@ public class QrActivity extends AppCompatActivity implements ZXingScannerView.Re
                     }
                 }
             }
+            Log.d("QRCode", "QRCode syntactically valid: " + qrcode);
 
-            Log.d("QRCode","QRCode syntactically valid: "+qrcode);
-            Log.d("QRCode","QRCode does exist in database. ");
+            if (doesExist) {
+                Log.d("QRCode", "QRCode does exist in database: ID ("+id+") / Category ("+category+")");
 
-            Intent intent = new Intent(this, StartActivity.class);
-            intent.putExtra(EXTRA_Message, qrcode);
-            intent.putExtra(EXTRA_Message+"_id",id);
-            intent.putExtra(EXTRA_Message+"_category", category);
-            setResult(Activity.RESULT_OK,intent);
-            zXingScannerView.stopCameraPreview();
-            finishActivity(QrActivity.REQUEST_CODE);
+                Intent intent = new Intent(this, StartActivity.class);
+                intent.putExtra(EXTRA_Message, qrcode);
+                intent.putExtra(EXTRA_Message + "_id", id);
+                intent.putExtra(EXTRA_Message + "_category", category);
+                setResult(Activity.RESULT_OK, intent);
+                zXingScannerView.stopCameraPreview();
+                finishActivity(QrActivity.REQUEST_CODE);
+            } else {
+                Log.e("QRCode","QRCode is valid but instance does not exist: "+category);
+                Toast.makeText(this,"Scanned "+category+" does not exist.",Toast.LENGTH_LONG).show();
+            }
         } else {
             Toast.makeText(this,"Scanned QRCode is not valid!",Toast.LENGTH_LONG).show();
         }
