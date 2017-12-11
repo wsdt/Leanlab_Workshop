@@ -1,13 +1,9 @@
 package fhku.leanlabapp.interfaces.database;
 
-import android.app.Activity;
-import android.app.ActivityManager;
-import android.content.ComponentName;
+
 import android.content.Context;
-import android.content.ContextWrapper;
 import android.support.annotation.Nullable;
 import android.util.Log;
-
 import java.io.BufferedReader;
 import java.io.DataInputStream;
 import java.io.DataOutputStream;
@@ -24,13 +20,9 @@ import java.util.concurrent.ExecutionException;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 import java.util.concurrent.Future;
-
 import javax.net.ssl.HttpsURLConnection;
-
 import fhku.leanlabapp.R;
 import fhku.leanlabapp.interfaces.Dialog;
-
-import static android.content.Context.ACTIVITY_SERVICE;
 
 /*********************************************************************************
  HOW-TO-USE:
