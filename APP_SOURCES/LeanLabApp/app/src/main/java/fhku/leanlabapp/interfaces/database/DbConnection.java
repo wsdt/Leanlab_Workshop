@@ -2,6 +2,7 @@ package fhku.leanlabapp.interfaces.database;
 
 
 import android.content.Context;
+import android.content.DialogInterface;
 import android.os.AsyncTask;
 import android.os.Looper;
 import android.support.annotation.NonNull;
@@ -216,7 +217,14 @@ public class DbConnection  {
                 try {
                     Looper.prepare(); //without that an exception will be raised
                     //TODO: Dialog is not shown but no exception is outputted
-                    (Dialog.showDialog(context,"Connection failed","Please connect to the WiFi 'FH_LEANLAB' to access this application.", R.drawable.fh_kufstein_logo_transparent)).show();
+                    Dialog dialog = (Dialog.showDialog(context,"Connection failed","Please connect to the WiFi 'FH_LEANLAB' to access this application.", R.drawable.fh_kufstein_logofh));
+                    dialog.setPositiveButton(android.R.string.ok, new DialogInterface.OnClickListener() {
+                        @Override
+                        public void onClick(DialogInterface dialog, int which) {
+                            Log.e("ONCREATE_D","Created dialog clicked.");
+                        }
+                    });
+                    dialog.show();
                     Log.d("SocketTimeoutException","Tried to show dialog.");
                 } catch (NullPointerException f) {
                     Log.e("SocketTimeoutException","Context is null! Please call this function only with a valid Activity context!");

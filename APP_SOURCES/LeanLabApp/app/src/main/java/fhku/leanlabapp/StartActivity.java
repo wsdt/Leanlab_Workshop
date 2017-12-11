@@ -64,15 +64,6 @@ public class StartActivity extends AppCompatActivity implements AdapterView.OnIt
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_start);
 
-        Dialog dialog = (Dialog.showDialog(this,"Connection failed","Please connect to the WiFi 'FH_LEANLAB' to access this application.", R.drawable.fh_kufstein_logo_transparent));
-        dialog.setPositiveButton(android.R.string.ok, new DialogInterface.OnClickListener() {
-            @Override
-            public void onClick(DialogInterface dialog, int which) {
-                Log.e("ONCREATE_D","Created dialog clicked.");
-            }
-        });
-        dialog.show();
-        Log.e("ONCREATE_D","Created dialog.");
 
         ImageButton qrButton = (ImageButton) findViewById(R.id.qrButton);
 
