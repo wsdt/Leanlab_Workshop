@@ -2,6 +2,9 @@ package fhku.leanlabapp.interfaces.database;
 
 
 import android.content.Context;
+import android.os.AsyncTask;
+import android.os.Looper;
+import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.util.Log;
 import java.io.BufferedReader;
@@ -149,12 +152,13 @@ public class DbConnection  {
         return encodedParameters; //return parameter1=value1&parameter2=value2 ...
     }
 
-    public static String sendRequestForResult_ASYNC(final String[] PARAMETERS, final String METHOD, final boolean useHTTPS, @Nullable final Context context) throws ExecutionException, InterruptedException {
+
+    public static String sendRequestForResult_ASYNC(final String[] PARAMETERS, final String METHOD, final boolean useHTTPS, @Nullable final Context CONTEXT) throws ExecutionException, InterruptedException {
         ExecutorService executor = Executors.newSingleThreadExecutor();
         Callable<String> callable = new Callable<String>() {
             @Override
             public String call() throws Exception {
-                return DbConnection.sendRequestForResult(encodeParameters(PARAMETERS), METHOD, useHTTPS, context);
+                return DbConnection.sendRequestForResult(encodeParameters(PARAMETERS), METHOD, useHTTPS, CONTEXT);
             }
         };
 
@@ -210,12 +214,14 @@ public class DbConnection  {
             } catch (SocketTimeoutException e) {
                 //If exception then show pop up always on active/foreground activity
                 try {
+                    Looper.prepare(); //without that an exception will be raised
+                    //TODO: Dialog is not shown but no exception is outputted
                     (Dialog.showDialog(context,"Connection failed","Please connect to the WiFi 'FH_LEANLAB' to access this application.", R.drawable.fh_kufstein_logo_transparent)).show();
+                    Log.d("SocketTimeoutException","Tried to show dialog.");
                 } catch (NullPointerException f) {
                     Log.e("SocketTimeoutException","Context is null! Please call this function only with a valid Activity context!");
                     f.printStackTrace();
                 }
-
 
                 //If timeout then show message
                 Log.e("sendRequest_HTTP", "Could not establish connection with database. Timeout of "+TIMEOUT_SOCKET+" ms exceeded.");
@@ -260,6 +266,13 @@ public class DbConnection  {
                 Log.i("sendRequest_HTTPS", "Response-Content: " + response);
 
             } catch (SocketTimeoutException e) {
+                try {
+                    (Dialog.showDialog(context,"Connection failed","Please connect to the WiFi 'FH_LEANLAB' to access this application.", R.drawable.fh_kufstein_logo_transparent)).show();
+                } catch (NullPointerException f) {
+                    Log.e("SocketTimeoutException","Context is null! Please call this function only with a valid Activity context!");
+                    f.printStackTrace();
+                }
+
                 //If timeout then show message
                 Log.e("sendRequest_HTTPS", "Could not establish connection with database. Timeout of "+TIMEOUT_SOCKET+" ms exceeded.");
                 e.printStackTrace();

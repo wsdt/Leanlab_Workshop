@@ -1,5 +1,6 @@
 package fhku.leanlabapp;
 
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.media.DeniedByServerException;
 import android.media.Image;
@@ -22,6 +23,7 @@ import java.util.concurrent.ExecutionException;
 import fhku.leanlabapp.classes.Product;
 import fhku.leanlabapp.classes.Station;
 import fhku.leanlabapp.classes.User;
+import fhku.leanlabapp.interfaces.Dialog;
 import fhku.leanlabapp.interfaces.JsonStrConverter;
 import fhku.leanlabapp.interfaces.database.DbConnection;
 
@@ -63,6 +65,15 @@ public class StartActivity extends AppCompatActivity implements AdapterView.OnIt
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_start);
+
+        Dialog dialog = (Dialog.showDialog(this,"Connection failed","Please connect to the WiFi 'FH_LEANLAB' to access this application.", R.drawable.fh_kufstein_logo_transparent));
+        dialog.setPositiveButton(android.R.string.ok, new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                Log.e("ONCREATE_D","Created dialog clicked.");
+            }
+        });
+        Log.e("ONCREATE_D","Created dialog.");
 
         ImageButton qrButton = (ImageButton) findViewById(R.id.qrButton);
 

@@ -19,7 +19,7 @@ public class Dialog extends AlertDialog.Builder {
     public static final int DIALOG_OK = 1;*/
     // DIALOG TYPES - END
 
-    public static /*<UserDefinedClass>*/ Dialog showDialog(@NonNull Context context, @NonNull String title, @NonNull String message, int icon/*, @Nullable final UserDefinedClass onClickFunctions*/) {
+    public static Dialog showDialog(@NonNull Context context, @NonNull String title, @NonNull String message, int icon/*, @Nullable final UserDefinedClass onClickFunctions*/) {
         //IMPORTANT: UserDefinedClass needs to implement called functions below! (create Interface)
 
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
