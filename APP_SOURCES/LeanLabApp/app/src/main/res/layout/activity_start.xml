@@ -7,10 +7,10 @@
     tools:context="fhku.leanlabapp.StartActivity">
 
     <Button
-        android:id="@+id/admin"
+        android:id="@+id/admin1"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Admin"/>
+        android:text="Bearbeitungsmodus aktivieren"/>
 
 
     <ImageView
@@ -19,7 +19,7 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="10dp"
         android:layout_centerHorizontal="true"
-        android:layout_below="@+id/admin"
+        android:layout_below="@+id/admin1"
         app:srcCompat="@drawable/fhkufsteingrau"
         tools:ignore="ContentDescription" />
 

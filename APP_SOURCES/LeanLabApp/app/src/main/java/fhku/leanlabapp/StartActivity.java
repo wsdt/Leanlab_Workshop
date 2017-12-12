@@ -14,14 +14,11 @@ import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.Spinner;
 import android.widget.Toast;
-
 import org.json.JSONObject;
-
 import java.util.ArrayList;
 import java.util.concurrent.ExecutionException;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
-
 import fhku.leanlabapp.classes.Product;
 import fhku.leanlabapp.classes.Station;
 import fhku.leanlabapp.classes.User;
@@ -90,6 +87,19 @@ public class StartActivity extends AppCompatActivity implements AdapterView.OnIt
         ImageButton qrButton = (ImageButton) findViewById(R.id.qrButton);
 
         Button button = (Button)findViewById(R.id.go);
+
+        Button buttonAdmin = (Button) findViewById(R.id.admin1);
+
+        buttonAdmin.setOnLongClickListener(new View.OnLongClickListener() {
+            @Override
+            public boolean onLongClick(View v) {
+                Intent intentAdmin = new Intent(StartActivity.this, StartActivityAdmin.class);
+                StartActivity.this.startActivity(intentAdmin);
+                return false;
+            }
+        });
+
+
 
         button.setOnClickListener(new View.OnClickListener() {
             @Override
