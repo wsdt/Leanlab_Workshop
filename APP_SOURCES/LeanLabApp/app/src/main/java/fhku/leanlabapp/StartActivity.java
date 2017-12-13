@@ -95,6 +95,7 @@ public class StartActivity extends AppCompatActivity implements AdapterView.OnIt
             public boolean onLongClick(View v) {
                 Intent intentAdmin = new Intent(StartActivity.this, StartActivityAdmin.class);
                 StartActivity.this.startActivity(intentAdmin);
+                Log.i("info", "went to startactivityadmin");
                 return false;
             }
         });

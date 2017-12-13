@@ -10,7 +10,9 @@
         android:id="@+id/admin1"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Bearbeitungsmodus aktivieren"/>
+        android:layout_alignParentStart="true"
+        android:layout_alignParentTop="true"
+        android:text="Bearbeitungsmodus aktivieren" />
 
 
     <ImageView

@@ -5,13 +5,22 @@ import android.content.DialogInterface;
 import android.content.Intent;;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
+import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.Spinner;
+import android.widget.Toast;
+
+import java.util.ArrayList;
+
+import fhku.leanlabapp.classes.Product;
+import fhku.leanlabapp.classes.Station;
+import fhku.leanlabapp.interfaces.database.DbConnection;
 
 
 public class StartActivityAdmin extends AppCompatActivity implements View.OnClickListener{
@@ -22,6 +31,34 @@ public class StartActivityAdmin extends AppCompatActivity implements View.OnClic
     String station = "";
     String product = "";
 
+    public class OnItemSelectedListener implements AdapterView.OnItemSelectedListener{
+
+        @Override
+        public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
+
+            Spinner spinner = (Spinner) adapterView;
+
+            if (spinner.getId() == R.id.spinner1)
+            {
+                product = spinner.getItemAtPosition(i).toString();
+                Log.i("product", product);
+
+            } else if (spinner.getId() == R.id.spinner2){
+                station = spinner.getItemAtPosition(i).toString();
+                Log.i("station", station);
+            }
+            
+        }
+
+
+        @Override
+        public void onNothingSelected(AdapterView<?> adapterView) {
+            Toast.makeText(getApplicationContext(), "halamadrid", Toast.LENGTH_SHORT).show();
+
+        }
+    }
+
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -31,6 +68,10 @@ public class StartActivityAdmin extends AppCompatActivity implements View.OnClic
         Button buttonAdmin = (Button) findViewById(R.id.admin);
         ImageButton buttonEdit = (ImageButton) findViewById(R.id.edit);
         ImageButton buttonAdd = (ImageButton) findViewById(R.id.add);
+
+        Log.i("test", "test");
+
+        makeSpinnerInteractive();
 
 
         buttonAdmin.setOnLongClickListener(new View.OnLongClickListener() {
@@ -92,4 +133,58 @@ public class StartActivityAdmin extends AppCompatActivity implements View.OnClic
     public void onClick(View v) {
 
     }
+
+    private void makeSpinnerInteractive() {
+        //Getting the instance of Spinner and applying OnItemSelectedListener on it
+        spinnerProducts = (Spinner) findViewById(R.id.spinner1);
+        spinnerStations = (Spinner) findViewById(R.id.spinner2);
+        spinnerProducts.setOnItemSelectedListener(new StartActivityAdmin.OnItemSelectedListener());
+        spinnerStations.setOnItemSelectedListener(new StartActivityAdmin.OnItemSelectedListener());
+
+
+        //Creating the ArrayAdapter instance having the country list
+        aa = new ArrayAdapter(this,android.R.layout.simple_spinner_item, loadProducts());
+        bb = new ArrayAdapter(this,android.R.layout.simple_spinner_item,loadStations());
+        aa.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        bb.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        //Setting the ArrayAdapter data on the Spinner
+        spinnerProducts.setAdapter(aa);
+        spinnerStations.setAdapter(bb);
+
+    }
+
+    public ArrayList loadProducts(){
+
+        ArrayList<String> productlist = new ArrayList<>();
+        if (Product.Loaded_Products!= null) {
+            for (Product product : Product.Loaded_Products) {
+                productlist.add(product.getProductname()+" ("+product.getProductid()+")");
+
+            }
+        } else {
+            Log.e("loadProducts","Could not load stations!");
+        }
+
+        return productlist;
+    }
+
+    public ArrayList loadStations(){
+
+        ArrayList<String> stationlist = new ArrayList<>();
+        if (Station.Loaded_Stations != null) {
+            for (Station station : Station.Loaded_Stations) {
+                stationlist.add(station.getStationname()+" ("+station.getStationid()+")");
+
+            }
+        } else {
+            Log.e("loadStations","Could not load stations!");
+        }
+
+        return stationlist;
+    }
+
+
+
+
+
 }
