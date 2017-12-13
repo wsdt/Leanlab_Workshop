@@ -13,6 +13,9 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
+import android.widget.Toast;
+import android.widget.VideoView;
+
 import java.io.File;
 import java.text.SimpleDateFormat;
 import java.util.Date;
@@ -27,8 +30,11 @@ public class MainActivityAdmin extends AppCompatActivity implements View.OnClick
     RichEditor editor;
     HTMLEditor editorHtml;
     private Button takePictureButton;
+    private Button click; //Video
     private ImageView imageView;
+    private VideoView result_video;
     private Uri file;
+    static final int REQUEST_VIDEO_CAPTURE=1;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -45,14 +51,25 @@ public class MainActivityAdmin extends AppCompatActivity implements View.OnClick
             }
         });
 
-        takePictureButton = (Button) findViewById(R.id.picture);
+        takePictureButton = (Button)findViewById(R.id.picture);
+        click = (Button)findViewById(R.id.video);
         imageView = (ImageView) findViewById(R.id.image);
+        result_video = (VideoView)findViewById(R.id.vidview);
 
         if (ContextCompat.checkSelfPermission(this, Manifest.permission.CAMERA) != PackageManager.PERMISSION_GRANTED) {
             takePictureButton.setEnabled(false);
             ActivityCompat.requestPermissions(this, new String[]{Manifest.permission.CAMERA, Manifest.permission.WRITE_EXTERNAL_STORAGE}, 0);
         }
     }
+
+
+    public void dispatchTakeVideoIntent(View view) {
+        Intent takeVideoIntent = new Intent(MediaStore.ACTION_VIDEO_CAPTURE);
+        if (takeVideoIntent.resolveActivity(getPackageManager()) != null) {
+            startActivityForResult(takeVideoIntent, REQUEST_VIDEO_CAPTURE);
+        }
+    }
+
 
     @Override
     public void onRequestPermissionsResult(int requestCode, String[] permissions, int[] grantResults) {
@@ -78,6 +95,9 @@ public class MainActivityAdmin extends AppCompatActivity implements View.OnClick
             if (resultCode == RESULT_OK) {
                 imageView.setImageURI(file);
             }
+        }else if (requestCode == REQUEST_VIDEO_CAPTURE && resultCode == RESULT_OK) {
+            Uri videoUri = data.getData();
+            result_video.setVideoURI(videoUri);
         }
     }
 
