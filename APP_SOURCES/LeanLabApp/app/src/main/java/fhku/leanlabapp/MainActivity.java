@@ -2,10 +2,13 @@ package fhku.leanlabapp;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.provider.MediaStore;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
+import android.view.View;
 import android.widget.TextView;
 import android.widget.Toast;
+import android.widget.VideoView;
 
 import java.sql.ResultSet;
 import java.util.ArrayList;
@@ -40,12 +43,20 @@ public class MainActivity extends AppCompatActivity {
         int stationid = Integer.parseInt(stationidtemp);
         int productid = Integer.parseInt(productidtemp);
 
-
-
         viewproduct.setText(product);
         viewstation.setText(station);
 
         loadWorksteps(product, station);
+
+        //For the video
+        VideoView videoView = (VideoView) findViewById(R.id.video);
+
+
+
+
+
+
+
 
 
 

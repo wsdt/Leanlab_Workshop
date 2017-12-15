@@ -13,6 +13,8 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
+import android.widget.VideoView;
+
 import java.io.File;
 import java.text.SimpleDateFormat;
 import java.util.Date;
@@ -27,7 +29,9 @@ public class MainActivityAdmin extends AppCompatActivity implements View.OnClick
     RichEditor editor;
     HTMLEditor editorHtml;
     private Button takePictureButton;
+    private Button takeVideoButton;
     private ImageView imageView;
+    private VideoView videoView;
     private Uri file;
 
     @Override
@@ -45,14 +49,18 @@ public class MainActivityAdmin extends AppCompatActivity implements View.OnClick
             }
         });
 
-        takePictureButton = (Button) findViewById(R.id.picture);
-        imageView = (ImageView) findViewById(R.id.image);
+        takePictureButton = (Button)findViewById(R.id.picture);
+        takeVideoButton = (Button)findViewById(R.id.video);
+        imageView = (ImageView)findViewById(R.id.imgview);
+        videoView = (VideoView)findViewById(R.id.vidview);
 
         if (ContextCompat.checkSelfPermission(this, Manifest.permission.CAMERA) != PackageManager.PERMISSION_GRANTED) {
             takePictureButton.setEnabled(false);
+            takeVideoButton.setEnabled(false);
             ActivityCompat.requestPermissions(this, new String[]{Manifest.permission.CAMERA, Manifest.permission.WRITE_EXTERNAL_STORAGE}, 0);
         }
     }
+
 
     @Override
     public void onRequestPermissionsResult(int requestCode, String[] permissions, int[] grantResults) {
@@ -60,7 +68,15 @@ public class MainActivityAdmin extends AppCompatActivity implements View.OnClick
             if (grantResults.length > 0 && grantResults[0] == PackageManager.PERMISSION_GRANTED
                     && grantResults[1] == PackageManager.PERMISSION_GRANTED) {
                 takePictureButton.setEnabled(true);
+                takeVideoButton.setEnabled(true);
             }
+        }
+    }
+
+    public void takeVideo(View view) {
+        Intent takeVideoIntent = new Intent(MediaStore.ACTION_VIDEO_CAPTURE);
+        if (takeVideoIntent.resolveActivity(getPackageManager()) != null) {
+            startActivityForResult(takeVideoIntent, 101);
         }
     }
 
@@ -74,16 +90,18 @@ public class MainActivityAdmin extends AppCompatActivity implements View.OnClick
 
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
-        if (requestCode == 100) {
-            if (resultCode == RESULT_OK) {
-                imageView.setImageURI(file);
-            }
+        if (requestCode == 101 && resultCode == RESULT_OK) {
+            Uri videoUri = data.getData();
+            videoView.setVideoURI(videoUri);
+        }
+        if (requestCode == 100 && resultCode == RESULT_OK) {
+            imageView.setImageURI(file);
         }
     }
 
     private static File getOutputMediaFile(){
         File mediaStorageDir = new File(Environment.getExternalStoragePublicDirectory(
-                Environment.DIRECTORY_PICTURES), "CameraDemo");
+                Environment.DIRECTORY_PICTURES), "LeanLabDirectory");
 
         if (!mediaStorageDir.exists()){
             if (!mediaStorageDir.mkdirs()){
@@ -95,6 +113,8 @@ public class MainActivityAdmin extends AppCompatActivity implements View.OnClick
         return new File(mediaStorageDir.getPath() + File.separator +
                 "IMG_"+ timeStamp + ".jpg");
     }
+
+
 
     private void saveHtml(String text, int contentId) {
         try {
@@ -113,7 +133,6 @@ public class MainActivityAdmin extends AppCompatActivity implements View.OnClick
         } catch (Exception e) {
             e.printStackTrace();
         }
-
     }
 
     private void saveToForm(String form) {
