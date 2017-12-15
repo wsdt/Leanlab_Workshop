@@ -10,9 +10,12 @@ import android.support.v4.app.ActivityCompat;
 import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
+import android.widget.TextView;
+import android.widget.Toast;
 import android.widget.VideoView;
 
 import java.io.File;
@@ -33,6 +36,12 @@ public class MainActivityAdmin extends AppCompatActivity implements View.OnClick
     private ImageView imageView;
     private VideoView videoView;
     private Uri file;
+    private String htmltext;
+    private String product;
+    private String productid;
+    private String station;
+    private String stationid;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -43,16 +52,30 @@ public class MainActivityAdmin extends AppCompatActivity implements View.OnClick
         editorHtml.getEditor().setOnTextChangeListener(new RichEditor.OnTextChangeListener() {
             @Override
             public void onTextChange(String text) {
-                saveHtml(editorHtml.getEditor().getHtml(), 1);
-                getHtml(1);
-                saveToForm(Content.Loaded_Contents.get(1).getContenttext());
+
+                htmltext = text;
+
+                Log.i("editortest", htmltext);
+                //saveHtml(editorHtml.getEditor().getHtml(), 1);
+                //getHtml(1);
+                //saveToForm(Content.Loaded_Contents.get(1).getContenttext());
             }
         });
+
+        takeIntent();
 
         takePictureButton = (Button)findViewById(R.id.picture);
         takeVideoButton = (Button)findViewById(R.id.video);
         imageView = (ImageView)findViewById(R.id.imgview);
         videoView = (VideoView)findViewById(R.id.vidview);
+
+        TextView stationview = (TextView)findViewById(R.id.station);
+        TextView productview = (TextView)findViewById(R.id.product);
+
+        stationview.setText(station);
+        productview.setText(product);
+
+
 
         if (ContextCompat.checkSelfPermission(this, Manifest.permission.CAMERA) != PackageManager.PERMISSION_GRANTED) {
             takePictureButton.setEnabled(false);
@@ -145,4 +168,18 @@ public class MainActivityAdmin extends AppCompatActivity implements View.OnClick
     public void onClick(View v) {
 
     }
+
+    private void takeIntent(){
+        Intent intent = getIntent();
+
+        station = intent.getStringExtra("stationname");
+        stationid = intent.getStringExtra("stationid");
+        product = intent.getStringExtra("productname");
+        productid = intent.getStringExtra("productid");
+
+        Log.i("take_intent ", product + productid + station + stationid);
+
+
+    }
+
 }

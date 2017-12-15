@@ -17,6 +17,8 @@ import android.widget.Spinner;
 import android.widget.Toast;
 
 import java.util.ArrayList;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 import fhku.leanlabapp.classes.Product;
 import fhku.leanlabapp.classes.Station;
@@ -30,6 +32,8 @@ public class StartActivityAdmin extends AppCompatActivity implements View.OnClic
     private ArrayAdapter aa, bb;
     String station = "";
     String product = "";
+    String productid = "";
+    String stationid = "";
 
     public class OnItemSelectedListener implements AdapterView.OnItemSelectedListener{
 
@@ -42,13 +46,30 @@ public class StartActivityAdmin extends AppCompatActivity implements View.OnClic
             {
                 product = spinner.getItemAtPosition(i).toString();
                 Log.i("product", product);
+                String tmp = product;
+
+                Pattern p = Pattern.compile("[+-]?[0-9]+");
+                Matcher m = p.matcher(tmp);
+
+                while ( m.find() ) {
+                    productid = tmp.substring(m.start(), m.end());
+                }
 
             } else if (spinner.getId() == R.id.spinner2){
                 station = spinner.getItemAtPosition(i).toString();
                 Log.i("station", station);
+                String tmp = station;
+
+                Pattern p = Pattern.compile("[+-]?[0-9]+");
+                Matcher m = p.matcher(tmp);
+
+                while ( m.find() ) {
+                    stationid = tmp.substring(m.start(), m.end());
+                }
             }
-            
         }
+            
+
 
 
         @Override
@@ -87,6 +108,10 @@ public class StartActivityAdmin extends AppCompatActivity implements View.OnClic
             @Override
             public void onClick(View v) {
                 Intent intentGo = new Intent(StartActivityAdmin.this, MainActivityAdmin.class);
+                intentGo.putExtra("productname", product);
+                intentGo.putExtra("productid", productid);
+                intentGo.putExtra("stationname", station);
+                intentGo.putExtra("stationid", stationid);
                 StartActivityAdmin.this.startActivity(intentGo);
             }
         });
