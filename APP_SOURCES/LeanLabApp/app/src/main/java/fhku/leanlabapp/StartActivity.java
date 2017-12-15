@@ -77,7 +77,6 @@ public class StartActivity extends AppCompatActivity implements AdapterView.OnIt
         }
     }
 
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -117,6 +116,7 @@ public class StartActivity extends AppCompatActivity implements AdapterView.OnIt
 
 
             }
+
         });
 
         qrButton.setOnClickListener(new View.OnClickListener() {

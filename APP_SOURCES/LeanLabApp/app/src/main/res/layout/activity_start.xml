@@ -45,7 +45,6 @@
         android:layout_centerHorizontal="true"
         android:layout_marginStart="200dp"
         android:layout_marginTop="54dp"
-
         />
 
     <Spinner
@@ -66,7 +65,7 @@
         android:layout_below="@+id/spinnerProducts"
         android:layout_centerHorizontal="true"
         android:layout_marginTop="37dp"
-        android:text="GO!"
+        android:text="LOS GEHTS"
         android:textColor="@color/colorBlack" />
 
     <ImageButton

@@ -1,132 +1,153 @@
 <?xml version="1.0" encoding="utf-8"?>
 
-<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="fill_parent"
-    android:layout_height="wrap_content"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
     android:background="@color/colorWhite">
 
 
-
-
-    <RelativeLayout
-        xmlns:app="http://schemas.android.com/apk/res-auto"
-        android:orientation="vertical"
-        android:id="@+id/mainlayout"
-        android:layout_width="match_parent"
+    <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:tools="http://schemas.android.com/tools"
+        android:layout_width="fill_parent"
         android:layout_height="wrap_content">
 
-        <Button
-            android:id="@+id/admin"
+        <RelativeLayout xmlns:app="http://schemas.android.com/apk/res-auto"
+            android:id="@+id/mainlayout"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Bearbeitungsmodus"/>
+            android:orientation="vertical">
 
-        <TextView
-            android:id="@+id/trennstrich"
-            android:layout_marginTop="60dp"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_centerHorizontal="true"
-            android:text="|"/>
-
-        <TextView
-            android:id="@+id/station"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="60dp"
-            android:text="  Array A  "
-            android:layout_alignEnd="@+id/trennstrich"
-            />
-
-        <TextView
-            android:id="@+id/arrayB"
-            android:layout_marginTop="60dp"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_centerHorizontal="true"
-            android:layout_alignStart="@+id/trennstrich"
-            android:text="  Array B"/>
-
-        <Button
-            android:id="@+id/heading"
-            android:layout_marginLeft="50dp"
-            android:layout_width="60dp"
-            android:layout_height="30dp"
-            android:layout_below="@id/station"
-            android:textSize="7dp"
-            android:text="Heading"
-            />
-
-        <RelativeLayout
-            android:id="@+id/edittextlayout"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_below="@+id/heading">
-
-            <jp.wasabeef.richeditor.RichEditor
-                android:id="@+id/editor"
+            <Button
+                android:id="@+id/admin"
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Bearbeitungsmodus" />
+
+            <TextView
+                android:id="@+id/trennstrich"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
                 android:layout_centerHorizontal="true"
+                android:layout_marginTop="60dp"
+                android:text="|" />
+
+            <TextView
+                android:id="@+id/station"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignEnd="@+id/trennstrich"
+                android:layout_marginTop="60dp"
+                android:text="  Array A  " />
+
+            <TextView
+                android:id="@+id/product"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignStart="@+id/trennstrich"
+                android:layout_centerHorizontal="true"
+                android:layout_marginTop="60dp"
+                android:text="  Array B" />
+
+            <TextView
+                android:id="@+id/schritt"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerHorizontal="true"
+                android:layout_marginTop="90dp"
+                android:text="Schritt 2" />
+
+            <Button
+                android:id="@+id/heading"
+                android:layout_width="60dp"
+                android:layout_height="30dp"
+                android:layout_below="@id/schritt"
+                android:layout_marginLeft="50dp"
+                android:text="Heading"
+                android:textSize="7dp" />
+
+            <RelativeLayout
+                android:id="@+id/edittextlayout"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/heading">
+
+                <jp.wasabeef.richeditor.RichEditor
+                    android:id="@+id/editor"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_centerHorizontal="true"
+                    android:layout_marginLeft="50dp"
+                    android:layout_marginRight="50dp"
+                    android:minHeight="300dp"
+                    android:saveEnabled="false" />
+
+            </RelativeLayout>
+
+
+            <Button
+                android:id="@+id/picture"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_alignParentStart="true"
+                android:layout_below="@+id/edittextlayout"
                 android:layout_marginLeft="50dp"
                 android:layout_marginRight="50dp"
-                android:minHeight="300dp"
-                android:saveEnabled="false" />
+                android:onClick="takePicture"
+                android:src="@drawable/fhkufsteingrau"
+                android:text="Foto hinzufügen" />
+
+            <Button
+                android:id="@+id/video"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_alignParentStart="true"
+                android:layout_below="@+id/picture"
+                android:layout_marginLeft="50dp"
+                android:layout_marginRight="50dp"
+                android:onClick="takeVideo"
+                android:src="@drawable/fhkufsteingrau"
+                android:text="Video hinzufügen" />
+
+
+            <ImageView
+                android:id="@+id/imgview"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/picture"
+                android:layout_centerHorizontal="true"
+                android:layout_marginLeft="50dp"
+                android:layout_marginRight="50dp" />
+
+            <VideoView
+                android:id="@+id/vidview"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/imgview"
+                android:layout_centerHorizontal="true"
+                android:layout_marginLeft="50dp"
+                android:layout_marginRight="50dp" />
 
         </RelativeLayout>
 
-        <TextView
-            android:id="@+id/link"
-            android:layout_marginTop="10dp"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_below="@id/picture"
-            android:layout_centerHorizontal="true"
-            android:text="Hier zum Video"/>
 
-        <ImageButton
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:src="@drawable/ic_shortcut_chevron_left"
-            android:layout_alignParentStart="true"
-            android:background="@color/colorWhite"
-            android:layout_centerVertical="true">
-        </ImageButton>
+    </ScrollView>
 
-        <ImageButton
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:src="@drawable/ic_shortcut_chevron_right"
-            android:layout_alignParentEnd="true"
-            android:background="@color/colorWhite"
-            android:layout_centerVertical="true"
-            android:id="@+id/imageButton">
-        </ImageButton>
+    <ImageButton
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentStart="true"
+        android:layout_centerVertical="true"
+        android:background="@color/colorWhite"
+        android:src="@drawable/ic_shortcut_chevron_left"></ImageButton>
 
-        <Button
-            android:id="@+id/picture"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_alignParentStart="true"
-            android:layout_below="@+id/edittextlayout"
-            android:src="@drawable/fhkufsteingrau"
-            android:layout_marginRight="60dp"
-            android:layout_marginLeft="60dp"
-            android:text="Upload/change Image" />
+    <ImageButton
+        android:id="@+id/imageButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentEnd="true"
+        android:layout_centerVertical="true"
+        android:background="@color/colorWhite"
+        android:src="@drawable/ic_shortcut_chevron_right"></ImageButton>
 
-        <TextView
-            android:id="@+id/schritt"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_below="@+id/picture"
-            android:layout_centerHorizontal="true"
-            android:layout_marginStart="10dp"
-            android:layout_marginTop="40dp"
-            android:text="  Schritt 2   " />
-
-
-    </RelativeLayout>
-
-
-</ScrollView>
+</RelativeLayout>
