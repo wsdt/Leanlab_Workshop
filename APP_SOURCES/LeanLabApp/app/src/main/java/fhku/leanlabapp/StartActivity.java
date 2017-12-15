@@ -14,14 +14,11 @@ import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.Spinner;
 import android.widget.Toast;
-
 import org.json.JSONObject;
-
 import java.util.ArrayList;
 import java.util.concurrent.ExecutionException;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
-
 import fhku.leanlabapp.classes.Product;
 import fhku.leanlabapp.classes.Station;
 import fhku.leanlabapp.classes.User;
@@ -44,7 +41,7 @@ public class StartActivity extends AppCompatActivity implements AdapterView.OnIt
 
             Spinner spinner = (Spinner) arg0;
 
-
+            //TODO: Receive values from QRCode Activity and setText() to Spinner
 
             if (spinner.getId() == R.id.spinnerStations) {
                 product = spinnerStations.getItemAtPosition(position).toString();
@@ -90,6 +87,20 @@ public class StartActivity extends AppCompatActivity implements AdapterView.OnIt
         ImageButton qrButton = (ImageButton) findViewById(R.id.qrButton);
 
         Button button = (Button)findViewById(R.id.go);
+
+        Button buttonAdmin = (Button) findViewById(R.id.admin1);
+
+        buttonAdmin.setOnLongClickListener(new View.OnLongClickListener() {
+            @Override
+            public boolean onLongClick(View v) {
+                Intent intentAdmin = new Intent(StartActivity.this, StartActivityAdmin.class);
+                StartActivity.this.startActivity(intentAdmin);
+                Log.i("info", "went to startactivityadmin");
+                return false;
+            }
+        });
+
+
 
         button.setOnClickListener(new View.OnClickListener() {
             @Override
