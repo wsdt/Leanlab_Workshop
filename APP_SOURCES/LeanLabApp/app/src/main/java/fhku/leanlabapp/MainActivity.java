@@ -85,9 +85,9 @@ public class MainActivity extends AppCompatActivity {
     public void loadWorksteps(String product, String station){
 
         try {
-            String sqlstatement = "sql_statement=SELECT * FROM Content WHERE `WorkstepID` <ANY (Select `WorkstepID` From Workstep Join Productionstep ON Workstep.ProductionstepID Where Productionstep.ProductionstepID = Workstep.ProductionstepID AND Station = 'station' AND Product = 'product' );";
+            String sqlstatement = "sql_statement=SELECT * FROM Content WHERE `WorkstepID` <ANY (Select `WorkstepID` From Workstep Join Productionstep ON Workstep.ProductionstepID Where Productionstep.ProductionstepID = Workstep.ProductionstepID AND StationID = 'stationid' AND ProductID = 'productid' );";
 
-            String sqlstatement1 = "sql_statement=Select * From Productionstep;";
+            //String sqlstatement1 = "sql_statement=Select * From Productionstep;";
             //String sqlstatement2 = "sql_statement=Select * From Content;";
 
             JoinQuery.Loaded_JoinQuerys = (new JoinQuery()).MapJsonRowsToObject(DbConnection.sendRequestForResult_ASYNC(
