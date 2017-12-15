@@ -60,14 +60,16 @@
             android:src="@drawable/fhkufsteingrau"
             android:layout_below="@id/edittext"/>
 
-        <TextView
-            android:id="@+id/link"
+        <VideoView
+            android:id="@+id/video"
             android:layout_marginTop="20dp"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_below="@id/picture"
             android:layout_centerHorizontal="true"
-            android:text="Hier zum Video"/>
+            />
+
+
 
 
         <ImageButton
