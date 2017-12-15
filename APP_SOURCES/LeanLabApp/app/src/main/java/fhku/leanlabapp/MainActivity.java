@@ -74,7 +74,7 @@ public class MainActivity extends AppCompatActivity {
     public void loadWorksteps(String product, String station){
 
         try {
-            String sqlstatement = "sql_statement=SELECT * FROM Content WHERE `Workstepid` <ANY (Select `Workstepid` From Workstep Join Productionstep ON Workstep.Productionstepid Where Productionstep.Productionstepid = Workstep.Productionstepid AND Stationid = 1 AND Productid = 1 );";
+            String sqlstatement = "sql_statement=SELECT * FROM Content WHERE `WorkstepID` <ANY (Select `WorkstepID` From Workstep Join Productionstep ON Workstep.ProductionstepID Where Productionstep.ProductionstepID = Workstep.ProductionstepID AND Station = 'station' AND Product = 'product' );";
             /*
             String sqlstatement1 = "sql_statement=Select * From Productionstep;";
             String sqlstatement2 = "sql_statement=Select * From Content;";
