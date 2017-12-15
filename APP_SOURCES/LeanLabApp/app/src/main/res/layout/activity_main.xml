@@ -98,7 +98,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_centerHorizontal="true"
-            android:layout_below="@+id/link"
+            android:layout_below="@+id/video"
             android:text="|"/>
 
         <TextView
@@ -108,7 +108,7 @@
             android:layout_marginTop="20dp"
             android:text="  Schritt 2   "
             android:layout_marginRight="20dp"
-            android:layout_below="@+id/link"
+            android:layout_below="@+id/video"
             android:layout_alignEnd="@+id/trennstrich"
             />
 
@@ -118,7 +118,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_centerHorizontal="true"
-            android:layout_below="@+id/link"
+            android:layout_below="@+id/video"
             android:layout_alignStart="@+id/trennstrich"
             android:text="  Schritt 10  "/>
 
