@@ -11,6 +11,7 @@ import java.sql.ResultSet;
 import java.util.ArrayList;
 
 import fhku.leanlabapp.classes.Content;
+import fhku.leanlabapp.classes.JoinQuery;
 import fhku.leanlabapp.classes.Product;
 import fhku.leanlabapp.classes.Productionstep;
 import fhku.leanlabapp.classes.Workstep;
@@ -68,6 +69,7 @@ public class MainActivity extends AppCompatActivity {
         //
 
     }
+
 
     public void loadWorksteps(String product, String station){
 

@@ -25,7 +25,7 @@ public class JoinQuery extends Mapper {
     public JoinQuery(int ContentID, String Contenttext, int WorkstepID,int TypID){
       this.setContentID(ContentID);
       this.setWokstepID(WorkstepID);
-      this.setTypeID(TypeID);
+      this.setTypID(TypID);
       this.setContenttext(Contenttext);
       }
 
