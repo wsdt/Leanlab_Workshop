@@ -3,6 +3,7 @@ package fhku.leanlabapp;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
+import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.VideoView;
 
@@ -41,6 +42,16 @@ public class MainActivity extends AppCompatActivity {
 
         loadWorksteps();
 
+
+        //1. Idee wie man es einbinden könnte
+        TextView test = (TextView) findViewById(R.id.edittext);
+        test.setText("sql_statement=SELECT Contenttext FROM Content WHERE TypID = 3;");
+
+        //hard coded, wir brauchen noch die Funkton für die Abfrage von TypID = 1
+        ImageView image = (ImageView) findViewById(R.id.btnCamera);
+        image.setImageResource(R.drawable.fh_kufstein_logo);
+
+        
         //For the video
         VideoView videoView = (VideoView) findViewById(R.id.btnVideo);
 
@@ -78,7 +89,7 @@ public class MainActivity extends AppCompatActivity {
     public void loadWorksteps(){
 
         try {
-            String sqlstatement = "sql_statement=SELECT * FROM Content WHERE `WorkstepID` <ANY (Select `WorkstepID` From Workstep Join Productionstep ON Workstep.ProductionstepID Where Productionstep.ProductionstepID = Workstep.ProductionstepID AND StationID = 'stationid' AND ProductID = 'productid' );";
+            String sqlstatement = "sql_statement=SELECT * FROM Content WHERE `WorkstepID` = ANY (Select `WorkstepID` From Workstep Join Productionstep ON Workstep.ProductionstepID Where Productionstep.ProductionstepID = Workstep.ProductionstepID AND StationID = 'stationid' AND ProductID = 'productid' );";
 
             //String sqlstatement1 = "sql_statement=Select * From Productionstep;";
             //String sqlstatement2 = "sql_statement=Select * From Content;";
@@ -99,6 +110,30 @@ public class MainActivity extends AppCompatActivity {
         }catch (Exception e){
             e.printStackTrace();
         }
+
+    }
+
+
+    //oder könnte es so funktionieren? (Anfang)
+    private void setthecontents(){
+
+        setHtmlText();
+
+        setImageScr();
+
+        setVideoScr();
+
+    }
+
+    private void setImageScr(){
+
+    }
+
+    private void setVideoScr(){
+
+    }
+
+    private void setHtmlText(){
 
     }
 
