@@ -51,7 +51,7 @@
             android:layout_below="@+id/trennstrich"/>
 
         <ImageView
-            android:id="@+id/picture"
+            android:id="@+id/btnCamera"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="20dp"
@@ -61,11 +61,11 @@
             android:layout_below="@id/edittext"/>
 
         <VideoView
-            android:id="@+id/video"
+            android:id="@+id/btnVideo"
             android:layout_marginTop="20dp"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_below="@id/picture"
+            android:layout_below="@id/btnCamera"
             android:layout_centerHorizontal="true"
             />
 
@@ -98,7 +98,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_centerHorizontal="true"
-            android:layout_below="@+id/video"
+            android:layout_below="@+id/btnVideo"
             android:text="|"/>
 
         <TextView
@@ -108,7 +108,7 @@
             android:layout_marginTop="20dp"
             android:text="  Schritt 2   "
             android:layout_marginRight="20dp"
-            android:layout_below="@+id/video"
+            android:layout_below="@+id/btnVideo"
             android:layout_alignEnd="@+id/trennstrich"
             />
 
@@ -118,7 +118,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_centerHorizontal="true"
-            android:layout_below="@+id/video"
+            android:layout_below="@+id/btnVideo"
             android:layout_alignStart="@+id/trennstrich"
             android:text="  Schritt 10  "/>
 

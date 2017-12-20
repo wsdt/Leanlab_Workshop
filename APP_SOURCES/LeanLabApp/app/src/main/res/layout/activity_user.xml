@@ -44,7 +44,7 @@
         android:layout_below="@+id/edittext"
         android:layout_centerHorizontal="true"
         android:layout_marginTop="20dp"
-        android:text="Los Gehts"
+        android:text="Los Geht's"
         android:textColor="@color/colorBlack" />
 
 </RelativeLayout>
