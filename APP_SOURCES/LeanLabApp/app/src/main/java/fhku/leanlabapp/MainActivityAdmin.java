@@ -48,7 +48,6 @@ public class MainActivityAdmin extends AppCompatActivity implements View.OnClick
     private static final String IMAGE_DIRECTORY_NAME = "LEAN Lab Bibliothek";
 
 
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -68,10 +67,11 @@ public class MainActivityAdmin extends AppCompatActivity implements View.OnClick
             }
         });
 
+
         takeIntent();
 
-        TextView stationview = (TextView)findViewById(R.id.station);
-        TextView productview = (TextView)findViewById(R.id.product);
+        TextView stationview = (TextView) findViewById(R.id.station);
+        TextView productview = (TextView) findViewById(R.id.product);
 
         stationview.setText(station);
         productview.setText(product);
@@ -242,7 +242,7 @@ public class MainActivityAdmin extends AppCompatActivity implements View.OnClick
 
     private void saveHtml(String text, int contentId) {
         try {
-            DbConnection.sendRequestForResult_ASYNC(new String[]{"sql_statement=UPDATE Content set Contenttext='" + _HelperMethods.escapeHTML(text) + "' WHERE ContentID=" + contentId + ";"}, "post", false,this);
+            DbConnection.sendRequestForResult_ASYNC(new String[]{"sql_statement=UPDATE Content set Contenttext='" + _HelperMethods.escapeHTML(text) + "' WHERE ContentID=" + contentId + ";"}, "post", false, this);
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -250,9 +250,9 @@ public class MainActivityAdmin extends AppCompatActivity implements View.OnClick
     }
 
     private void getHtml(int contentId) {
-        Content tmp= new Content(1);
+        Content tmp = new Content(1);
         try {
-            Content.Loaded_Contents = tmp.MapJsonRowsToObject((DbConnection.sendRequestForResult_ASYNC(new String[]{"sql_statement=SELECT Content WHERE ContentID=" + contentId + ";"}, "get", false,this)));
+            Content.Loaded_Contents = tmp.MapJsonRowsToObject((DbConnection.sendRequestForResult_ASYNC(new String[]{"sql_statement=SELECT Content WHERE ContentID=" + contentId + ";"}, "get", false, this)));
 
         } catch (Exception e) {
             e.printStackTrace();
@@ -270,7 +270,7 @@ public class MainActivityAdmin extends AppCompatActivity implements View.OnClick
 
     }
 
-    private void takeIntent(){
+    private void takeIntent() {
         Intent intent = getIntent();
 
         station = intent.getStringExtra("stationname");
@@ -279,6 +279,12 @@ public class MainActivityAdmin extends AppCompatActivity implements View.OnClick
         productid = intent.getStringExtra("productid");
 
         Log.i("take_intent ", product + productid + station + stationid);
+    }
+
+    public void sendMessage(View view)
+    {
+        Intent intent = new Intent(MainActivityAdmin.this, StartActivityAdmin.class);
+        startActivity(intent);
     }
 
 }
