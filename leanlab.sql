@@ -60,7 +60,7 @@ CREATE TABLE User (
     	); 
 	
 INSERT INTO User VALUES
-	('default','$2a$04$F0AYTWK54/jMvIY3a2Krm.gqQZwkBaoSyn7wuIjug13FwHoC5ARA.');
+	('default','$2a$04$F0AYTWK54/jMvIY3a2Krm.gqQZwkBaoSyn7wuIjug13FwHoC5ARA.', 0);
     
 INSERT INTO Typ(Typname) VALUES
 	('Bild'),
