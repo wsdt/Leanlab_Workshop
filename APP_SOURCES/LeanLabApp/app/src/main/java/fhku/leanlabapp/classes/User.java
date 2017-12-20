@@ -1,13 +1,18 @@
 package fhku.leanlabapp.classes;
 
+import android.content.Context;
 import android.util.Log;
 
 import org.json.JSONException;
 import org.json.JSONObject;
 import java.util.ArrayList;
+
+import fhku.leanlabapp.R;
 import fhku.leanlabapp.classes.exceptions.JsonToObjectMapper_Exception;
+import fhku.leanlabapp.interfaces.Dialog;
 import fhku.leanlabapp.interfaces.JsonStrConverter;
 import fhku.leanlabapp.interfaces.Mapper;
+import fhku.leanlabapp.interfaces.database.DbConnection;
 
 public class User extends Mapper{
     private static final String LOG_TAG = "USER";
@@ -24,6 +29,18 @@ public class User extends Mapper{
 
     public User(String Username) { //no empty constructor, because id is primary key
         this.setUsername(Username);
+    }
+
+    public static String registerUser(Context context, String username) {
+        String result = "";
+        try {
+            result = DbConnection.sendRequestForResult_ASYNC(
+                    new String[]{"INSERT INTO User (Username) VALUES ('"+DbConnection.escapeSql(username)+"');"}, "get", false, context);
+        } catch (Exception e) {
+            Log.e("User","Could not register new User!");
+            e.printStackTrace();
+        }
+        return result;
     }
 
     //Getter/Setter ------------------------------
