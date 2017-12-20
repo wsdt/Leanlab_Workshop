@@ -87,8 +87,8 @@ public class StartActivityAdmin extends AppCompatActivity implements View.OnClic
         setContentView(R.layout.activity_start_admin);
 
         Button buttonAdmin = (Button) findViewById(R.id.admin);
-        ImageButton buttonEdit = (ImageButton) findViewById(R.id.edit);
-        ImageButton buttonAdd = (ImageButton) findViewById(R.id.add);
+        Button buttonEdit = (Button) findViewById(R.id.edit);
+        Button buttonAdd = (Button) findViewById(R.id.add);
 
         Log.i("test", "test");
 
