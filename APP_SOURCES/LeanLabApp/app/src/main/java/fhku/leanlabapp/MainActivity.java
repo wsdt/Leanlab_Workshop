@@ -6,8 +6,12 @@ import android.support.v7.app.AppCompatActivity;
 import android.widget.TextView;
 import android.widget.VideoView;
 
+import java.lang.reflect.Array;
+
 import fhku.leanlabapp.classes.JoinQuery;
 import fhku.leanlabapp.interfaces.database.DbConnection;
+
+import static fhku.leanlabapp.classes.JoinQuery.Loaded_JoinQuerys;
 
 
 public class MainActivity extends AppCompatActivity {
@@ -35,7 +39,7 @@ public class MainActivity extends AppCompatActivity {
         viewproduct.setText(product);
         viewstation.setText(station);
 
-        loadWorksteps(product, station);
+        loadWorksteps();
 
         //For the video
         VideoView videoView = (VideoView) findViewById(R.id.btnVideo);
@@ -71,7 +75,7 @@ public class MainActivity extends AppCompatActivity {
     }
 
 
-    public void loadWorksteps(String product, String station){
+    public void loadWorksteps(){
 
         try {
             String sqlstatement = "sql_statement=SELECT * FROM Content WHERE `WorkstepID` <ANY (Select `WorkstepID` From Workstep Join Productionstep ON Workstep.ProductionstepID Where Productionstep.ProductionstepID = Workstep.ProductionstepID AND StationID = 'stationid' AND ProductID = 'productid' );";
@@ -79,7 +83,7 @@ public class MainActivity extends AppCompatActivity {
             //String sqlstatement1 = "sql_statement=Select * From Productionstep;";
             //String sqlstatement2 = "sql_statement=Select * From Content;";
 
-            JoinQuery.Loaded_JoinQuerys = (new JoinQuery()).MapJsonRowsToObject(DbConnection.sendRequestForResult_ASYNC(
+            Loaded_JoinQuerys = (new JoinQuery()).MapJsonRowsToObject(DbConnection.sendRequestForResult_ASYNC(
                     new String[] {sqlstatement}, "get", false,this
             ));
             /*
