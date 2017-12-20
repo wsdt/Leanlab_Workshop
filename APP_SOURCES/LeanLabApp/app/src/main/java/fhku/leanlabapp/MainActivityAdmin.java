@@ -265,10 +265,6 @@ public class MainActivityAdmin extends AppCompatActivity implements View.OnClick
 
     }
 
-    @Override
-    public void onClick(View v) {
-
-    }
 
     private void takeIntent() {
         Intent intent = getIntent();
@@ -281,10 +277,14 @@ public class MainActivityAdmin extends AppCompatActivity implements View.OnClick
         Log.i("take_intent ", product + productid + station + stationid);
     }
 
-    public void sendMessage(View view)
-    {
+    public void sendMessage(View view) {
         Intent intent = new Intent(MainActivityAdmin.this, StartActivityAdmin.class);
         startActivity(intent);
+    }
+
+    @Override
+    public void onClick(View v) {
+
     }
 
 }

@@ -1,5 +1,5 @@
-﻿
-﻿DROP DATABASE Leanlabworking;
+
+DROP DATABASE Leanlabworking;
 
 CREATE DATABASE Leanlabworking;
 
@@ -101,7 +101,4 @@ INSERT INTO Content(Contenttext, WorkstepID, TypID) VALUES
     	('Schrauben Sie irgendeine Schraube fest', 2, 3),
     	('/etc/local/usr/beispieluser/bilder/bild3.jpg', 3, 1),
     	('/etc/local/usr/beispieluser/videos/video3.mpg', 3, 2),
-    	('Bringen Sie das Ziffernblatt an der Schraube an', 3, 3); 
-    
-    
-    
+    	('Bringen Sie das Ziffernblatt an der Schraube an', 3, 3);

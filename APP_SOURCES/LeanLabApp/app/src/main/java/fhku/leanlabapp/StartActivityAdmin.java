@@ -68,8 +68,6 @@ public class StartActivityAdmin extends AppCompatActivity implements View.OnClic
                 }
             }
         }
-            
-
 
 
         @Override
@@ -78,8 +76,6 @@ public class StartActivityAdmin extends AppCompatActivity implements View.OnClic
 
         }
     }
-
-
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -142,7 +138,7 @@ public class StartActivityAdmin extends AppCompatActivity implements View.OnClic
 
                     }
                 })
-                .setNegativeButton("Cancel",
+                .setNegativeButton("Abbrechen",
                         new DialogInterface.OnClickListener() {
                             public void onClick(DialogInterface dialog, int id) {
                                 dialog.cancel();

@@ -100,7 +100,7 @@
                 android:layout_marginLeft="50dp"
                 android:layout_marginRight="50dp"
                 android:src="@drawable/fhkufsteingrau"
-                android:text="Foto hinzufügen" />
+                android:text="Neues Foto hinzufügen" />
 
             <Button
                 android:id="@+id/btnVideo"
@@ -111,7 +111,7 @@
                 android:layout_marginLeft="50dp"
                 android:layout_marginRight="50dp"
                 android:src="@drawable/fhkufsteingrau"
-                android:text="Video hinzufügen" />
+                android:text="Neues Video hinzufügen" />
 
 
             <ImageView
@@ -142,7 +142,7 @@
                 android:onClick="sendMessage"
                 android:layout_marginLeft="50dp"
                 android:layout_marginRight="50dp"
-                android:text="Arbeitsanweisungen Fertig stellen"
+                android:text="Arbeitsanweisungen Fertigstellen"
                 />
 
         </RelativeLayout>

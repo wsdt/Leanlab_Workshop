@@ -85,7 +85,7 @@ public class StartActivity extends AppCompatActivity implements AdapterView.OnIt
 
         ImageButton qrButton = (ImageButton) findViewById(R.id.qrButton);
 
-        Button button = (Button)findViewById(R.id.go);
+        Button buttonGo = (Button)findViewById(R.id.go);
 
         Button buttonAdmin = (Button) findViewById(R.id.admin1);
 
@@ -100,8 +100,7 @@ public class StartActivity extends AppCompatActivity implements AdapterView.OnIt
         });
 
 
-
-        button.setOnClickListener(new View.OnClickListener() {
+        buttonGo.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 Intent intent = new Intent(getApplicationContext(), MainActivity.class);
@@ -113,7 +112,6 @@ public class StartActivity extends AppCompatActivity implements AdapterView.OnIt
                 Log.i("intent to main", "Station: " + station + " Produkt: " + product);
 
                 startActivity(intent);
-
 
             }
 
