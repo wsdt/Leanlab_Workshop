@@ -36,17 +36,20 @@
                 android:id="@+id/station"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_alignBaseline="@+id/trennstrich"
+                android:layout_alignBottom="@+id/trennstrich"
                 android:layout_alignEnd="@+id/trennstrich"
-                android:layout_marginTop="60dp"
+                android:layout_marginRight="10dp"
                 android:text="  Array A  " />
 
             <TextView
                 android:id="@+id/product"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_alignBaseline="@+id/trennstrich"
+                android:layout_alignBottom="@+id/trennstrich"
                 android:layout_alignStart="@+id/trennstrich"
-                android:layout_centerHorizontal="true"
-                android:layout_marginTop="60dp"
+                android:layout_marginLeft="10dp"
                 android:text="  Array B" />
 
             <TextView
@@ -60,16 +63,21 @@
             <Button
                 android:id="@+id/heading"
                 android:layout_width="60dp"
-                android:layout_height="30dp"
+                android:layout_height="40dp"
                 android:layout_below="@id/schritt"
                 android:layout_marginLeft="50dp"
-                android:text="Heading"
-                android:textSize="7dp" />
+                android:layout_marginBottom="10dp"
+                android:text="Titel"
+                android:textSize="13dp" />
 
             <RelativeLayout
                 android:id="@+id/edittextlayout"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_centerHorizontal="true"
+                android:layout_marginLeft="50dp"
+                android:layout_marginRight="50dp"
+                android:background="@drawable/frame"
                 android:layout_below="@+id/heading">
 
                 <jp.wasabeef.richeditor.RichEditor
@@ -77,8 +85,6 @@
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:layout_centerHorizontal="true"
-                    android:layout_marginLeft="50dp"
-                    android:layout_marginRight="50dp"
                     android:minHeight="300dp"
                     android:saveEnabled="false" />
 
@@ -86,47 +92,49 @@
 
 
             <Button
-                android:id="@+id/picture"
+                android:id="@+id/btnCamera"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_alignParentStart="true"
                 android:layout_below="@+id/edittextlayout"
                 android:layout_marginLeft="50dp"
                 android:layout_marginRight="50dp"
-                android:onClick="takePicture"
                 android:src="@drawable/fhkufsteingrau"
                 android:text="Foto hinzufügen" />
 
             <Button
-                android:id="@+id/video"
+                android:id="@+id/btnVideo"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_alignParentStart="true"
-                android:layout_below="@+id/picture"
+                android:layout_below="@+id/btnCamera"
                 android:layout_marginLeft="50dp"
                 android:layout_marginRight="50dp"
-                android:onClick="takeVideo"
                 android:src="@drawable/fhkufsteingrau"
                 android:text="Video hinzufügen" />
 
 
             <ImageView
-                android:id="@+id/imgview"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_below="@+id/picture"
+                android:id="@+id/imageView"
+                android:layout_below="@+id/btnVideo"
                 android:layout_centerHorizontal="true"
                 android:layout_marginLeft="50dp"
-                android:layout_marginRight="50dp" />
+                android:layout_marginRight="50dp"
+                android:layout_width="fill_parent"
+                android:layout_height="fill_parent"
+                android:adjustViewBounds="true"
+                android:scaleType="fitCenter"/>
 
             <VideoView
-                android:id="@+id/vidview"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_below="@+id/imgview"
+                android:id="@+id/videoView"
+                android:layout_below="@+id/imageView"
                 android:layout_centerHorizontal="true"
                 android:layout_marginLeft="50dp"
-                android:layout_marginRight="50dp" />
+                android:layout_marginRight="50dp"
+                android:layout_width="fill_parent"
+                android:layout_height="fill_parent"
+                android:adjustViewBounds="true"
+                android:scaleType="fitCenter"/>
 
             <Button
                 android:layout_width="wrap_content"
@@ -139,7 +147,6 @@
                 />
 
         </RelativeLayout>
-
 
     </ScrollView>
 

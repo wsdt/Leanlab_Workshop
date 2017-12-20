@@ -2,22 +2,11 @@ package fhku.leanlabapp;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.provider.MediaStore;
 import android.support.v7.app.AppCompatActivity;
-import android.util.Log;
-import android.view.View;
 import android.widget.TextView;
-import android.widget.Toast;
 import android.widget.VideoView;
 
-import java.sql.ResultSet;
-import java.util.ArrayList;
-
-import fhku.leanlabapp.classes.Content;
 import fhku.leanlabapp.classes.JoinQuery;
-import fhku.leanlabapp.classes.Product;
-import fhku.leanlabapp.classes.Productionstep;
-import fhku.leanlabapp.classes.Workstep;
 import fhku.leanlabapp.interfaces.database.DbConnection;
 
 
@@ -49,7 +38,7 @@ public class MainActivity extends AppCompatActivity {
         loadWorksteps(product, station);
 
         //For the video
-        VideoView videoView = (VideoView) findViewById(R.id.video);
+        VideoView videoView = (VideoView) findViewById(R.id.btnVideo);
 
 
 
