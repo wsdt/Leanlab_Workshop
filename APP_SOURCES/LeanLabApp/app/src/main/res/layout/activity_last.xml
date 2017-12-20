@@ -54,6 +54,4 @@
         android:layout_below="@+id/level"
         />
 
-
-
 </RelativeLayout>

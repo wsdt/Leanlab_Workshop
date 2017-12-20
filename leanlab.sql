@@ -83,7 +83,7 @@ INSERT INTO Product(Productname) VALUES
 INSERT INTO Productionstep(ProductID, StationID) VALUES
 	('1', '1'),
     	('1', '2'),
-    	('1', '3'),
+    	('1', '3');
     
 INSERT INTO Workstep(ProductionstepID) VALUES
 	('1'),
