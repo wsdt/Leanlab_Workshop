@@ -9,5 +9,10 @@ public class LastActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_last);
+
+
+        //WICHITG, HIER MUSS NOCH GEWÄHRLEISTET WERDEN, DASS MAN NICHT AUF DIE ACTIVITY MainActivity ZURUECKSPRINGEN KANN, HABS JETZT MIT FINISH IN DER MAIN GELÖST
+        //KANN ABER NICHT KONTROLLIEREN, OB DAS SO FUNKTIONIERT
+
     }
 }
