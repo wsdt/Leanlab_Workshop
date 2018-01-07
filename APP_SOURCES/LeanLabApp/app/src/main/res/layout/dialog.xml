@@ -5,7 +5,8 @@
     android:layout_height="wrap_content"
     android:orientation="vertical"
     android:background="@color/colorWhite"
-    android:padding="10dp">
+    android:padding="10dp"
+    android:id="@+id/xmlview">
 
     <TextView
         android:layout_width="wrap_content"

@@ -11,17 +11,13 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 import android.widget.VideoView;
-
 import org.w3c.dom.Text;
-
 import java.lang.reflect.Array;
 import java.util.ArrayList;
-
 import fhku.leanlabapp.classes.JoinQuery;
 import fhku.leanlabapp.classes.Product;
 import fhku.leanlabapp.classes.User;
 import fhku.leanlabapp.interfaces.database.DbConnection;
-
 import static fhku.leanlabapp.classes.JoinQuery.Loaded_JoinQuerys;
 
 

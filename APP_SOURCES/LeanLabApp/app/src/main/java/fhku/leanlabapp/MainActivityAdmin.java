@@ -1,5 +1,8 @@
 package fhku.leanlabapp;
 
+import android.annotation.SuppressLint;
+import android.app.Activity;
+import android.content.Context;
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.graphics.Bitmap;
@@ -10,9 +13,12 @@ import android.provider.MediaStore;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.MotionEvent;
 import android.view.View;
+import android.view.inputmethod.InputMethodManager;
 import android.widget.Button;
 import android.widget.ImageView;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 import android.widget.VideoView;
@@ -48,6 +54,7 @@ public class MainActivityAdmin extends AppCompatActivity implements View.OnClick
     private static final String IMAGE_DIRECTORY_NAME = "LEAN Lab Bibliothek";
 
 
+    @SuppressLint("ClickableViewAccessibility")
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -64,6 +71,17 @@ public class MainActivityAdmin extends AppCompatActivity implements View.OnClick
                 //saveHtml(editorHtml.getEditor().getHtml(), 1);
                 //getHtml(1);
                 //saveToForm(Content.Loaded_Contents.get(1).getContenttext());
+            }
+        });
+
+
+        RelativeLayout layout = (RelativeLayout) findViewById(R.id.mainlayout);
+
+        layout.setOnTouchListener(new View.OnTouchListener() {
+            @Override
+            public boolean onTouch(View view, MotionEvent event) {
+                hideKeyboard(view);
+                return false;
             }
         });
 
@@ -97,12 +115,20 @@ public class MainActivityAdmin extends AppCompatActivity implements View.OnClick
             }
         });
 
+
         if (!isDeviceSupportCamera()) {
             Toast.makeText(getApplicationContext(),
                     "Ihr Gerät unterstützt keine Kamera-Funktionen!",
                     Toast.LENGTH_LONG).show();
             finish();
         }
+    }
+
+    //hides Keyboard if you click outside the HTMLEditor
+
+    private void hideKeyboard(View view) {
+        InputMethodManager in = (InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE);
+        in.hideSoftInputFromWindow(view.getWindowToken(), InputMethodManager.HIDE_NOT_ALWAYS);
     }
 
     private boolean isDeviceSupportCamera() {
@@ -240,6 +266,8 @@ public class MainActivityAdmin extends AppCompatActivity implements View.OnClick
     }
 
 
+
+
     private void saveHtml(String text, int contentId) {
         try {
             DbConnection.sendRequestForResult_ASYNC(new String[]{"sql_statement=UPDATE Content set Contenttext='" + _HelperMethods.escapeHTML(text) + "' WHERE ContentID=" + contentId + ";"}, "post", false, this);
@@ -264,7 +292,6 @@ public class MainActivityAdmin extends AppCompatActivity implements View.OnClick
         editorHtml.getEditor().setHtml(form);
 
     }
-
 
     private void takeIntent() {
         Intent intent = getIntent();

@@ -5,6 +5,7 @@ import android.content.DialogInterface;
 import android.content.Intent;;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.widget.AlertDialogLayout;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -22,6 +23,7 @@ import java.util.regex.Pattern;
 
 import fhku.leanlabapp.classes.Product;
 import fhku.leanlabapp.classes.Station;
+import fhku.leanlabapp.interfaces.Dialog;
 import fhku.leanlabapp.interfaces.database.DbConnection;
 
 
@@ -30,10 +32,30 @@ public class StartActivityAdmin extends AppCompatActivity implements View.OnClic
     public Spinner spinnerProducts;
     public Spinner spinnerStations;
     private ArrayAdapter aa, bb;
+    private String productName;
+    private String stationName;
     String station = "";
     String product = "";
     String productid = "";
     String stationid = "";
+    EditText productname;
+    EditText stationname;
+
+    public String getProductName() {
+        return productName;
+    }
+
+    public void setProductName(String productName) {
+        this.productName = productName;
+    }
+
+    public String getStationName() {
+        return stationName;
+    }
+
+    public void setStationName(String stationName) {
+        this.stationName = stationName;
+    }
 
     public class OnItemSelectedListener implements AdapterView.OnItemSelectedListener{
 
@@ -82,9 +104,18 @@ public class StartActivityAdmin extends AppCompatActivity implements View.OnClic
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_start_admin);
 
+
+
+
+
+
+
+
         Button buttonAdmin = (Button) findViewById(R.id.admin);
         Button buttonEdit = (Button) findViewById(R.id.edit);
         Button buttonAdd = (Button) findViewById(R.id.add);
+
+
 
         Log.i("test", "test");
 
@@ -116,25 +147,52 @@ public class StartActivityAdmin extends AppCompatActivity implements View.OnClic
             @Override
             public void onClick(View v) {
                 showInputDialog();
+
             }
         });
     }
 
-    protected void showInputDialog() {
+    public void showInputDialog() {
 
         // get prompts.xml view
         LayoutInflater layoutInflater = LayoutInflater.from(StartActivityAdmin.this);
         View promptView = layoutInflater.inflate(R.layout.dialog, null);
+
+
         AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(StartActivityAdmin.this);
         alertDialogBuilder.setView(promptView);
 
-        final EditText editText = (EditText) promptView.findViewById(R.id.edittext);
-        // setup a dialog window
+        productname = (EditText) promptView.findViewById(R.id.enterProduct);
+        stationname = (EditText) promptView.findViewById(R.id.enterStation);
+
+
+
+
+
+
         alertDialogBuilder.setCancelable(false)
                 .setPositiveButton("OK", new DialogInterface.OnClickListener() {
                     public void onClick(DialogInterface dialog, int id) {
+
+
+                        //saveProduct(1,productname.getText().toString());
+                        //saveStation(1,stationname.getText().toString());
+
+
+                        String nameProduct = productname.getText().toString();
+                        String nameStation = stationname.getText().toString();
+                        Log.i("DDDDDDDProduktName", nameProduct+ "  " + nameStation);
+
+
+
+
+
+
+
+
                         // Code für Überprüfung der Station und Produkt auf bereits bestehende Produkte/Stationen
                         // Speicherung von Produkt und Station in den Spinner
+
 
                     }
                 })
@@ -145,9 +203,10 @@ public class StartActivityAdmin extends AppCompatActivity implements View.OnClic
                             }
                         });
 
-        // create an alert dialog
-        AlertDialog alert = alertDialogBuilder.create();
-        alert.show();
+
+        alertDialogBuilder.show();
+
+
     }
 
     @Override
@@ -172,6 +231,22 @@ public class StartActivityAdmin extends AppCompatActivity implements View.OnClic
         spinnerProducts.setAdapter(aa);
         spinnerStations.setAdapter(bb);
 
+    }
+
+    private void saveProduct(int productId, String productName) {
+        try {
+            DbConnection.sendRequestForResult_ASYNC(new String[]{"sql_statement=UPDATE Product set Productname='" + productName + "' WHERE ProductID=" + productId + ";"}, "post", false, this);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
+    private void saveStation(int stationId, String stationName) {
+        try {
+            DbConnection.sendRequestForResult_ASYNC(new String[]{"sql_statement=UPDATE Product set Stationname='" + stationName + "' WHERE StationID=" + stationId+ ";"}, "post", false, this);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     }
 
     public ArrayList loadProducts(){
