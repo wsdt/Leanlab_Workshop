@@ -9,6 +9,7 @@ import android.os.Looper;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.util.Log;
+import android.widget.ImageView;
 import android.widget.MediaController;
 import android.widget.VideoView;
 
@@ -327,6 +328,20 @@ public class DbConnection  {
             Uri videolink = Uri.parse("http://192.168.12.115/LeanLabWorking/" + "vid/" + link );
             video.setVideoURI(videolink);
             video.start();
+        }catch (Exception e){
+            e.printStackTrace();
+        }
+
+
+
+
+    }
+
+    public static void loadPicture(ImageView image, String link){
+        try {
+            Uri imagelink = Uri.parse("http://192.168.12.115/LeanLabWorking/" + "img/" + link );
+            image.setImageURI(imagelink);
+
         }catch (Exception e){
             e.printStackTrace();
         }

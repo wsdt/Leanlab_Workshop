@@ -29,7 +29,8 @@ public class MainActivity extends AppCompatActivity {
     final int maxstep = liste.size();
     long begintime = getTime();
 
-    VideoView video = (VideoView) findViewById(R.id.videoView);
+    VideoView video;
+    ImageView picture;
 
     final int timePerWorkstep = 60;
     Context context;
@@ -46,6 +47,8 @@ public class MainActivity extends AppCompatActivity {
 
         setContentView(R.layout.activity_main);
         this.context = this;
+        this.video = (VideoView) findViewById(R.id.btnVideo);
+        this.picture = (ImageView) findViewById(R.id.btnCamera);
 
         TextView view1 = (TextView)findViewById(R.id.edittext);
 
@@ -139,7 +142,7 @@ public class MainActivity extends AppCompatActivity {
 
 
 
-        /*Intent intent = getIntent(); HIER wieder entfernen
+        Intent intent = getIntent();
 
 
         String station = intent.getStringExtra("station");
@@ -153,8 +156,9 @@ public class MainActivity extends AppCompatActivity {
         viewproduct.setText(product);
         viewstation.setText(station);
 
-        loadWorksteps();
-        */
+        DbConnection.loadVideo(this.video, productid+"_"+stationid+".mp4");
+        DbConnection.loadPicture(this.picture, productid+"_"+stationid+".JPG");
+
 
 
 /*
@@ -167,7 +171,7 @@ public class MainActivity extends AppCompatActivity {
         ImageView image = (ImageView) findViewById(R.id.btnCamera);
         image.setImageResource(R.drawable.fh_kufstein_logo);
 
-        
+
         //For the video
         VideoView videoView = (VideoView) findViewById(R.id.btnVideo);
 
