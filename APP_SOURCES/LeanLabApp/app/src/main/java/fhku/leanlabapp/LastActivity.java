@@ -10,6 +10,10 @@ public class LastActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_last);
 
+        //die Textviews usw. hohlen
+
+
+
 
         //WICHITG, HIER MUSS NOCH GEWÄHRLEISTET WERDEN, DASS MAN NICHT AUF DIE ACTIVITY MainActivity ZURUECKSPRINGEN KANN, HABS JETZT MIT FINISH IN DER MAIN GELÖST
         //KANN ABER NICHT KONTROLLIEREN, OB DAS SO FUNKTIONIERT

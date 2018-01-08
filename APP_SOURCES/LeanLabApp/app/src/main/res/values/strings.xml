@@ -1,6 +1,7 @@
 <resources>
     <string name="app_name">LeanLabApp</string>
     <string name="leanlabworking">LEAN Lab\nWorking</string>
+    <string name="geschaft">Super!\n\nDu hast alles geschafft!</string>
 
 
 </resources>
