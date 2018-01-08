@@ -65,7 +65,7 @@ public class UserActivity extends AppCompatActivity {
     }
 
     private void goToStart(){
-        Intent intent = new Intent(getApplicationContext(), StartActivity.class);
+        Intent intent = new Intent(this, StartActivity.class);
         startActivity(intent);
     }
 
