@@ -92,7 +92,7 @@
                 android:layout_below="@+id/btnVideo"
                 android:layout_marginRight="20dp"
                 android:layout_marginTop="20dp"
-                android:text="  Schritt 2   " />
+                android:text="Schritt 2" />
 
             <TextView
                 android:id="@+id/maxstep"
@@ -103,7 +103,7 @@
                 android:layout_centerHorizontal="true"
                 android:layout_marginLeft="20dp"
                 android:layout_marginTop="20dp"
-                android:text="  Schritt 10  " />
+                android:text="Schritt 10" />
 
             <!--
             <TextView

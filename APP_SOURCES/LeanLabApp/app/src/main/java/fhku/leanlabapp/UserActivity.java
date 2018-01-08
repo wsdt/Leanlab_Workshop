@@ -1,11 +1,14 @@
 package fhku.leanlabapp;
 
 import android.content.Context;
+import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
+import android.widget.EditText;
+
 import fhku.leanlabapp.classes.User;
 import fhku.leanlabapp.interfaces.Dialog;
 import fhku.leanlabapp.interfaces.database.DbConnection;
@@ -20,7 +23,7 @@ import fhku.leanlabapp.interfaces.database.DbConnection;
 public class UserActivity extends AppCompatActivity {
     private static final String TAG = "USERACT";
     private Context thisActivity;
-    private User currentUser;
+    public User currentUser;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -29,22 +32,25 @@ public class UserActivity extends AppCompatActivity {
         thisActivity = this;
 
         final Button goButton = (Button) findViewById(R.id.go);
+        final EditText user = (EditText)findViewById(R.id.edittext);
 
         goButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                String username = (String) goButton.getText();
+                String username = (String)user.getText().toString();
                 if (isUsernameValid(username)) {
                     Log.d(TAG,"Username is valid!");
                     if (doesUserExist(username)) {
                         //Login
                         currentUser = getUser(username);
+                        goToStart();
                     } else {
                         //Register new user
                         String result = User.registerUser(thisActivity,username);
                         //Login into new Useraccount
                         if (doesUserExist(username)) {
                             currentUser = getUser(username);
+                            goToStart();
                         }
                         Log.d(TAG,"Tried to register user and got result: "+result);
                     }
@@ -55,6 +61,12 @@ public class UserActivity extends AppCompatActivity {
             }
         });
 
+
+    }
+
+    private void goToStart(){
+        Intent intent = new Intent(this, StartActivity.class);
+        startActivity(intent);
     }
 
     private User getUser(String username) {
@@ -96,7 +108,7 @@ public class UserActivity extends AppCompatActivity {
         if (User.Loaded_Users.size() <= 0 || User.Loaded_Users == null) {
             try {
                 User.Loaded_Users = (new User("")).MapJsonRowsToObject(DbConnection.sendRequestForResult_ASYNC(
-                        new String[]{"SELECT * FROM User;"}, "get", false, this));
+                        new String[]{"sql_statement=SELECT * FROM User;"}, "get", false, this));
             } catch (Exception e) {
                 Log.e(TAG,"Could not load current Users!");
                 e.printStackTrace();

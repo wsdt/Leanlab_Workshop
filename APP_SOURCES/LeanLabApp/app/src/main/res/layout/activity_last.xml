@@ -7,37 +7,38 @@
 
     <TextView
         android:id="@+id/erfolg"
-        android:layout_marginTop="50dp"
+        android:layout_marginBottom="60dp"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_above="@id/level"
         android:layout_centerHorizontal="true"
         android:textSize="25sp"
-        android:text="Super du hast alles gechafft"
+        android:text="@string/geschaft"
+        android:gravity="center_horizontal|center_vertical"
         />
 
     <TextView
         android:id="@+id/level"
-        android:layout_below="@+id/erfolg"
-        android:layout_marginTop="50dp"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_centerHorizontal="true"
-        android:textSize="50sp"
+        android:layout_centerVertical="true"
         android:text="Level 1"
-        />
+        android:textSize="50sp" />
 
     <TextView
-        android:id="@+id/punkte"
-        android:layout_marginTop="20dp"
+        android:id="@+id/currentPoints"
+        android:layout_marginTop="50dp"
+        android:layout_marginRight="20dp"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_below="@+id/level"
         android:layout_toLeftOf="@+id/mitte"
-        android:text="Punkte 30       "/>
+        android:text="Punkte 30"/>
 
     <TextView
         android:id="@+id/mitte"
-        android:layout_marginTop="20dp"
+        android:layout_marginTop="50dp"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_below="@+id/level"
@@ -45,13 +46,22 @@
         android:text="|"/>
 
     <TextView
-        android:id="@+id/punkte1"
+        android:id="@+id/maxPoints"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="20dp"
-        android:text="        Punkte 80 "
-        android:layout_toRightOf="@+id/mitte"
         android:layout_below="@+id/level"
-        />
+        android:layout_marginLeft="20dp"
+        android:layout_marginTop="50dp"
+        android:layout_toRightOf="@+id/mitte"
+        android:text="Punkte 80" />
+
+    <Button
+        android:id="@+id/btnBackToStart"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/currentPoints"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="50dp"
+        android:text="Zurück zum Hauptmenü" />
 
 </RelativeLayout>

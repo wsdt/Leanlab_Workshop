@@ -18,13 +18,15 @@ public class User extends Mapper{
     private static final String LOG_TAG = "USER";
     private String Username;
     private String Password;
+    private int Points;
     //IMPORTANT: Be sure to empty the arraylist if you use it, unless you except sth to be in there
     public static ArrayList<User> Loaded_Users = new ArrayList<>(); //do not add Products to list automatically (only if you need it)
 
     //Constructor
-    public User(String Username, String Password) {
+    public User(String Username, String Password, int Points) {
         this.setUsername(Username);
         this.setPassword(Password);
+        this.setPoints(Points);
     }
 
     public User(String Username) { //no empty constructor, because id is primary key
@@ -35,7 +37,7 @@ public class User extends Mapper{
         String result = "";
         try {
             result = DbConnection.sendRequestForResult_ASYNC(
-                    new String[]{"INSERT INTO User (Username) VALUES ('"+DbConnection.escapeSql(username)+"');"}, "get", false, context);
+                    new String[]{"sql_statement=INSERT INTO User (Username, Points) VALUES ('"+DbConnection.escapeSql(username)+"', 0);"}, "get", false, context);
         } catch (Exception e) {
             Log.e("User","Could not register new User!");
             e.printStackTrace();
@@ -65,12 +67,21 @@ public class User extends Mapper{
     public User MapJsonToObject(JSONObject json) throws JsonToObjectMapper_Exception {
         User obj;
         try {
-            obj = new User(json.getString("Username"), json.getString("Password"));
+            obj = new User(json.getString("Username"), json.getString("Password"), json.getInt("Points"));
         } catch(JSONException e) {
             Log.e("MapJsonToObject","JSON could not be mapped to Object!");
             e.printStackTrace();
             throw new JsonToObjectMapper_Exception("JSON could not be mapped to Object!");
         }
         return obj;
+    }
+
+
+    public int getPoints() {
+        return Points;
+    }
+
+    public void setPoints(int points) {
+        Points = points;
     }
 }

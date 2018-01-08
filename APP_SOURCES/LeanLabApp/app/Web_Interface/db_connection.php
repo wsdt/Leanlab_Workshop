@@ -143,12 +143,13 @@ class db_connection {
         $sth = $con->query($this->getQuery());
 
         $result = array();$i=0;
+        if (is_object($sth)){
         if ($sth->num_rows > 0) {
             while ($row = $sth->fetch_assoc()) {
                 $result[$i++] = $row;
             }
         }
-
+        }
         $res = json_encode($result, JSON_FORCE_OBJECT); //so immer {} umschließend statt []
         //echo $res; //das wird in JAVA zurückgegeben
 		sendHeader("200", "200 - OK","Request successful!",$res); //einheitliches JSON ausgeben

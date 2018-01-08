@@ -27,7 +27,11 @@ public class MainActivity extends AppCompatActivity {
     ArrayList<JoinQuery> liste = exampleArraylist();
     final int maxstep = liste.size();
     long begintime = getTime();
+
     VideoView video = (VideoView) findViewById(R.id.videoView);
+
+    final int timePerWorkstep = 60;
+
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -226,6 +230,18 @@ public class MainActivity extends AppCompatActivity {
 
     }
 
+    private String getVideoScr(){
+        return " ";
+    }
+
+    private String getImageScr(){
+        return " ";
+    }
+
+    private String getHtmlText(){
+        return " ";
+    }
+
     private int checkLengthList (ArrayList<JoinQuery> list){
         return list.size();
     }
@@ -300,7 +316,7 @@ public class MainActivity extends AppCompatActivity {
 
     public long calcPoints(long seconds){
 
-        long maxtime = maxstep * 20;
+        long maxtime = maxstep * timePerWorkstep;
 
         long points;
 
