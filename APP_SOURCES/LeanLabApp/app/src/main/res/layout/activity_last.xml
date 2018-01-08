@@ -27,7 +27,7 @@
         android:textSize="50sp" />
 
     <TextView
-        android:id="@+id/punkte"
+        android:id="@+id/currentPoints"
         android:layout_marginTop="50dp"
         android:layout_marginRight="20dp"
         android:layout_width="wrap_content"
@@ -46,21 +46,20 @@
         android:text="|"/>
 
     <TextView
-        android:id="@+id/punkte1"
+        android:id="@+id/maxPoints"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="50dp"
-        android:layout_marginLeft="20dp"
-        android:text="Punkte 80"
-        android:layout_toRightOf="@+id/mitte"
         android:layout_below="@+id/level"
-        />
+        android:layout_marginLeft="20dp"
+        android:layout_marginTop="50dp"
+        android:layout_toRightOf="@+id/mitte"
+        android:text="Punkte 80" />
 
     <Button
         android:id="@+id/btnBackToStart"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/punkte"
+        android:layout_below="@+id/currentPoints"
         android:layout_centerHorizontal="true"
         android:layout_marginTop="50dp"
         android:text="Zurück zum Hauptmenü" />

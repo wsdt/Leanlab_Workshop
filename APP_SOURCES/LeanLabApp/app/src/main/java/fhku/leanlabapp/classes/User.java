@@ -35,7 +35,7 @@ public class User extends Mapper{
         String result = "";
         try {
             result = DbConnection.sendRequestForResult_ASYNC(
-                    new String[]{"INSERT INTO User (Username) VALUES ('"+DbConnection.escapeSql(username)+"');"}, "get", false, context);
+                    new String[]{"sql_statement=INSERT INTO User (Username) VALUES ('"+DbConnection.escapeSql(username)+"');"}, "get", false, context);
         } catch (Exception e) {
             Log.e("User","Could not register new User!");
             e.printStackTrace();
@@ -73,4 +73,6 @@ public class User extends Mapper{
         }
         return obj;
     }
+
+
 }
