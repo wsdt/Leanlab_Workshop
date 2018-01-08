@@ -47,9 +47,9 @@
                 android:text="  Array B" />
 
             <TextView
-                android:id="@+id/edittext"
+                android:id="@+id/htmltext"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
+                android:layout_height="100dp"
                 android:layout_below="@+id/trennstrich"
                 android:layout_marginLeft="60dp"
                 android:layout_marginRight="60dp"
@@ -57,10 +57,11 @@
                 android:text="Überschrift 1" />
 
             <ImageView
+                android:contentDescription="bla"
                 android:id="@+id/btnCamera"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_below="@id/edittext"
+                android:layout_height="200dp"
+                android:layout_below="@id/htmltext"
                 android:layout_marginLeft="60dp"
                 android:layout_marginRight="60dp"
                 android:layout_marginTop="20dp"
@@ -69,7 +70,7 @@
             <VideoView
                 android:id="@+id/btnVideo"
                 android:layout_width="match_parent"
-                android:layout_height="400dp"
+                android:layout_height="300dp"
                 android:layout_below="@id/btnCamera"
                 android:layout_centerHorizontal="true"
                 android:layout_marginTop="20dp" />

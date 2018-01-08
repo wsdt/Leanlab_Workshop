@@ -7,6 +7,7 @@ import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.View;
+import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.TextView;
@@ -69,7 +70,6 @@ public class MainActivity extends AppCompatActivity {
 
         setMaxstep(liste);
 
-        DbConnection.loadVideo(video, "");
 
         buttonforward.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -82,6 +82,8 @@ public class MainActivity extends AppCompatActivity {
                     buttonback.setVisibility(View.VISIBLE);
 
                     setCurrentstep(step);
+
+                    setthecontents(step);
 
                 } else if (step == maxstep) {
 
@@ -125,12 +127,15 @@ public class MainActivity extends AppCompatActivity {
                     }
 
 
+                    setthecontents(step);
+
                 } else if (step == 1) {
 
-                    Toast.makeText(getApplicationContext(), "Erster Schritt",Toast.LENGTH_SHORT);
+                    Toast.makeText(getApplicationContext(), "Erster Schritt",Toast.LENGTH_SHORT).show();
                     buttonback.setVisibility(View.INVISIBLE);
 
                 }
+
 
             }
         });
@@ -157,7 +162,8 @@ public class MainActivity extends AppCompatActivity {
         viewstation.setText(station);
 
         DbConnection.loadVideo(this.video, productid+"_"+stationid+".mp4");
-        DbConnection.loadPicture(this.picture, productid+"_"+stationid+".JPG");
+        setthecontents(1);
+
 
 
 
@@ -217,26 +223,48 @@ public class MainActivity extends AppCompatActivity {
 
 
     //oder könnte es so funktionieren? (Anfang)
-    private void setthecontents(){
+    private void setthecontents(int workstepid){
 
-        setHtmlText();
+        setHtmlText(workstepid);
 
-        setImageScr();
+        setImageScr(workstepid);
 
-        setVideoScr();
-
-    }
-
-    private void setImageScr(){
 
     }
 
-    private void setVideoScr(){
+    private void setImageScr(int workstepid){
+
+        DbConnection.loadPicture(this.picture, workstepid+".JPG");
 
     }
 
-    private void setHtmlText(){
 
+
+    private void setHtmlText(int workstepid) {
+        if (JoinQuery.Loaded_JoinQuerys == null) {
+            try {
+                String sqlstatement = "sql_statement=SELECT * FROM Content WHERE `WorkstepID` = ANY (Select `WorkstepID` From Workstep Join Productionstep ON Workstep.ProductionstepID Where Productionstep.ProductionstepID = Workstep.ProductionstepID AND StationID = 'stationid' AND ProductID = 'productid' );";
+
+                JoinQuery.Loaded_JoinQuerys = (new JoinQuery()).MapJsonRowsToObject(DbConnection.sendRequestForResult_ASYNC(
+                        new String[]{sqlstatement}, "get", false, this
+                ));
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+        }
+
+        JoinQuery neededRow = new JoinQuery();
+        for (JoinQuery joinQuery : JoinQuery.Loaded_JoinQuerys) {
+            if (joinQuery.getTypID() == 3 && joinQuery.getWokstepID() == workstepid) {
+                neededRow = joinQuery;
+                break;
+            }
+        }
+        try {
+            ((TextView) findViewById(R.id.htmltext)).setText(neededRow.getContenttext());
+        } catch (NullPointerException e) {
+            e.printStackTrace();
+        }
     }
 
     private String getVideoScr(){

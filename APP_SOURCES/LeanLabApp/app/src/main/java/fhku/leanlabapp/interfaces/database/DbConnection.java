@@ -3,6 +3,9 @@ package fhku.leanlabapp.interfaces.database;
 
 import android.content.Context;
 import android.content.DialogInterface;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
+import android.graphics.drawable.Drawable;
 import android.net.Uri;
 import android.os.AsyncTask;
 import android.os.Looper;
@@ -17,10 +20,12 @@ import java.io.BufferedReader;
 import java.io.DataInputStream;
 import java.io.DataOutputStream;
 import java.io.IOException;
+import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.io.OutputStreamWriter;
 import java.io.UnsupportedEncodingException;
 import java.net.HttpURLConnection;
+import java.net.MalformedURLException;
 import java.net.SocketTimeoutException;
 import java.net.URL;
 import java.net.URLEncoder;
@@ -33,8 +38,10 @@ import java.util.concurrent.TimeUnit;
 import java.util.concurrent.TimeoutException;
 
 import javax.net.ssl.HttpsURLConnection;
+
 import fhku.leanlabapp.R;
 import fhku.leanlabapp.interfaces.Dialog;
+import jp.wasabeef.richeditor.Utils;
 
 /*********************************************************************************
  HOW-TO-USE:
@@ -111,7 +118,7 @@ import fhku.leanlabapp.interfaces.Dialog;
 
 //https://stackoverflow.com/questions/1812891/java-escape-string-to-prevent-sql-injection
 
-public class DbConnection  {
+public class DbConnection {
     //IMPORTANT: DO NOT ADD HTTP OR HTTPS INTO THAT VARIABLE!
     //DEBUG_PURPOSES:
     //private static final String WEBSERVICE_PHP = "leanlab.web.fh-kufstein.ac.at/db_connection.php";
@@ -178,18 +185,18 @@ public class DbConnection  {
 
         String result = null;
         try {
-            result = future.get(TIMEOUT_SOCKET,TimeUnit.MILLISECONDS);
+            result = future.get(TIMEOUT_SOCKET, TimeUnit.MILLISECONDS);
         } catch (Exception e) {
-            Dialog noConnection = Dialog.createDialog(CONTEXT,"Connection failed","Please connect to the WiFi 'FH_LEANLAB' to access this application.\n\nPlease try to reconnect with your WLAN.", R.drawable.fh_kufstein_logo_transparent);
+            Dialog noConnection = Dialog.createDialog(CONTEXT, "Connection failed", "Please connect to the WiFi 'FH_LEANLAB' to access this application.\n\nPlease try to reconnect with your WLAN.", R.drawable.fh_kufstein_logo_transparent);
             noConnection.setPositiveButton(android.R.string.ok, new DialogInterface.OnClickListener() {
                 @Override
                 public void onClick(DialogInterface dialog, int which) {
-                    Log.i("sendRequestFR_Async","Timeout Dialog was confirmed with OK.");
+                    Log.i("sendRequestFR_Async", "Timeout Dialog was confirmed with OK.");
                     android.os.Process.killProcess(android.os.Process.myPid());
                 }
             });
             noConnection.show();
-            Log.e("sendRequestFR_Async","Future could not be retrieved.");
+            Log.e("sendRequestFR_Async", "Future could not be retrieved.");
             e.printStackTrace();
         }
         return result;
@@ -258,7 +265,7 @@ public class DbConnection  {
                 }*/
 
                 //If timeout then show message
-                Log.e("sendRequest_HTTP", "Could not establish connection with database. Timeout of "+TIMEOUT_SOCKET+" ms exceeded.");
+                Log.e("sendRequest_HTTP", "Could not establish connection with database. Timeout of " + TIMEOUT_SOCKET + " ms exceeded.");
                 e.printStackTrace();
             } catch (IOException e) {
                 Log.e("sendRequest_HTTP", "Could not send parameters to webservice!");
@@ -301,9 +308,9 @@ public class DbConnection  {
 
             } catch (SocketTimeoutException e) {
                 //If timeout then show message
-                Log.e("sendRequest_HTTPS", "Could not establish connection with database. Timeout of "+TIMEOUT_SOCKET+" ms exceeded.");
+                Log.e("sendRequest_HTTPS", "Could not establish connection with database. Timeout of " + TIMEOUT_SOCKET + " ms exceeded.");
                 e.printStackTrace();
-            }catch (IOException e) {
+            } catch (IOException e) {
                 Log.e("sendRequest_HTTPS", "Could not send parameters to webservice!");
                 e.printStackTrace();
             }
@@ -320,33 +327,57 @@ public class DbConnection  {
         return str.replace("'", "''");
     }
 
-    public static void loadVideo(VideoView video, String link){
+    public static void loadVideo(VideoView video, String link) {
         try {
             MediaController mediaController = new MediaController(video.getContext());
             mediaController.setAnchorView(video);
             video.setMediaController(mediaController);
-            Uri videolink = Uri.parse("http://192.168.12.115/LeanLabWorking/" + "vid/" + link );
+            Uri videolink = Uri.parse("http://192.168.12.115/LeanLabWorking/vid/" + link);
             video.setVideoURI(videolink);
             video.start();
-        }catch (Exception e){
+        } catch (Exception e) {
             e.printStackTrace();
         }
-
-
 
 
     }
 
-    public static void loadPicture(ImageView image, String link){
-        try {
-            Uri imagelink = Uri.parse("http://192.168.12.115/LeanLabWorking/" + "img/" + link );
-            image.setImageURI(imagelink);
+    public static void loadPicture(final ImageView image, final String link) {
 
-        }catch (Exception e){
-            e.printStackTrace();
+
+        class DownloadImage extends AsyncTask<String, Void, Bitmap> {
+
+            @Override
+            protected Bitmap doInBackground(String... strings) {
+                Bitmap bmImg = null;
+                try {
+                    URL imagelink = new URL("http://192.168.12.115/Leanlabworking/img/" + link);
+                    //image.setImageURI(imagelink);
+                    //image.setImageBitmap(BitmapFactory.decodeStream(image.getContext().getContentResolver().openInputStream(imagelink)));
+
+                    HttpURLConnection conn = (HttpURLConnection) imagelink.openConnection();
+                    conn.setDoInput(true);
+                    conn.connect();
+
+                    InputStream is = conn.getInputStream();
+
+                    bmImg = BitmapFactory.decodeStream(is);
+                    // it will decode the input stream and will load the bitmat in bmImg variable
+
+                    image.setImageBitmap(bmImg);
+
+
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
+                return bmImg;
+            }
+
+            @Override
+            protected void onPostExecute(Bitmap bitmap) {
+                image.setImageBitmap(bitmap);
+            }
         }
-
-
 
 
     }
