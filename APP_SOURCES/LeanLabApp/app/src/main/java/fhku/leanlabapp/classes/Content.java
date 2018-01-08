@@ -15,7 +15,7 @@ import fhku.leanlabapp.interfaces.Mapper;
 public class Content extends Mapper{
     private static final String LOG_TAG = "CONTENT";
     private int Contentid;
-    private String Contenttext;
+    private String Contenttext; // PRODUCTID_STATIONID_CONTENTID.EXTENSION
     private int Workstepid;
     private int Typid;
 
