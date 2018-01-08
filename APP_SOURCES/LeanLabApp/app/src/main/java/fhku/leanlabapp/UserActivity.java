@@ -5,9 +5,12 @@ import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.MotionEvent;
 import android.view.View;
+import android.view.inputmethod.InputMethodManager;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.RelativeLayout;
 
 import fhku.leanlabapp.classes.User;
 import fhku.leanlabapp.interfaces.Dialog;
@@ -30,6 +33,16 @@ public class UserActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_user);
         thisActivity = this;
+
+        RelativeLayout layout = (RelativeLayout) findViewById(R.id.userlayout);
+
+        layout.setOnTouchListener(new View.OnTouchListener() {
+            @Override
+            public boolean onTouch(View view, MotionEvent event) {
+                hideKeyboard(view);
+                return false;
+            }
+        });
 
         final Button goButton = (Button) findViewById(R.id.go);
         final EditText user = (EditText)findViewById(R.id.edittext);
@@ -62,6 +75,12 @@ public class UserActivity extends AppCompatActivity {
         });
 
 
+
+
+    }
+    private void hideKeyboard(View view) {
+        InputMethodManager in = (InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE);
+        in.hideSoftInputFromWindow(view.getWindowToken(), InputMethodManager.HIDE_NOT_ALWAYS);
     }
 
     private void goToStart(){
