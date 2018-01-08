@@ -16,14 +16,14 @@
         android:id="@+id/textView" />
 
     <EditText
-        android:id="@+id/enterStation"
+        android:id="@+id/enterProduct"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
         android:hint="Produkt eingeben"
         android:padding="10dp" />
 
     <EditText
-        android:id="@+id/enterProduct"
+        android:id="@+id/enterStation"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
         android:hint="Station eingeben"
