@@ -1,5 +1,6 @@
 package fhku.leanlabapp;
 
+import android.content.Context;
 import android.content.Intent;
 import android.graphics.Paint;
 import android.os.Bundle;
@@ -28,6 +29,7 @@ public class MainActivity extends AppCompatActivity {
     final int maxstep = liste.size();
     long begintime = getTime();
     final int timePerWorkstep = 60;
+    Context context;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -37,6 +39,7 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
 
         setContentView(R.layout.activity_main);
+        this.context = this;
 
         TextView view1 = (TextView)findViewById(R.id.edittext);
 
@@ -78,7 +81,9 @@ public class MainActivity extends AppCompatActivity {
                     String time = String.valueOf(neededTimeSeconds);
                     String time1 = String.valueOf(neededTime);
 
-                    long achievedPoints = calcPoints(neededTimeSeconds);
+                    int achievedPoints = (int) calcPoints(neededTimeSeconds);
+                    User.currentUser.setPoints(User.currentUser.getPoints()+achievedPoints);
+                    User.currentUser.updateUser(context);
 
                     String points1 = String.valueOf(achievedPoints);
 

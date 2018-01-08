@@ -21,6 +21,7 @@ public class User extends Mapper{
     private int Points;
     //IMPORTANT: Be sure to empty the arraylist if you use it, unless you except sth to be in there
     public static ArrayList<User> Loaded_Users = new ArrayList<>(); //do not add Products to list automatically (only if you need it)
+    public static User currentUser;
 
     //Constructor
     public User(String Username, String Password, int Points) {
@@ -39,10 +40,20 @@ public class User extends Mapper{
             result = DbConnection.sendRequestForResult_ASYNC(
                     new String[]{"sql_statement=INSERT INTO User (Username, Points) VALUES ('"+DbConnection.escapeSql(username)+"', 0);"}, "get", false, context);
         } catch (Exception e) {
-            Log.e("User","Could not register new User!");
+            Log.e("User","Could not register new User.");
             e.printStackTrace();
         }
         return result;
+    }
+
+    public void updateUser(Context context) {
+        try {
+            DbConnection.sendRequestForResult_ASYNC(new String[]{"sql_statement=UPDATE User SET Points="+this.getPoints()+" WHERE Username='"+this.getUsername()+"';"},"post", false, context);
+            Log.i("Info", "updateuser");
+        } catch (Exception e) {
+            Log.e("User", "Could not update User!");
+            e.printStackTrace();
+        }
     }
 
     //Getter/Setter ------------------------------
