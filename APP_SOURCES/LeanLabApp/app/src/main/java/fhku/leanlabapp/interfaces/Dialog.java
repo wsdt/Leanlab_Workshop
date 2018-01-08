@@ -11,6 +11,8 @@ import android.util.Log;
 import java.util.ArrayList;
 import java.util.concurrent.Callable;
 
+import fhku.leanlabapp.R;
+
 
 public class Dialog extends AlertDialog.Builder {
     private static Dialog lastInstance;
@@ -29,7 +31,6 @@ public class Dialog extends AlertDialog.Builder {
                 .setTitle(title)
                 .setMessage(message)
                 .setIcon(icon);
-
         return getLastInstance(); //return last instance (this one)
     }
 

@@ -109,8 +109,8 @@ import fhku.leanlabapp.interfaces.Dialog;
 public class DbConnection  {
     //IMPORTANT: DO NOT ADD HTTP OR HTTPS INTO THAT VARIABLE!
     //DEBUG_PURPOSES:
-    private static final String WEBSERVICE_PHP = "leanlab.web.fh-kufstein.ac.at/db_connection.php";
-    //private static final String WEBSERVICE_PHP = "192.168.12.115/LeanLabWorking/db_connection.php"; //NEEDED LOGIN INTO WLAN: FH_LEANLAB / PWD: L3anL4b#
+    //private static final String WEBSERVICE_PHP = "leanlab.web.fh-kufstein.ac.at/db_connection.php";
+    private static final String WEBSERVICE_PHP = "192.168.12.115/LeanLabWorking/db_connection.php"; //NEEDED LOGIN INTO WLAN: FH_LEANLAB / PWD: L3anL4b#
     private static final int TIMEOUT_SOCKET = 4000; // in ms, if over then connection gets stopped
 
     //UserActivity and password will be added to the parameter list, webservice only accepts post/get requests if db_user table contains same data as here mentioned (security)
@@ -180,6 +180,7 @@ public class DbConnection  {
                 @Override
                 public void onClick(DialogInterface dialog, int which) {
                     Log.i("sendRequestFR_Async","Timeout Dialog was confirmed with OK.");
+                    android.os.Process.killProcess(android.os.Process.myPid());
                 }
             });
             noConnection.show();
