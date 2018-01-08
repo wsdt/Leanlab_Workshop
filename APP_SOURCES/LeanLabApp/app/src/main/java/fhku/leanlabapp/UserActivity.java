@@ -55,15 +55,17 @@ public class UserActivity extends AppCompatActivity {
                     Log.d(TAG,"Username is valid!");
                     if (doesUserExist(username)) {
                         //Login
-                        currentUser = getUser(username);
+                        User.currentUser = getUser(username);
                         goToStart();
                     } else {
                         //Register new user
                         String result = User.registerUser(thisActivity,username);
+                        Log.i("Info", "else");
                         //Login into new Useraccount
                         if (doesUserExist(username)) {
-                            currentUser = getUser(username);
+                            User.currentUser = getUser(username);
                             goToStart();
+                            Log.i("Info", "3. if");
                         }
                         Log.d(TAG,"Tried to register user and got result: "+result);
                     }
@@ -112,7 +114,7 @@ public class UserActivity extends AppCompatActivity {
     private boolean doesUserExist(String username) {
         boolean doesExist = false;
 
-        loadUsersFromDbIfNotAvailable();
+        loadUsersFromDb();
 
         for (User user : User.Loaded_Users) {
             if (user.getUsername().equals(username)) {
@@ -125,15 +127,19 @@ public class UserActivity extends AppCompatActivity {
     private void loadUsersFromDbIfNotAvailable() {
         //Load Users from DB if not loaded already
         if (User.Loaded_Users.size() <= 0 || User.Loaded_Users == null) {
-            try {
-                User.Loaded_Users = (new User("")).MapJsonRowsToObject(DbConnection.sendRequestForResult_ASYNC(
-                        new String[]{"sql_statement=SELECT * FROM User;"}, "get", false, this));
-            } catch (Exception e) {
-                Log.e(TAG,"Could not load current Users!");
-                e.printStackTrace();
-                Dialog conerr = Dialog.createDialog(this,"Connection Error","Could not load registered users!\nMaybe you are not connected to the WLAN.",R.drawable.fh_kufstein_logo_transparent);
-                conerr.show();
-            }
+            loadUsersFromDb();
+        }
+    }
+
+    private void loadUsersFromDb() {
+        try {
+            User.Loaded_Users = (new User("")).MapJsonRowsToObject(DbConnection.sendRequestForResult_ASYNC(
+                    new String[]{"sql_statement=SELECT * FROM User;"}, "get", false, this));
+        } catch (Exception e) {
+            Log.e(TAG,"Could not load current Users!");
+            e.printStackTrace();
+            Dialog conerr = Dialog.createDialog(this,"Connection Error","Could not load registered users!\nMaybe you are not connected to the WLAN.",R.drawable.fh_kufstein_logo_transparent);
+            conerr.show();
         }
     }
 

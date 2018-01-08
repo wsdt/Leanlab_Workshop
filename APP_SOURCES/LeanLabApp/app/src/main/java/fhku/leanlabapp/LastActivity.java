@@ -8,11 +8,13 @@ import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import fhku.leanlabapp.classes.User;
+
 
 public class LastActivity extends AppCompatActivity {
 
     private final int levelPoints = 100;
-    private  int playerPoints = 340;
+    private  int playerPoints = User.currentUser.getPoints();
 
 
     @Override
