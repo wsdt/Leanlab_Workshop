@@ -28,8 +28,12 @@ public class MainActivity extends AppCompatActivity {
     ArrayList<JoinQuery> liste = exampleArraylist();
     final int maxstep = liste.size();
     long begintime = getTime();
+
+    VideoView video = (VideoView) findViewById(R.id.videoView);
+
     final int timePerWorkstep = 60;
     Context context;
+
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -37,6 +41,8 @@ public class MainActivity extends AppCompatActivity {
         //USER MUSS NOCH GELADEN WERDEN UND PUNKTE VOM USER AUSGELESEN UND RÜCKGEGEBEN WERDEN
 
         super.onCreate(savedInstanceState);
+
+
 
         setContentView(R.layout.activity_main);
         this.context = this;
@@ -59,6 +65,8 @@ public class MainActivity extends AppCompatActivity {
         setCurrentstep(step);
 
         setMaxstep(liste);
+
+        DbConnection.loadVideo(video, "");
 
         buttonforward.setOnClickListener(new View.OnClickListener() {
             @Override

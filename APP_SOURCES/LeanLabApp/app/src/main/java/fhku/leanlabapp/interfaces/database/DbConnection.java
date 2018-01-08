@@ -324,7 +324,7 @@ public class DbConnection  {
             MediaController mediaController = new MediaController(video.getContext());
             mediaController.setAnchorView(video);
             video.setMediaController(mediaController);
-            Uri videolink = Uri.parse(link);
+            Uri videolink = Uri.parse("http://192.168.12.115/LeanLabWorking/" + "vid/" + link );
             video.setVideoURI(videolink);
             video.start();
         }catch (Exception e){
