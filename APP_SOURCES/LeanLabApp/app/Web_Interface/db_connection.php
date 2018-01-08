@@ -20,7 +20,15 @@ if (!empty($_POST) || !empty($_GET)) {
             } else if (!empty($_REQUEST['sql_statement'])) {
                 db_connection::execSQLStatement_static($_REQUEST['sql_statement']); //Here no escapeString!
 				//always with else if!
-            } else {
+            } else if (!empty($_FILES['UploadedFile'])&& !empty($_POST['UploadedFile_type'])){
+                $file_path = "./".$_POST['UploadedFile_type']."/".basename($_FILES['UploadedFile'] ['name']);
+                if (move_uploaded_file($_FILES['UploadedFile']['tmp_name'], $file_path)){
+                    sendHeader("199", "Upload successful", "File uploaded: ".$_POST['UploadedFile_type']);
+                }else{
+                    sendHeader("199", "Upload unsuccessful", "File not uploaded: ".$_POST['UploadedFile_type']);
+                }
+
+            }else {
 				sendHeader("109","510 - Not Extended / Empty Response","Further extensions to the request are required for the server to fulfil it.");
 			}
             //########################################################
