@@ -10,6 +10,7 @@ import android.graphics.BitmapFactory;
 import android.net.Uri;
 import android.os.Environment;
 import android.provider.MediaStore;
+import android.support.v4.content.FileProvider;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
@@ -141,7 +142,9 @@ public class MainActivityAdmin extends AppCompatActivity implements View.OnClick
     }
 
     private void captureImage() {
+
         Intent intent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
+
 
         fileUri = getOutputMediaFileUri(MEDIA_TYPE_IMAGE);
 
@@ -164,10 +167,13 @@ public class MainActivityAdmin extends AppCompatActivity implements View.OnClick
         fileUri = savedInstanceState.getParcelable("file_uri");
     }
 
+    //nicht möglich Video aufzunehmen
+
     private void recordVideo() {
         Intent intent = new Intent(MediaStore.ACTION_VIDEO_CAPTURE);
 
-        fileUri = getOutputMediaFileUri(MEDIA_TYPE_VIDEO);
+        //fileUri = getOutputMediaFileUri(MEDIA_TYPE_VIDEO);
+        fileUri = FileProvider.getUriForFile(MainActivityAdmin.this,BuildConfig.APPLICATION_ID + ".provider", getOutputMediaFile(MEDIA_TYPE_VIDEO));
 
         intent.putExtra(MediaStore.EXTRA_VIDEO_QUALITY, 1);
 
