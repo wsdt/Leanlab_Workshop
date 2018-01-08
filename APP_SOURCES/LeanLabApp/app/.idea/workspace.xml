@@ -46,31 +46,11 @@
   </component>
   <component name="FileEditorManager">
     <leaf>
-      <file leaf-file-name="StartActivityAdmin.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/java/fhku/leanlabapp/StartActivityAdmin.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-4338">
-              <caret line="29" column="13" lean-forward="false" selection-start-line="29" selection-start-column="13" selection-end-line="29" selection-end-column="13" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="StartActivity.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/java/fhku/leanlabapp/StartActivity.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="312">
-              <caret line="93" column="41" lean-forward="true" selection-start-line="93" selection-start-column="41" selection-end-line="93" selection-end-column="41" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
       <file leaf-file-name="MainActivityAdmin.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/java/fhku/leanlabapp/MainActivityAdmin.java">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="288">
-              <caret line="129" column="4" lean-forward="true" selection-start-line="129" selection-start-column="4" selection-end-line="132" selection-end-column="5" />
+              <caret line="129" column="4" lean-forward="false" selection-start-line="129" selection-start-column="4" selection-end-line="132" selection-end-column="5" />
               <folding>
                 <element signature="e#2702#2773#1" expanded="true" />
               </folding>
@@ -78,13 +58,263 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="UserActivity.java" pinned="false" current-in-tab="true">
+      <file leaf-file-name="LastActivityAdmin.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/java/fhku/leanlabapp/LastActivityAdmin.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="120">
+              <caret line="6" column="13" lean-forward="false" selection-start-line="6" selection-start-column="13" selection-end-line="6" selection-end-column="13" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="activity_main.xml" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/res/layout/activity_main.xml">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="409">
+              <caret line="66" column="16" lean-forward="false" selection-start-line="66" selection-start-column="16" selection-end-line="66" selection-end-column="16" />
+              <folding />
+            </state>
+          </provider>
+          <provider editor-type-id="android-designer2">
+            <state />
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="activity_main_admin.xml" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/res/layout/activity_main_admin.xml">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="0">
+              <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+              <folding />
+            </state>
+          </provider>
+          <provider editor-type-id="android-designer2">
+            <state />
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="DbConnection.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/java/fhku/leanlabapp/interfaces/database/DbConnection.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="351">
+              <caret line="342" column="24" lean-forward="false" selection-start-line="342" selection-start-column="24" selection-end-line="342" selection-end-column="24" />
+              <folding>
+                <element signature="e#6286#6315#1" expanded="true" />
+                <element signature="e#6443#6492#0" expanded="true" />
+                <element signature="e#6708#6777#0" expanded="true" />
+                <element signature="e#6708#6724#0" expanded="true" />
+                <element signature="e#6708#6777#0" expanded="true" />
+                <element signature="e#6708#6777#0" expanded="true" />
+                <element signature="e#6708#6777#0" expanded="true" />
+                <element signature="e#7011#7052#0" expanded="true" />
+                <element signature="e#7011#7052#0" expanded="true" />
+                <element signature="e#7264#7280#1" expanded="true" />
+                <element signature="e#7289#7319#1" expanded="true" />
+                <element signature="e#7334#7350#0" expanded="true" />
+                <element signature="e#7438#7458#0" expanded="true" />
+                <element signature="e#7438#7458#0" expanded="true" />
+                <element signature="e#7462#7481#0" expanded="true" />
+                <element signature="e#7638#7688#0" expanded="true" />
+                <element signature="e#7638#7688#0" expanded="true" />
+                <element signature="e#7638#7688#0" expanded="true" />
+                <element signature="e#7638#7688#0" expanded="true" />
+                <element signature="e#8152#8215#1" expanded="true" />
+                <element signature="e#8224#8490#1" expanded="true" />
+                <element signature="e#8252#8489#0" expanded="true" />
+                <element signature="e#8488#8489#0" expanded="true" />
+                <element signature="e#8500#8550#1" expanded="true" />
+                <element signature="e#8673#8694#1" expanded="true" />
+                <element signature="e#8824#9049#1" expanded="true" />
+                <element signature="e#9114#9454#0" expanded="true" />
+                <element signature="e#9453#9454#0" expanded="true" />
+                <element signature="e#9872#9894#0" expanded="true" />
+                <element signature="e#9872#9894#0" expanded="true" />
+                <element signature="e#9872#9894#0" expanded="true" />
+                <element signature="e#9898#9919#0" expanded="true" />
+                <element signature="e#9898#9919#0" expanded="true" />
+                <element signature="e#9898#9919#0" expanded="true" />
+                <element signature="e#9997#10012#1" expanded="true" />
+                <element signature="e#10021#10044#1" expanded="true" />
+                <element signature="e#10221#10255#1" expanded="true" />
+                <element signature="e#10305#10331#0" expanded="true" />
+                <element signature="e#10305#10331#0" expanded="true" />
+                <element signature="e#10363#10403#0" expanded="true" />
+                <element signature="e#10421#10465#0" expanded="true" />
+                <element signature="e#10421#10465#0" expanded="true" />
+                <element signature="e#10520#10565#0" expanded="true" />
+                <element signature="e#10543#10564#0" expanded="true" />
+                <element signature="e#10543#10564#0" expanded="true" />
+                <element signature="e#10520#10565#0" expanded="true" />
+                <element signature="e#10725#10760#0" expanded="true" />
+                <element signature="e#10725#10760#0" expanded="true" />
+                <element signature="e#10826#10854#0" expanded="true" />
+                <element signature="e#10982#10999#1" expanded="true" />
+                <element signature="e#11016#11091#1" expanded="true" />
+                <element signature="e#11062#11089#0" expanded="true" />
+                <element signature="e#11108#11156#1" expanded="true" />
+                <element signature="e#11235#11274#1" expanded="true" />
+                <element signature="e#11356#11378#0" expanded="true" />
+                <element signature="e#11366#11377#0" expanded="true" />
+                <element signature="e#11366#11377#0" expanded="true" />
+                <element signature="e#11356#11378#0" expanded="true" />
+                <element signature="e#11640#11688#0" expanded="true" />
+                <element signature="e#11660#11688#0" expanded="true" />
+                <element signature="e#11640#11688#0" expanded="true" />
+                <element signature="e#11733#11787#0" expanded="true" />
+                <element signature="e#11756#11787#0" expanded="true" />
+                <element signature="e#11733#11787#0" expanded="true" />
+                <element signature="e#11832#11863#0" expanded="true" />
+                <element signature="e#11832#11863#0" expanded="true" />
+                <element signature="e#13116#13206#0" expanded="true" />
+                <element signature="e#13116#13206#0" expanded="true" />
+                <element signature="e#13637#13664#0" expanded="true" />
+                <element signature="e#13637#13664#0" expanded="true" />
+                <element signature="e#13683#13757#1" expanded="true" />
+                <element signature="e#13715#13756#0" expanded="true" />
+                <element signature="e#13774#13809#0" expanded="true" />
+                <element signature="e#13774#13809#0" expanded="true" />
+                <element signature="e#13827#13871#0" expanded="true" />
+                <element signature="e#13827#13871#0" expanded="true" />
+                <element signature="e#14229#14274#0" expanded="true" />
+                <element signature="e#14252#14273#0" expanded="true" />
+                <element signature="e#14252#14273#0" expanded="true" />
+                <element signature="e#14229#14274#0" expanded="true" />
+                <element signature="e#14334#14361#0" expanded="true" />
+                <element signature="e#14334#14361#0" expanded="true" />
+                <element signature="e#14380#14457#1" expanded="true" />
+                <element signature="e#14427#14455#0" expanded="true" />
+                <element signature="e#14556#14629#1" expanded="true" />
+                <element signature="e#14600#14627#0" expanded="true" />
+                <element signature="e#14647#14686#1" expanded="true" />
+                <element signature="e#14708#14729#1" expanded="true" />
+                <element signature="e#14827#14839#0" expanded="true" />
+                <element signature="e#14827#14839#0" expanded="true" />
+                <element signature="e#15034#15082#0" expanded="true" />
+                <element signature="e#15054#15082#0" expanded="true" />
+                <element signature="e#15034#15082#0" expanded="true" />
+                <element signature="e#15128#15182#0" expanded="true" />
+                <element signature="e#15151#15182#0" expanded="true" />
+                <element signature="e#15128#15182#0" expanded="true" />
+                <element signature="e#15228#15259#0" expanded="true" />
+                <element signature="e#15228#15259#0" expanded="true" />
+                <element signature="e#15402#15492#0" expanded="true" />
+                <element signature="e#15402#15492#0" expanded="true" />
+                <element signature="e#16205#16279#1" expanded="true" />
+                <element signature="e#16259#16277#0" expanded="true" />
+                <element signature="e#16292#16328#0" expanded="true" />
+                <element signature="e#16292#16328#0" expanded="true" />
+                <element signature="e#16342#16383#0" expanded="true" />
+                <element signature="e#16342#16383#0" expanded="true" />
+                <element signature="e#16397#16481#1" expanded="true" />
+                <element signature="e#16423#16478#0" expanded="true" />
+                <element signature="e#16423#16478#0" expanded="true" />
+                <element signature="e#16423#16478#0" expanded="true" />
+                <element signature="e#16494#16522#0" expanded="true" />
+                <element signature="e#16494#16522#0" expanded="true" />
+                <element signature="e#16727#16811#1" expanded="true" />
+                <element signature="e#16753#16808#0" expanded="true" />
+                <element signature="e#16753#16808#0" expanded="true" />
+                <element signature="e#16753#16808#0" expanded="true" />
+                <element signature="e#16824#16852#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="LastActivity.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/java/fhku/leanlabapp/LastActivity.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="-768">
+              <caret line="13" column="13" lean-forward="false" selection-start-line="13" selection-start-column="13" selection-end-line="13" selection-end-column="13" />
+              <folding>
+                <marker date="1515418240485" expanded="true" signature="518:1753" ph="{...}" />
+                <marker date="1515418240485" expanded="true" signature="562:563" ph="" />
+                <marker date="1515418240485" expanded="false" signature="572:587" ph="contentView = " />
+                <marker date="1515418240485" expanded="false" signature="609:610" ph="" />
+                <marker date="1515418240485" expanded="true" signature="610:611" ph="" />
+                <marker date="1515418240485" expanded="false" signature="657:665" ph="val" />
+                <marker date="1515418240485" expanded="false" signature="682:692" ph="" />
+                <marker date="1515418240485" expanded="true" signature="716:717" ph="" />
+                <marker date="1515418240485" expanded="false" signature="726:734" ph="val" />
+                <marker date="1515418240485" expanded="false" signature="759:769" ph="" />
+                <marker date="1515418240485" expanded="true" signature="801:802" ph="" />
+                <marker date="1515418240485" expanded="false" signature="811:819" ph="val" />
+                <marker date="1515418240485" expanded="false" signature="840:850" ph="" />
+                <marker date="1515418240485" expanded="true" signature="878:879" ph="" />
+                <marker date="1515418240485" expanded="false" signature="888:894" ph="val" />
+                <marker date="1515418240485" expanded="false" signature="914:922" ph="" />
+                <marker date="1515418240485" expanded="true" signature="955:956" ph="" />
+                <marker date="1515418240485" expanded="false" signature="1007:1015" ph="text = " />
+                <marker date="1515418240485" expanded="false" signature="1022:1026" ph="${" />
+                <marker date="1515418240485" expanded="false" signature="1049:1050" ph="}&quot;" />
+                <marker date="1515418240485" expanded="true" signature="1050:1051" ph="" />
+                <marker date="1515418240485" expanded="false" signature="1078:1086" ph="text = " />
+                <marker date="1515418240485" expanded="false" signature="1094:1098" ph="$" />
+                <marker date="1515418240485" expanded="false" signature="1098:1113" ph="" />
+                <marker date="1515418240485" expanded="false" signature="1124:1125" ph="" />
+                <marker date="1515418240485" expanded="false" signature="1125:1126" ph="&quot;" />
+                <marker date="1515418240485" expanded="true" signature="1126:1127" ph="" />
+                <marker date="1515418240485" expanded="false" signature="1158:1166" ph="text = " />
+                <marker date="1515418240485" expanded="false" signature="1174:1178" ph="${" />
+                <marker date="1515418240485" expanded="false" signature="1213:1214" ph="}&quot;" />
+                <marker date="1515418240485" expanded="true" signature="1214:1215" ph="" />
+                <marker date="1515418240485" expanded="false" signature="1243:1262" ph="onClickListener = " />
+                <marker date="1515418240485" expanded="false" signature="1262:1357" ph="(view) → {" />
+                <marker date="1515418240485" expanded="false" signature="1374:1380" ph="val" />
+                <marker date="1515418240485" expanded="false" signature="1401:1424" ph="applicationContext" />
+                <marker date="1515418240485" expanded="true" signature="1446:1447" ph="" />
+                <marker date="1515418240485" expanded="true" signature="1485:1486" ph="" />
+                <marker date="1515418240485" expanded="false" signature="1495:1510" ph="}" />
+                <marker date="1515418240485" expanded="false" signature="1510:1511" ph="" />
+                <marker date="1515418240485" expanded="true" signature="1511:1512" ph="" />
+                <marker date="1515418240485" expanded="true" signature="1527:1746" ph="//..." />
+                <marker date="1515418240485" expanded="true" signature="1801:1980" ph="{...}" />
+                <marker date="1515418240485" expanded="false" signature="1812:1818" ph="val" />
+                <marker date="1515418240485" expanded="true" signature="1833:1834" ph="" />
+                <marker date="1515418240485" expanded="true" signature="1860:1864" ph=" + " />
+                <marker date="1515418240485" expanded="true" signature="1865:1866" ph="" />
+                <marker date="1515418240485" expanded="false" signature="1876:1879" ph="val" />
+                <marker date="1515418240485" expanded="false" signature="1887:1892" ph="" />
+                <marker date="1515418240485" expanded="true" signature="1903:1904" ph="" />
+                <marker date="1515418240485" expanded="false" signature="1914:1920" ph="val" />
+                <marker date="1515418240485" expanded="false" signature="1929:1944" ph="" />
+                <marker date="1515418240485" expanded="false" signature="1948:1949" ph="" />
+                <marker date="1515418240485" expanded="true" signature="1949:1950" ph="" />
+                <marker date="1515418240485" expanded="true" signature="1972:1973" ph="" />
+                <marker date="1515418240485" expanded="true" signature="2040:2173" ph="{...}" />
+                <marker date="1515418240485" expanded="false" signature="2051:2054" ph="val" />
+                <marker date="1515418240485" expanded="true" signature="2090:2091" ph="" />
+                <marker date="1515418240485" expanded="false" signature="2101:2107" ph="val" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="dialog.xml" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/res/layout/dialog.xml">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="264">
+              <caret line="11" column="29" lean-forward="false" selection-start-line="11" selection-start-column="29" selection-end-line="11" selection-end-column="29" />
+              <folding />
+            </state>
+          </provider>
+          <provider editor-type-id="android-designer2">
+            <state />
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="UserActivity.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/java/fhku/leanlabapp/UserActivity.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="1512">
-              <caret line="83" column="5" lean-forward="false" selection-start-line="83" selection-start-column="5" selection-end-line="83" selection-end-column="5" />
+            <state relative-caret-position="336">
+              <caret line="28" column="28" lean-forward="false" selection-start-line="28" selection-start-column="28" selection-end-line="28" selection-end-column="28" />
               <folding>
                 <element signature="e#1139#1210#1" expanded="true" />
+                <marker date="1515418240516" expanded="false" signature="1608:1627" ph="onClickListener = " />
+                <marker date="1515418240516" expanded="false" signature="1627:1719" ph="(v) → {" />
+                <marker date="1515418240516" expanded="true" signature="5135:5136" ph="" />
+                <marker date="1515418240516" expanded="true" signature="5135:5151" ph="{...}" />
               </folding>
             </state>
           </provider>
@@ -100,6 +330,138 @@
           </provider>
           <provider editor-type-id="android-designer2">
             <state />
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="MainActivity.java" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/src/main/java/fhku/leanlabapp/MainActivity.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="552">
+              <caret line="159" column="72" lean-forward="false" selection-start-line="159" selection-start-column="72" selection-end-line="159" selection-end-column="72" />
+              <folding>
+                <element signature="e#923#932#0" expanded="true" />
+                <element signature="e#1258#1296#0" expanded="true" />
+                <element signature="e#1258#1296#0" expanded="true" />
+                <element signature="e#1348#1387#0" expanded="true" />
+                <element signature="e#1412#1452#0" expanded="true" />
+                <element signature="e#1463#1518#1" expanded="true" />
+                <element signature="e#1480#1517#0" expanded="true" />
+                <element signature="e#1528#1588#1" expanded="true" />
+                <element signature="e#1551#1587#0" expanded="true" />
+                <element signature="e#1598#1658#1" expanded="true" />
+                <element signature="e#1621#1657#0" expanded="true" />
+                <element signature="e#1668#1742#1" expanded="true" />
+                <element signature="e#1696#1741#0" expanded="true" />
+                <element signature="e#1752#1826#1" expanded="true" />
+                <element signature="e#1783#1825#0" expanded="true" />
+                <element signature="e#1835#1875#0" expanded="true" />
+                <element signature="e#1835#1875#0" expanded="true" />
+                <element signature="e#1886#1964#1" expanded="true" />
+                <element signature="e#1923#1963#0" expanded="true" />
+                <element signature="e#1974#2038#1" expanded="true" />
+                <element signature="e#2001#2037#0" expanded="true" />
+                <element signature="e#2048#2068#0" expanded="true" />
+                <element signature="e#2048#2068#0" expanded="true" />
+                <element signature="e#2079#2096#0" expanded="true" />
+                <element signature="e#2079#2096#0" expanded="true" />
+                <element signature="e#2151#3556#0" expanded="true" />
+                <element signature="e#2184#3555#0" expanded="true" />
+                <element signature="e#3554#3555#0" expanded="true" />
+                <element signature="e#2151#3556#0" expanded="true" />
+                <element signature="e#3567#4178#0" expanded="true" />
+                <element signature="e#3597#4177#0" expanded="true" />
+                <element signature="e#4176#4177#0" expanded="true" />
+                <element signature="e#3567#4178#0" expanded="true" />
+                <element signature="e#4196#4224#1" expanded="true" />
+                <element signature="e#4212#4223#0" expanded="true" />
+                <element signature="e#4235#4285#1" expanded="true" />
+                <element signature="e#4294#4344#1" expanded="true" />
+                <element signature="e#4353#4411#1" expanded="true" />
+                <element signature="e#4420#4478#1" expanded="true" />
+                <element signature="e#4488#4536#1" expanded="true" />
+                <element signature="e#4545#4593#1" expanded="true" />
+                <element signature="e#4603#4631#0" expanded="true" />
+                <element signature="e#4603#4631#0" expanded="true" />
+                <element signature="e#4641#4669#0" expanded="true" />
+                <element signature="e#4641#4669#0" expanded="true" />
+                <element signature="e#4715#4745#0" expanded="true" />
+                <element signature="e#4715#4745#0" expanded="true" />
+                <element signature="e#4715#4745#0" expanded="true" />
+                <element signature="e#4715#4745#0" expanded="true" />
+                <element signature="e#4795#4825#0" expanded="true" />
+                <element signature="e#4795#4825#0" expanded="true" />
+                <element signature="e#4795#4825#0" expanded="true" />
+                <element signature="e#4795#4825#0" expanded="true" />
+                <marker date="1515421511132" expanded="false" signature="6937:6947" ph=" { " />
+                <marker date="1515421511132" expanded="false" signature="6958:6964" ph=" }" />
+                <marker date="1515421511132" expanded="false" signature="6998:7008" ph=" { " />
+                <marker date="1515421511132" expanded="false" signature="7019:7025" ph=" }" />
+                <marker date="1515421511132" expanded="false" signature="7059:7069" ph=" { " />
+                <marker date="1515421511132" expanded="false" signature="7080:7086" ph=" }" />
+                <marker date="1515421511132" expanded="false" signature="7147:7157" ph=" { " />
+                <marker date="1515421511132" expanded="false" signature="7176:7182" ph=" }" />
+                <marker date="1515421511132" expanded="false" signature="7246:7267" ph="val" />
+                <marker date="1515421511132" expanded="false" signature="7276:7293" ph="[]" />
+                <marker date="1515421511132" expanded="false" signature="7304:7313" ph="val" />
+                <marker date="1515421511132" expanded="false" signature="7361:7374" ph="contentID = " />
+                <marker date="1515421511132" expanded="false" signature="7375:7376" ph="" />
+                <marker date="1515421511132" expanded="false" signature="7396:7411" ph="contenttext = " />
+                <marker date="1515421511132" expanded="false" signature="7420:7421" ph="" />
+                <marker date="1515421511132" expanded="false" signature="7441:7450" ph="typID = " />
+                <marker date="1515421511132" expanded="false" signature="7451:7452" ph="" />
+                <marker date="1515421511132" expanded="false" signature="7472:7485" ph="wokstepID = " />
+                <marker date="1515421511132" expanded="false" signature="7486:7487" ph="" />
+                <marker date="1515421511132" expanded="false" signature="7498:7507" ph="val" />
+                <marker date="1515421511132" expanded="false" signature="7557:7570" ph="contentID = " />
+                <marker date="1515421511132" expanded="false" signature="7571:7572" ph="" />
+                <marker date="1515421511132" expanded="false" signature="7593:7606" ph="wokstepID = " />
+                <marker date="1515421511132" expanded="false" signature="7607:7608" ph="" />
+                <marker date="1515421511132" expanded="false" signature="7629:7638" ph="typID = " />
+                <marker date="1515421511132" expanded="false" signature="7639:7640" ph="" />
+                <marker date="1515421511132" expanded="false" signature="7661:7676" ph="contenttext = " />
+                <marker date="1515421511132" expanded="false" signature="7685:7686" ph="" />
+                <marker date="1515421511132" expanded="false" signature="7697:7706" ph="val" />
+                <marker date="1515421511132" expanded="false" signature="7756:7771" ph="contenttext = " />
+                <marker date="1515421511132" expanded="false" signature="7780:7781" ph="" />
+                <marker date="1515421511132" expanded="false" signature="7802:7811" ph="typID = " />
+                <marker date="1515421511132" expanded="false" signature="7812:7813" ph="" />
+                <marker date="1515421511132" expanded="false" signature="7834:7847" ph="contentID = " />
+                <marker date="1515421511132" expanded="false" signature="7848:7849" ph="" />
+                <marker date="1515421511132" expanded="false" signature="7870:7883" ph="wokstepID = " />
+                <marker date="1515421511132" expanded="false" signature="7884:7885" ph="" />
+                <marker date="1515421511132" expanded="false" signature="7901:7906" ph=" += " />
+                <marker date="1515421511132" expanded="false" signature="7915:7916" ph="" />
+                <marker date="1515421511132" expanded="false" signature="7931:7936" ph=" += " />
+                <marker date="1515421511132" expanded="false" signature="7946:7947" ph="" />
+                <marker date="1515421511132" expanded="false" signature="7962:7967" ph=" += " />
+                <marker date="1515421511132" expanded="false" signature="7977:7978" ph="" />
+                <marker date="1515421511132" expanded="false" signature="8138:8146" ph="val" />
+                <marker date="1515421511132" expanded="false" signature="8161:8171" ph="" />
+                <marker date="1515421511132" expanded="false" signature="8212:8218" ph="val" />
+                <marker date="1515421511132" expanded="false" signature="8223:8238" ph="" />
+                <marker date="1515421511132" expanded="false" signature="8242:8243" ph="" />
+                <marker date="1515421511132" expanded="false" signature="8254:8260" ph="val" />
+                <marker date="1515421511132" expanded="false" signature="8279:8283" ph="$" />
+                <marker date="1515421511132" expanded="false" signature="8284:8285" ph="&quot;;" />
+                <marker date="1515421511132" expanded="false" signature="8307:8315" ph="text = " />
+                <marker date="1515421511132" expanded="false" signature="8321:8322" ph="" />
+                <marker date="1515421511132" expanded="false" signature="8397:8405" ph="val" />
+                <marker date="1515421511132" expanded="false" signature="8420:8430" ph="" />
+                <marker date="1515421511132" expanded="false" signature="8467:8470" ph="val" />
+                <marker date="1515421511132" expanded="false" signature="8493:8499" ph="val" />
+                <marker date="1515421511132" expanded="false" signature="8504:8519" ph="" />
+                <marker date="1515421511132" expanded="false" signature="8520:8521" ph="" />
+                <marker date="1515421511132" expanded="false" signature="8532:8538" ph="val" />
+                <marker date="1515421511132" expanded="false" signature="8557:8561" ph="$" />
+                <marker date="1515421511132" expanded="false" signature="8562:8563" ph="&quot;;" />
+                <marker date="1515421511132" expanded="false" signature="8585:8593" ph="text = " />
+                <marker date="1515421511132" expanded="false" signature="8599:8600" ph="" />
+                <marker date="1515421511132" expanded="false" signature="8636:8646" ph=" { " />
+                <marker date="1515421511132" expanded="false" signature="8680:8686" ph=" }" />
+                <marker date="1515421511132" expanded="false" signature="8739:8743" ph="val" />
+                <marker date="1515421511132" expanded="false" signature="9122:9125" ph="val" />
+              </folding>
+            </state>
           </provider>
         </entry>
       </file>
@@ -1875,13 +2237,17 @@
       <list>
         <option value="$PROJECT_DIR$/src/main/res/layout/activity_user.xml" />
         <option value="$PROJECT_DIR$/src/main/java/fhku/leanlabapp/UserActivity.java" />
+        <option value="$PROJECT_DIR$/src/main/res/layout/activity_main.xml" />
+        <option value="$PROJECT_DIR$/src/main/java/fhku/leanlabapp/MainActivity.java" />
+        <option value="$PROJECT_DIR$/src/main/java/fhku/leanlabapp/interfaces/database/DbConnection.java" />
       </list>
     </option>
   </component>
   <component name="ProjectFrameBounds">
     <option name="x" value="-9" />
-    <option name="width" value="1427" />
-    <option name="height" value="1309" />
+    <option name="y" value="-9" />
+    <option name="width" value="2418" />
+    <option name="height" value="1318" />
   </component>
   <component name="ProjectView">
     <navigator currentView="AndroidView" proportions="" version="1">
@@ -1972,6 +2338,54 @@
             <PATH_ELEMENT>
               <option name="myItemId" value="leanlabapp" />
               <option name="myItemType" value="com.android.tools.idea.navigator.nodes.android.AndroidPsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="LeanLabApp" />
+              <option name="myItemType" value="com.android.tools.idea.navigator.nodes.AndroidViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="app" />
+              <option name="myItemType" value="com.android.tools.idea.navigator.nodes.android.AndroidModuleNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="java" />
+              <option name="myItemType" value="com.android.tools.idea.navigator.nodes.android.AndroidSourceTypeNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="leanlabapp" />
+              <option name="myItemType" value="com.android.tools.idea.navigator.nodes.android.AndroidPsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="interfaces" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="LeanLabApp" />
+              <option name="myItemType" value="com.android.tools.idea.navigator.nodes.AndroidViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="app" />
+              <option name="myItemType" value="com.android.tools.idea.navigator.nodes.android.AndroidModuleNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="java" />
+              <option name="myItemType" value="com.android.tools.idea.navigator.nodes.android.AndroidSourceTypeNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="leanlabapp" />
+              <option name="myItemType" value="com.android.tools.idea.navigator.nodes.android.AndroidPsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="interfaces" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="database" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
           <PATH>
@@ -2193,13 +2607,13 @@
     <servers />
   </component>
   <component name="ToolWindowManager">
-    <frame x="-9" y="0" width="1427" height="1309" extended-state="0" />
+    <frame x="-9" y="-9" width="2418" height="1318" extended-state="6" />
     <editor active="true" />
     <layout>
       <window_info id="Android Profiler" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="-1" side_tool="false" content_ui="tabs" />
       <window_info id="Build Variants" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="-1" side_tool="true" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="-1" side_tool="true" content_ui="tabs" />
-      <window_info id="Logcat" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.32942238" sideWeight="0.5" order="-1" side_tool="false" content_ui="tabs" />
+      <window_info id="Logcat" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.32676813" sideWeight="0.5" order="-1" side_tool="false" content_ui="tabs" />
       <window_info id="Capture Tool" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="-1" side_tool="false" content_ui="tabs" />
       <window_info id="Designer" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="-1" side_tool="false" content_ui="tabs" />
       <window_info id="TeamCity" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="-1" side_tool="false" content_ui="tabs" />
@@ -2212,24 +2626,51 @@
       <window_info id="Palette&#9;" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="-1" side_tool="false" content_ui="tabs" />
       <window_info id="Image Layers" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="-1" side_tool="false" content_ui="tabs" />
       <window_info id="Capture Analysis" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="-1" side_tool="false" content_ui="tabs" />
-      <window_info id="Preview" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32938564" sideWeight="0.5" order="-1" side_tool="false" content_ui="tabs" />
+      <window_info id="Preview" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.19000854" sideWeight="0.5" order="-1" side_tool="false" content_ui="tabs" />
       <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="false" weight="0.33" sideWeight="0.5" order="-1" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="-1" side_tool="false" content_ui="tabs" />
       <window_info id="Captures" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Gradle Console" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="-1" side_tool="true" content_ui="tabs" />
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.24944486" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.1438941" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="Reviews" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="-1" side_tool="false" content_ui="tabs" />
       <window_info id="Gradle" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="-1" side_tool="false" content_ui="tabs" />
       <window_info id="Theme Preview" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="-1" side_tool="false" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="-1" side_tool="true" content_ui="tabs" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
+      <window_info id="Android Profiler" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
-      <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
+      <window_info id="Build Variants" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="true" content_ui="tabs" />
+      <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
+      <window_info id="Logcat" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.32942238" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="Capture Tool" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
-      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
+      <window_info id="Designer" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="TeamCity" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
+      <window_info id="News Feed" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
+      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="Device File Explorer" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="true" content_ui="tabs" />
+      <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
+      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="Palette&#9;" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="Image Layers" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="Capture Analysis" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
+      <window_info id="Preview" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32938564" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="Captures" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Gradle Console" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.24944486" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Reviews" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
+      <window_info id="Gradle" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="Theme Preview" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="true" content_ui="tabs" />
     </layout>
   </component>
   <component name="VcsContentAnnotationSettings">
@@ -2240,6 +2681,165 @@
     <watches-manager />
   </component>
   <component name="editorHistoryManager">
+    <entry file="file://$PROJECT_DIR$/src/main/java/fhku/leanlabapp/StartActivity.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="312">
+          <caret line="93" column="41" lean-forward="false" selection-start-line="93" selection-start-column="41" selection-end-line="93" selection-end-column="41" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/fhku/leanlabapp/StartActivityAdmin.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-4338">
+          <caret line="29" column="13" lean-forward="false" selection-start-line="29" selection-start-column="13" selection-end-line="29" selection-end-column="13" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/res/layout/activity_user.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="192">
+          <caret line="8" column="31" lean-forward="false" selection-start-line="8" selection-start-column="31" selection-end-line="8" selection-end-column="31" />
+          <folding />
+        </state>
+      </provider>
+      <provider editor-type-id="android-designer2">
+        <state />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/fhku/leanlabapp/MainActivityAdmin.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="288">
+          <caret line="129" column="4" lean-forward="false" selection-start-line="129" selection-start-column="4" selection-end-line="132" selection-end-column="5" />
+          <folding>
+            <element signature="e#2702#2773#1" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/fhku/leanlabapp/UserActivity.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="336">
+          <caret line="28" column="28" lean-forward="false" selection-start-line="28" selection-start-column="28" selection-end-line="28" selection-end-column="28" />
+          <folding>
+            <element signature="e#1139#1210#1" expanded="true" />
+            <marker date="1515418240516" expanded="false" signature="1608:1627" ph="onClickListener = " />
+            <marker date="1515418240516" expanded="false" signature="1627:1719" ph="(v) → {" />
+            <marker date="1515418240516" expanded="true" signature="5135:5136" ph="" />
+            <marker date="1515418240516" expanded="true" signature="5135:5151" ph="{...}" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/res/layout/activity_last.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+      <provider editor-type-id="android-designer2">
+        <state />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/res/layout/activity_last_admin.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="24">
+          <caret line="1" column="0" lean-forward="false" selection-start-line="1" selection-start-column="0" selection-end-line="1" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+      <provider editor-type-id="android-designer2">
+        <state />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/fhku/leanlabapp/LastActivityAdmin.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="120">
+          <caret line="6" column="13" lean-forward="false" selection-start-line="6" selection-start-column="13" selection-end-line="6" selection-end-column="13" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/fhku/leanlabapp/LastActivity.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-768">
+          <caret line="13" column="13" lean-forward="false" selection-start-line="13" selection-start-column="13" selection-end-line="13" selection-end-column="13" />
+          <folding>
+            <marker date="1515418240485" expanded="true" signature="518:1753" ph="{...}" />
+            <marker date="1515418240485" expanded="true" signature="562:563" ph="" />
+            <marker date="1515418240485" expanded="false" signature="572:587" ph="contentView = " />
+            <marker date="1515418240485" expanded="false" signature="609:610" ph="" />
+            <marker date="1515418240485" expanded="true" signature="610:611" ph="" />
+            <marker date="1515418240485" expanded="false" signature="657:665" ph="val" />
+            <marker date="1515418240485" expanded="false" signature="682:692" ph="" />
+            <marker date="1515418240485" expanded="true" signature="716:717" ph="" />
+            <marker date="1515418240485" expanded="false" signature="726:734" ph="val" />
+            <marker date="1515418240485" expanded="false" signature="759:769" ph="" />
+            <marker date="1515418240485" expanded="true" signature="801:802" ph="" />
+            <marker date="1515418240485" expanded="false" signature="811:819" ph="val" />
+            <marker date="1515418240485" expanded="false" signature="840:850" ph="" />
+            <marker date="1515418240485" expanded="true" signature="878:879" ph="" />
+            <marker date="1515418240485" expanded="false" signature="888:894" ph="val" />
+            <marker date="1515418240485" expanded="false" signature="914:922" ph="" />
+            <marker date="1515418240485" expanded="true" signature="955:956" ph="" />
+            <marker date="1515418240485" expanded="false" signature="1007:1015" ph="text = " />
+            <marker date="1515418240485" expanded="false" signature="1022:1026" ph="${" />
+            <marker date="1515418240485" expanded="false" signature="1049:1050" ph="}&quot;" />
+            <marker date="1515418240485" expanded="true" signature="1050:1051" ph="" />
+            <marker date="1515418240485" expanded="false" signature="1078:1086" ph="text = " />
+            <marker date="1515418240485" expanded="false" signature="1094:1098" ph="$" />
+            <marker date="1515418240485" expanded="false" signature="1098:1113" ph="" />
+            <marker date="1515418240485" expanded="false" signature="1124:1125" ph="" />
+            <marker date="1515418240485" expanded="false" signature="1125:1126" ph="&quot;" />
+            <marker date="1515418240485" expanded="true" signature="1126:1127" ph="" />
+            <marker date="1515418240485" expanded="false" signature="1158:1166" ph="text = " />
+            <marker date="1515418240485" expanded="false" signature="1174:1178" ph="${" />
+            <marker date="1515418240485" expanded="false" signature="1213:1214" ph="}&quot;" />
+            <marker date="1515418240485" expanded="true" signature="1214:1215" ph="" />
+            <marker date="1515418240485" expanded="false" signature="1243:1262" ph="onClickListener = " />
+            <marker date="1515418240485" expanded="false" signature="1262:1357" ph="(view) → {" />
+            <marker date="1515418240485" expanded="false" signature="1374:1380" ph="val" />
+            <marker date="1515418240485" expanded="false" signature="1401:1424" ph="applicationContext" />
+            <marker date="1515418240485" expanded="true" signature="1446:1447" ph="" />
+            <marker date="1515418240485" expanded="true" signature="1485:1486" ph="" />
+            <marker date="1515418240485" expanded="false" signature="1495:1510" ph="}" />
+            <marker date="1515418240485" expanded="false" signature="1510:1511" ph="" />
+            <marker date="1515418240485" expanded="true" signature="1511:1512" ph="" />
+            <marker date="1515418240485" expanded="true" signature="1527:1746" ph="//..." />
+            <marker date="1515418240485" expanded="true" signature="1801:1980" ph="{...}" />
+            <marker date="1515418240485" expanded="false" signature="1812:1818" ph="val" />
+            <marker date="1515418240485" expanded="true" signature="1833:1834" ph="" />
+            <marker date="1515418240485" expanded="true" signature="1860:1864" ph=" + " />
+            <marker date="1515418240485" expanded="true" signature="1865:1866" ph="" />
+            <marker date="1515418240485" expanded="false" signature="1876:1879" ph="val" />
+            <marker date="1515418240485" expanded="false" signature="1887:1892" ph="" />
+            <marker date="1515418240485" expanded="true" signature="1903:1904" ph="" />
+            <marker date="1515418240485" expanded="false" signature="1914:1920" ph="val" />
+            <marker date="1515418240485" expanded="false" signature="1929:1944" ph="" />
+            <marker date="1515418240485" expanded="false" signature="1948:1949" ph="" />
+            <marker date="1515418240485" expanded="true" signature="1949:1950" ph="" />
+            <marker date="1515418240485" expanded="true" signature="1972:1973" ph="" />
+            <marker date="1515418240485" expanded="true" signature="2040:2173" ph="{...}" />
+            <marker date="1515418240485" expanded="false" signature="2051:2054" ph="val" />
+            <marker date="1515418240485" expanded="true" signature="2090:2091" ph="" />
+            <marker date="1515418240485" expanded="false" signature="2101:2107" ph="val" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/res/layout/dialog.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="264">
+          <caret line="11" column="29" lean-forward="false" selection-start-line="11" selection-start-column="29" selection-end-line="11" selection-end-column="29" />
+          <folding />
+        </state>
+      </provider>
+      <provider editor-type-id="android-designer2">
+        <state />
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/fhku/leanlabapp/StartActivity.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="312">
@@ -2270,7 +2870,7 @@
     <entry file="file://$PROJECT_DIR$/src/main/java/fhku/leanlabapp/MainActivityAdmin.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="288">
-          <caret line="129" column="4" lean-forward="true" selection-start-line="129" selection-start-column="4" selection-end-line="132" selection-end-column="5" />
+          <caret line="129" column="4" lean-forward="false" selection-start-line="129" selection-start-column="4" selection-end-line="132" selection-end-column="5" />
           <folding>
             <element signature="e#2702#2773#1" expanded="true" />
           </folding>
@@ -2279,10 +2879,343 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/fhku/leanlabapp/UserActivity.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1512">
-          <caret line="83" column="5" lean-forward="false" selection-start-line="83" selection-start-column="5" selection-end-line="83" selection-end-column="5" />
+        <state relative-caret-position="336">
+          <caret line="28" column="28" lean-forward="false" selection-start-line="28" selection-start-column="28" selection-end-line="28" selection-end-column="28" />
           <folding>
             <element signature="e#1139#1210#1" expanded="true" />
+            <marker date="1515418240516" expanded="false" signature="1608:1627" ph="onClickListener = " />
+            <marker date="1515418240516" expanded="false" signature="1627:1719" ph="(v) → {" />
+            <marker date="1515418240516" expanded="true" signature="5135:5136" ph="" />
+            <marker date="1515418240516" expanded="true" signature="5135:5151" ph="{...}" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/res/layout/activity_main_admin.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+      <provider editor-type-id="android-designer2">
+        <state />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/fhku/leanlabapp/StartActivity.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="312">
+          <caret line="93" column="41" lean-forward="true" selection-start-line="93" selection-start-column="41" selection-end-line="93" selection-end-column="41" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/fhku/leanlabapp/StartActivityAdmin.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-4338">
+          <caret line="29" column="13" lean-forward="false" selection-start-line="29" selection-start-column="13" selection-end-line="29" selection-end-column="13" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/res/layout/activity_user.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="192">
+          <caret line="8" column="31" lean-forward="false" selection-start-line="8" selection-start-column="31" selection-end-line="8" selection-end-column="31" />
+          <folding />
+        </state>
+      </provider>
+      <provider editor-type-id="android-designer2">
+        <state />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/fhku/leanlabapp/MainActivityAdmin.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="288">
+          <caret line="129" column="4" lean-forward="false" selection-start-line="129" selection-start-column="4" selection-end-line="132" selection-end-column="5" />
+          <folding>
+            <element signature="e#2702#2773#1" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/fhku/leanlabapp/UserActivity.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="336">
+          <caret line="28" column="28" lean-forward="false" selection-start-line="28" selection-start-column="28" selection-end-line="28" selection-end-column="28" />
+          <folding>
+            <element signature="e#1139#1210#1" expanded="true" />
+            <marker date="1515418240516" expanded="false" signature="1608:1627" ph="onClickListener = " />
+            <marker date="1515418240516" expanded="false" signature="1627:1719" ph="(v) → {" />
+            <marker date="1515418240516" expanded="true" signature="5135:5136" ph="" />
+            <marker date="1515418240516" expanded="true" signature="5135:5151" ph="{...}" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/res/layout/activity_main.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="409">
+          <caret line="66" column="16" lean-forward="false" selection-start-line="66" selection-start-column="16" selection-end-line="66" selection-end-column="16" />
+          <folding />
+        </state>
+      </provider>
+      <provider editor-type-id="android-designer2">
+        <state />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/fhku/leanlabapp/interfaces/database/DbConnection.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="351">
+          <caret line="342" column="24" lean-forward="false" selection-start-line="342" selection-start-column="24" selection-end-line="342" selection-end-column="24" />
+          <folding>
+            <element signature="e#6286#6315#1" expanded="true" />
+            <element signature="e#6443#6492#0" expanded="true" />
+            <element signature="e#6708#6777#0" expanded="true" />
+            <element signature="e#6708#6724#0" expanded="true" />
+            <element signature="e#6708#6777#0" expanded="true" />
+            <element signature="e#6708#6777#0" expanded="true" />
+            <element signature="e#6708#6777#0" expanded="true" />
+            <element signature="e#7011#7052#0" expanded="true" />
+            <element signature="e#7011#7052#0" expanded="true" />
+            <element signature="e#7264#7280#1" expanded="true" />
+            <element signature="e#7289#7319#1" expanded="true" />
+            <element signature="e#7334#7350#0" expanded="true" />
+            <element signature="e#7438#7458#0" expanded="true" />
+            <element signature="e#7438#7458#0" expanded="true" />
+            <element signature="e#7462#7481#0" expanded="true" />
+            <element signature="e#7638#7688#0" expanded="true" />
+            <element signature="e#7638#7688#0" expanded="true" />
+            <element signature="e#7638#7688#0" expanded="true" />
+            <element signature="e#7638#7688#0" expanded="true" />
+            <element signature="e#8152#8215#1" expanded="true" />
+            <element signature="e#8224#8490#1" expanded="true" />
+            <element signature="e#8252#8489#0" expanded="true" />
+            <element signature="e#8488#8489#0" expanded="true" />
+            <element signature="e#8500#8550#1" expanded="true" />
+            <element signature="e#8673#8694#1" expanded="true" />
+            <element signature="e#8824#9049#1" expanded="true" />
+            <element signature="e#9114#9454#0" expanded="true" />
+            <element signature="e#9453#9454#0" expanded="true" />
+            <element signature="e#9872#9894#0" expanded="true" />
+            <element signature="e#9872#9894#0" expanded="true" />
+            <element signature="e#9872#9894#0" expanded="true" />
+            <element signature="e#9898#9919#0" expanded="true" />
+            <element signature="e#9898#9919#0" expanded="true" />
+            <element signature="e#9898#9919#0" expanded="true" />
+            <element signature="e#9997#10012#1" expanded="true" />
+            <element signature="e#10021#10044#1" expanded="true" />
+            <element signature="e#10221#10255#1" expanded="true" />
+            <element signature="e#10305#10331#0" expanded="true" />
+            <element signature="e#10305#10331#0" expanded="true" />
+            <element signature="e#10363#10403#0" expanded="true" />
+            <element signature="e#10421#10465#0" expanded="true" />
+            <element signature="e#10421#10465#0" expanded="true" />
+            <element signature="e#10520#10565#0" expanded="true" />
+            <element signature="e#10543#10564#0" expanded="true" />
+            <element signature="e#10543#10564#0" expanded="true" />
+            <element signature="e#10520#10565#0" expanded="true" />
+            <element signature="e#10725#10760#0" expanded="true" />
+            <element signature="e#10725#10760#0" expanded="true" />
+            <element signature="e#10826#10854#0" expanded="true" />
+            <element signature="e#10982#10999#1" expanded="true" />
+            <element signature="e#11016#11091#1" expanded="true" />
+            <element signature="e#11062#11089#0" expanded="true" />
+            <element signature="e#11108#11156#1" expanded="true" />
+            <element signature="e#11235#11274#1" expanded="true" />
+            <element signature="e#11356#11378#0" expanded="true" />
+            <element signature="e#11366#11377#0" expanded="true" />
+            <element signature="e#11366#11377#0" expanded="true" />
+            <element signature="e#11356#11378#0" expanded="true" />
+            <element signature="e#11640#11688#0" expanded="true" />
+            <element signature="e#11660#11688#0" expanded="true" />
+            <element signature="e#11640#11688#0" expanded="true" />
+            <element signature="e#11733#11787#0" expanded="true" />
+            <element signature="e#11756#11787#0" expanded="true" />
+            <element signature="e#11733#11787#0" expanded="true" />
+            <element signature="e#11832#11863#0" expanded="true" />
+            <element signature="e#11832#11863#0" expanded="true" />
+            <element signature="e#13116#13206#0" expanded="true" />
+            <element signature="e#13116#13206#0" expanded="true" />
+            <element signature="e#13637#13664#0" expanded="true" />
+            <element signature="e#13637#13664#0" expanded="true" />
+            <element signature="e#13683#13757#1" expanded="true" />
+            <element signature="e#13715#13756#0" expanded="true" />
+            <element signature="e#13774#13809#0" expanded="true" />
+            <element signature="e#13774#13809#0" expanded="true" />
+            <element signature="e#13827#13871#0" expanded="true" />
+            <element signature="e#13827#13871#0" expanded="true" />
+            <element signature="e#14229#14274#0" expanded="true" />
+            <element signature="e#14252#14273#0" expanded="true" />
+            <element signature="e#14252#14273#0" expanded="true" />
+            <element signature="e#14229#14274#0" expanded="true" />
+            <element signature="e#14334#14361#0" expanded="true" />
+            <element signature="e#14334#14361#0" expanded="true" />
+            <element signature="e#14380#14457#1" expanded="true" />
+            <element signature="e#14427#14455#0" expanded="true" />
+            <element signature="e#14556#14629#1" expanded="true" />
+            <element signature="e#14600#14627#0" expanded="true" />
+            <element signature="e#14647#14686#1" expanded="true" />
+            <element signature="e#14708#14729#1" expanded="true" />
+            <element signature="e#14827#14839#0" expanded="true" />
+            <element signature="e#14827#14839#0" expanded="true" />
+            <element signature="e#15034#15082#0" expanded="true" />
+            <element signature="e#15054#15082#0" expanded="true" />
+            <element signature="e#15034#15082#0" expanded="true" />
+            <element signature="e#15128#15182#0" expanded="true" />
+            <element signature="e#15151#15182#0" expanded="true" />
+            <element signature="e#15128#15182#0" expanded="true" />
+            <element signature="e#15228#15259#0" expanded="true" />
+            <element signature="e#15228#15259#0" expanded="true" />
+            <element signature="e#15402#15492#0" expanded="true" />
+            <element signature="e#15402#15492#0" expanded="true" />
+            <element signature="e#16205#16279#1" expanded="true" />
+            <element signature="e#16259#16277#0" expanded="true" />
+            <element signature="e#16292#16328#0" expanded="true" />
+            <element signature="e#16292#16328#0" expanded="true" />
+            <element signature="e#16342#16383#0" expanded="true" />
+            <element signature="e#16342#16383#0" expanded="true" />
+            <element signature="e#16397#16481#1" expanded="true" />
+            <element signature="e#16423#16478#0" expanded="true" />
+            <element signature="e#16423#16478#0" expanded="true" />
+            <element signature="e#16423#16478#0" expanded="true" />
+            <element signature="e#16494#16522#0" expanded="true" />
+            <element signature="e#16494#16522#0" expanded="true" />
+            <element signature="e#16727#16811#1" expanded="true" />
+            <element signature="e#16753#16808#0" expanded="true" />
+            <element signature="e#16753#16808#0" expanded="true" />
+            <element signature="e#16753#16808#0" expanded="true" />
+            <element signature="e#16824#16852#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/fhku/leanlabapp/MainActivity.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="552">
+          <caret line="159" column="72" lean-forward="false" selection-start-line="159" selection-start-column="72" selection-end-line="159" selection-end-column="72" />
+          <folding>
+            <element signature="e#923#932#0" expanded="true" />
+            <element signature="e#1258#1296#0" expanded="true" />
+            <element signature="e#1258#1296#0" expanded="true" />
+            <element signature="e#1348#1387#0" expanded="true" />
+            <element signature="e#1412#1452#0" expanded="true" />
+            <element signature="e#1463#1518#1" expanded="true" />
+            <element signature="e#1480#1517#0" expanded="true" />
+            <element signature="e#1528#1588#1" expanded="true" />
+            <element signature="e#1551#1587#0" expanded="true" />
+            <element signature="e#1598#1658#1" expanded="true" />
+            <element signature="e#1621#1657#0" expanded="true" />
+            <element signature="e#1668#1742#1" expanded="true" />
+            <element signature="e#1696#1741#0" expanded="true" />
+            <element signature="e#1752#1826#1" expanded="true" />
+            <element signature="e#1783#1825#0" expanded="true" />
+            <element signature="e#1835#1875#0" expanded="true" />
+            <element signature="e#1835#1875#0" expanded="true" />
+            <element signature="e#1886#1964#1" expanded="true" />
+            <element signature="e#1923#1963#0" expanded="true" />
+            <element signature="e#1974#2038#1" expanded="true" />
+            <element signature="e#2001#2037#0" expanded="true" />
+            <element signature="e#2048#2068#0" expanded="true" />
+            <element signature="e#2048#2068#0" expanded="true" />
+            <element signature="e#2079#2096#0" expanded="true" />
+            <element signature="e#2079#2096#0" expanded="true" />
+            <element signature="e#2151#3556#0" expanded="true" />
+            <element signature="e#2184#3555#0" expanded="true" />
+            <element signature="e#3554#3555#0" expanded="true" />
+            <element signature="e#2151#3556#0" expanded="true" />
+            <element signature="e#3567#4178#0" expanded="true" />
+            <element signature="e#3597#4177#0" expanded="true" />
+            <element signature="e#4176#4177#0" expanded="true" />
+            <element signature="e#3567#4178#0" expanded="true" />
+            <element signature="e#4196#4224#1" expanded="true" />
+            <element signature="e#4212#4223#0" expanded="true" />
+            <element signature="e#4235#4285#1" expanded="true" />
+            <element signature="e#4294#4344#1" expanded="true" />
+            <element signature="e#4353#4411#1" expanded="true" />
+            <element signature="e#4420#4478#1" expanded="true" />
+            <element signature="e#4488#4536#1" expanded="true" />
+            <element signature="e#4545#4593#1" expanded="true" />
+            <element signature="e#4603#4631#0" expanded="true" />
+            <element signature="e#4603#4631#0" expanded="true" />
+            <element signature="e#4641#4669#0" expanded="true" />
+            <element signature="e#4641#4669#0" expanded="true" />
+            <element signature="e#4715#4745#0" expanded="true" />
+            <element signature="e#4715#4745#0" expanded="true" />
+            <element signature="e#4715#4745#0" expanded="true" />
+            <element signature="e#4715#4745#0" expanded="true" />
+            <element signature="e#4795#4825#0" expanded="true" />
+            <element signature="e#4795#4825#0" expanded="true" />
+            <element signature="e#4795#4825#0" expanded="true" />
+            <element signature="e#4795#4825#0" expanded="true" />
+            <marker date="1515421511132" expanded="false" signature="6937:6947" ph=" { " />
+            <marker date="1515421511132" expanded="false" signature="6958:6964" ph=" }" />
+            <marker date="1515421511132" expanded="false" signature="6998:7008" ph=" { " />
+            <marker date="1515421511132" expanded="false" signature="7019:7025" ph=" }" />
+            <marker date="1515421511132" expanded="false" signature="7059:7069" ph=" { " />
+            <marker date="1515421511132" expanded="false" signature="7080:7086" ph=" }" />
+            <marker date="1515421511132" expanded="false" signature="7147:7157" ph=" { " />
+            <marker date="1515421511132" expanded="false" signature="7176:7182" ph=" }" />
+            <marker date="1515421511132" expanded="false" signature="7246:7267" ph="val" />
+            <marker date="1515421511132" expanded="false" signature="7276:7293" ph="[]" />
+            <marker date="1515421511132" expanded="false" signature="7304:7313" ph="val" />
+            <marker date="1515421511132" expanded="false" signature="7361:7374" ph="contentID = " />
+            <marker date="1515421511132" expanded="false" signature="7375:7376" ph="" />
+            <marker date="1515421511132" expanded="false" signature="7396:7411" ph="contenttext = " />
+            <marker date="1515421511132" expanded="false" signature="7420:7421" ph="" />
+            <marker date="1515421511132" expanded="false" signature="7441:7450" ph="typID = " />
+            <marker date="1515421511132" expanded="false" signature="7451:7452" ph="" />
+            <marker date="1515421511132" expanded="false" signature="7472:7485" ph="wokstepID = " />
+            <marker date="1515421511132" expanded="false" signature="7486:7487" ph="" />
+            <marker date="1515421511132" expanded="false" signature="7498:7507" ph="val" />
+            <marker date="1515421511132" expanded="false" signature="7557:7570" ph="contentID = " />
+            <marker date="1515421511132" expanded="false" signature="7571:7572" ph="" />
+            <marker date="1515421511132" expanded="false" signature="7593:7606" ph="wokstepID = " />
+            <marker date="1515421511132" expanded="false" signature="7607:7608" ph="" />
+            <marker date="1515421511132" expanded="false" signature="7629:7638" ph="typID = " />
+            <marker date="1515421511132" expanded="false" signature="7639:7640" ph="" />
+            <marker date="1515421511132" expanded="false" signature="7661:7676" ph="contenttext = " />
+            <marker date="1515421511132" expanded="false" signature="7685:7686" ph="" />
+            <marker date="1515421511132" expanded="false" signature="7697:7706" ph="val" />
+            <marker date="1515421511132" expanded="false" signature="7756:7771" ph="contenttext = " />
+            <marker date="1515421511132" expanded="false" signature="7780:7781" ph="" />
+            <marker date="1515421511132" expanded="false" signature="7802:7811" ph="typID = " />
+            <marker date="1515421511132" expanded="false" signature="7812:7813" ph="" />
+            <marker date="1515421511132" expanded="false" signature="7834:7847" ph="contentID = " />
+            <marker date="1515421511132" expanded="false" signature="7848:7849" ph="" />
+            <marker date="1515421511132" expanded="false" signature="7870:7883" ph="wokstepID = " />
+            <marker date="1515421511132" expanded="false" signature="7884:7885" ph="" />
+            <marker date="1515421511132" expanded="false" signature="7901:7906" ph=" += " />
+            <marker date="1515421511132" expanded="false" signature="7915:7916" ph="" />
+            <marker date="1515421511132" expanded="false" signature="7931:7936" ph=" += " />
+            <marker date="1515421511132" expanded="false" signature="7946:7947" ph="" />
+            <marker date="1515421511132" expanded="false" signature="7962:7967" ph=" += " />
+            <marker date="1515421511132" expanded="false" signature="7977:7978" ph="" />
+            <marker date="1515421511132" expanded="false" signature="8138:8146" ph="val" />
+            <marker date="1515421511132" expanded="false" signature="8161:8171" ph="" />
+            <marker date="1515421511132" expanded="false" signature="8212:8218" ph="val" />
+            <marker date="1515421511132" expanded="false" signature="8223:8238" ph="" />
+            <marker date="1515421511132" expanded="false" signature="8242:8243" ph="" />
+            <marker date="1515421511132" expanded="false" signature="8254:8260" ph="val" />
+            <marker date="1515421511132" expanded="false" signature="8279:8283" ph="$" />
+            <marker date="1515421511132" expanded="false" signature="8284:8285" ph="&quot;;" />
+            <marker date="1515421511132" expanded="false" signature="8307:8315" ph="text = " />
+            <marker date="1515421511132" expanded="false" signature="8321:8322" ph="" />
+            <marker date="1515421511132" expanded="false" signature="8397:8405" ph="val" />
+            <marker date="1515421511132" expanded="false" signature="8420:8430" ph="" />
+            <marker date="1515421511132" expanded="false" signature="8467:8470" ph="val" />
+            <marker date="1515421511132" expanded="false" signature="8493:8499" ph="val" />
+            <marker date="1515421511132" expanded="false" signature="8504:8519" ph="" />
+            <marker date="1515421511132" expanded="false" signature="8520:8521" ph="" />
+            <marker date="1515421511132" expanded="false" signature="8532:8538" ph="val" />
+            <marker date="1515421511132" expanded="false" signature="8557:8561" ph="$" />
+            <marker date="1515421511132" expanded="false" signature="8562:8563" ph="&quot;;" />
+            <marker date="1515421511132" expanded="false" signature="8585:8593" ph="text = " />
+            <marker date="1515421511132" expanded="false" signature="8599:8600" ph="" />
+            <marker date="1515421511132" expanded="false" signature="8636:8646" ph=" { " />
+            <marker date="1515421511132" expanded="false" signature="8680:8686" ph=" }" />
+            <marker date="1515421511132" expanded="false" signature="8739:8743" ph="val" />
+            <marker date="1515421511132" expanded="false" signature="9122:9125" ph="val" />
           </folding>
         </state>
       </provider>

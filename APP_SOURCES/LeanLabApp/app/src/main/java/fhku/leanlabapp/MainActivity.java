@@ -30,6 +30,7 @@ public class MainActivity extends AppCompatActivity {
     long begintime = getTime();
 
     VideoView video;
+    ImageView picture;
 
     final int timePerWorkstep = 60;
     Context context;
@@ -47,6 +48,7 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
         this.context = this;
         this.video = (VideoView) findViewById(R.id.btnVideo);
+        this.picture = (ImageView) findViewById(R.id.btnCamera);
 
         TextView view1 = (TextView)findViewById(R.id.edittext);
 
@@ -155,6 +157,7 @@ public class MainActivity extends AppCompatActivity {
         viewstation.setText(station);
 
         DbConnection.loadVideo(this.video, productid+"_"+stationid+".mp4");
+        DbConnection.loadPicture(this.picture, productid+"_"+stationid+".JPG");
 
 
 
