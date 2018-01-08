@@ -3,11 +3,15 @@ package fhku.leanlabapp.interfaces.database;
 
 import android.content.Context;
 import android.content.DialogInterface;
+import android.net.Uri;
 import android.os.AsyncTask;
 import android.os.Looper;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.util.Log;
+import android.widget.MediaController;
+import android.widget.VideoView;
+
 import java.io.BufferedReader;
 import java.io.DataInputStream;
 import java.io.DataOutputStream;
@@ -313,6 +317,23 @@ public class DbConnection  {
             return null;
         }
         return str.replace("'", "''");
+    }
+
+    public static void loadVideo(VideoView video, String link){
+        try {
+            MediaController mediaController = new MediaController(video.getContext());
+            mediaController.setAnchorView(video);
+            video.setMediaController(mediaController);
+            Uri videolink = Uri.parse(link);
+            video.setVideoURI(videolink);
+            video.start();
+        }catch (Exception e){
+            e.printStackTrace();
+        }
+
+
+
+
     }
 
 }

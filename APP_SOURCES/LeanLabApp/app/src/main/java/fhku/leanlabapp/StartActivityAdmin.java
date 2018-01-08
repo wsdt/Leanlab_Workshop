@@ -104,13 +104,6 @@ public class StartActivityAdmin extends AppCompatActivity implements View.OnClic
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_start_admin);
 
-
-
-
-
-
-
-
         Button buttonAdmin = (Button) findViewById(R.id.admin);
         Button buttonEdit = (Button) findViewById(R.id.edit);
         Button buttonAdd = (Button) findViewById(R.id.add);
@@ -175,21 +168,15 @@ public class StartActivityAdmin extends AppCompatActivity implements View.OnClic
                     public void onClick(DialogInterface dialog, int id) {
 
 
-                        //saveProduct(1,productname.getText().toString());
-                        //saveStation(1,stationname.getText().toString());
+                        saveProduct(productname.getText().toString());
+                        saveStation(stationname.getText().toString());
 
 
                         String nameProduct = productname.getText().toString();
                         String nameStation = stationname.getText().toString();
                         Log.i("DDDDDDDProduktName", nameProduct+ "  " + nameStation);
-
-
-
-
-
-
-
-
+                        Toast.makeText(getApplicationContext(), "Das Produkt: " + nameProduct + " wurde hinzugefügt", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(getApplicationContext(), "Die Station: " + nameStation + " wurde hinzugefügt", Toast.LENGTH_SHORT).show();
                         // Code für Überprüfung der Station und Produkt auf bereits bestehende Produkte/Stationen
                         // Speicherung von Produkt und Station in den Spinner
 
@@ -233,17 +220,17 @@ public class StartActivityAdmin extends AppCompatActivity implements View.OnClic
 
     }
 
-    private void saveProduct(int productId, String productName) {
+    private void saveProduct( String productName) {
         try {
-            DbConnection.sendRequestForResult_ASYNC(new String[]{"sql_statement=UPDATE Product set Productname='" + productName + "' WHERE ProductID=" + productId + ";"}, "post", false, this);
+            DbConnection.sendRequestForResult_ASYNC(new String[]{"sql_statement=INSERT INTO Product (Productname) VALUES ('" + productName + "');"}, "post", false, this);
         } catch (Exception e) {
             e.printStackTrace();
         }
     }
 
-    private void saveStation(int stationId, String stationName) {
+    private void saveStation( String stationName) {
         try {
-            DbConnection.sendRequestForResult_ASYNC(new String[]{"sql_statement=UPDATE Product set Stationname='" + stationName + "' WHERE StationID=" + stationId+ ";"}, "post", false, this);
+            DbConnection.sendRequestForResult_ASYNC(new String[]{"sql_statement=INSERT INTO Station (Stationname) VALUES ('" + stationName +"');"}, "post", false, this);
         } catch (Exception e) {
             e.printStackTrace();
         }

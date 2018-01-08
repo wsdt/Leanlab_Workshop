@@ -222,6 +222,18 @@ public class MainActivity extends AppCompatActivity {
 
     }
 
+    private String getVideoScr(){
+        return " ";
+    }
+
+    private String getImageScr(){
+        return " ";
+    }
+
+    private String getHtmlText(){
+        return " ";
+    }
+
     private int checkLengthList (ArrayList<JoinQuery> list){
         return list.size();
     }
