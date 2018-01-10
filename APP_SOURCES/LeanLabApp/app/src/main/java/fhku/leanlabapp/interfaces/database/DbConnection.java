@@ -343,15 +343,15 @@ public class DbConnection {
         }
     }
 
-    private static void doesVideoExist() {
+    private static boolean doesVideoExist(String link) {
         try {
             HttpURLConnection.setFollowRedirects(false);
             // note : you may also need
             //        HttpURLConnection.setInstanceFollowRedirects(false)
             HttpURLConnection con =
-                    (HttpURLConnection) new URL(URLName).openConnection();
+                    (HttpURLConnection) new URL("http://192.168.12.115/LeanLabWorking/vid/"+link).openConnection();
             con.setRequestMethod("HEAD");
-            return (con.getResponseCode() == HttpURLConnection.HTTP_OK);
+            return (con.getResponseCode() == HttpURLConnection.HTTP_PARTIAL);
         }
         catch (Exception e) {
             e.printStackTrace();
