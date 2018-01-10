@@ -136,7 +136,8 @@ public class MainActivity extends AppCompatActivity implements LoadImageTask.Lis
 
     @Override
     public void onError() {
-        Toast.makeText(this, "Could not load image. ", Toast.LENGTH_SHORT).show();
+        this.picture.setVisibility(View.GONE);
+        //Toast.makeText(this, "Could not load image. ", Toast.LENGTH_SHORT).show();
         Log.e("onError", "Could not set bitmap");
     }
 
@@ -232,67 +233,17 @@ public class MainActivity extends AppCompatActivity implements LoadImageTask.Lis
                 break;
             }
         }
+        TextView htmltxt = ((TextView) findViewById(R.id.htmltext));
         try {
             Log.d("HTMLTEXT", "Did it");
-            ((TextView) findViewById(R.id.htmltext)).setText(Html.fromHtml(neededRow.getContenttext()));
+            htmltxt.setText(Html.fromHtml(neededRow.getContenttext()));
         } catch (NullPointerException e) {
+            htmltxt.setText(Html.fromHtml("<h2 style='text-align:center;'>No data found</h2>"));
             e.printStackTrace();
         }
     }
 
-    private String getVideoScr() {
-        return " ";
-    }
 
-    private String getImageScr() {
-        return " ";
-    }
-
-    private String getHtmlText() {
-        return " ";
-    }
-
-    private int checkLengthList(ArrayList<JoinQuery> list) {
-        return list.size();
-    }
-
-    private ArrayList<JoinQuery> exampleArraylist() {
-
-        ArrayList<JoinQuery> liste = new ArrayList<>();
-
-        JoinQuery querytest = new JoinQuery();
-        querytest.setContentID(1);
-        querytest.setContenttext("Nummer1");
-        querytest.setTypID(1);
-        querytest.setWokstepID(1);
-
-        JoinQuery querytest1 = new JoinQuery();
-        querytest1.setContentID(2);
-        querytest1.setWokstepID(1);
-        querytest1.setTypID(1);
-        querytest1.setContenttext("Nummer2");
-
-        JoinQuery querytest2 = new JoinQuery();
-        querytest2.setContenttext("Nummer3");
-        querytest2.setTypID(1);
-        querytest2.setContentID(1);
-        querytest2.setWokstepID(1);
-
-        liste.add(querytest);
-        liste.add(querytest1);
-        liste.add(querytest2);
-
-        return liste;
-
-    }
-
-    public void stepForward() {
-
-    }
-
-    private void stepBack() {
-
-    }
 
     public void setCurrentstep(int step) {
 

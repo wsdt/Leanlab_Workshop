@@ -337,30 +337,48 @@ public class DbConnection {
                 video.setMediaController(mediaController);
                 Uri videolink = Uri.parse("http://192.168.12.115/LeanLabWorking/vid/" + link);
                 video.setVideoURI(videolink);
-
                 video.start();
             } catch (Exception e) {
                 e.printStackTrace();
             }
         } else {
-            Log.e("loadVideo","Video not found.");
+            Log.e("loadVideo","Video not found: http://192.168.12.115/LeanLabWorking/vid/"+link);
+            video.setVisibility(View.GONE);
         }
     }
 
-    private static boolean doesVideoExist(String link) {
+    private static boolean doesVideoExist(final String link) {
+        ExecutorService executorService = Executors.newSingleThreadExecutor();
+        Callable<Boolean> callable = new Callable<Boolean>() {
+            @Override
+            public Boolean call() throws Exception {
+                try {
+                    HttpURLConnection.setFollowRedirects(false);
+                    // note : you may also need
+                    //        HttpURLConnection.setInstanceFollowRedirects(false)
+                    HttpURLConnection con =
+                            (HttpURLConnection) new URL("http://192.168.12.115/LeanLabWorking/vid/"+link).openConnection();
+                    con.setRequestMethod("HEAD");
+                    Log.d("doesVideoExist", "Status-Code: "+con.getResponseCode());
+                    return (con.getResponseCode() == HttpURLConnection.HTTP_PARTIAL) || (con.getResponseCode() == HttpsURLConnection.HTTP_OK);
+                }
+                catch (Exception e) {
+                    e.printStackTrace();
+                    return false;
+                }
+            }
+        };
+        Boolean future = null;
         try {
-            HttpURLConnection.setFollowRedirects(false);
-            // note : you may also need
-            //        HttpURLConnection.setInstanceFollowRedirects(false)
-            HttpURLConnection con =
-                    (HttpURLConnection) new URL("http://192.168.12.115/LeanLabWorking/vid/"+link).openConnection();
-            con.setRequestMethod("HEAD");
-            return (con.getResponseCode() == HttpURLConnection.HTTP_PARTIAL);
-        }
-        catch (Exception e) {
+            future = executorService.submit(callable).get();
+        } catch (InterruptedException e) {
             e.printStackTrace();
-            return false;
+        } catch (ExecutionException e) {
+            e.printStackTrace();
         }
+        executorService.shutdown();
+        Log.e("doesVideoExist","BOOLEAN: "+((future == null) ? "null" : future.toString()));
+        return future;
     }
 
 }
