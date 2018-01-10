@@ -12,8 +12,10 @@ import android.os.Looper;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.util.Log;
+import android.view.View;
 import android.widget.ImageView;
 import android.widget.MediaController;
+import android.widget.Toast;
 import android.widget.VideoView;
 
 import java.io.BufferedReader;
@@ -334,6 +336,7 @@ public class DbConnection {
             video.setMediaController(mediaController);
             Uri videolink = Uri.parse("http://192.168.12.115/LeanLabWorking/vid/" + link);
             video.setVideoURI(videolink);
+
             video.start();
         } catch (Exception e) {
             e.printStackTrace();
@@ -345,41 +348,5 @@ public class DbConnection {
     public static void loadPicture(final ImageView image, final String link) {
 
 
-        class DownloadImage extends AsyncTask<String, Void, Bitmap> {
-
-            @Override
-            protected Bitmap doInBackground(String... strings) {
-                Bitmap bmImg = null;
-                try {
-                    URL imagelink = new URL("http://192.168.12.115/Leanlabworking/img/" + link);
-                    //image.setImageURI(imagelink);
-                    //image.setImageBitmap(BitmapFactory.decodeStream(image.getContext().getContentResolver().openInputStream(imagelink)));
-
-                    HttpURLConnection conn = (HttpURLConnection) imagelink.openConnection();
-                    conn.setDoInput(true);
-                    conn.connect();
-
-                    InputStream is = conn.getInputStream();
-
-                    bmImg = BitmapFactory.decodeStream(is);
-                    // it will decode the input stream and will load the bitmat in bmImg variable
-
-                    image.setImageBitmap(bmImg);
-
-
-                } catch (Exception e) {
-                    e.printStackTrace();
-                }
-                return bmImg;
-            }
-
-            @Override
-            protected void onPostExecute(Bitmap bitmap) {
-                image.setImageBitmap(bitmap);
-            }
-        }
-
-
     }
-
 }

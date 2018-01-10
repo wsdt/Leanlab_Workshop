@@ -2,6 +2,7 @@ package fhku.leanlabapp;
 
 import android.content.Context;
 import android.content.Intent;
+import android.graphics.Bitmap;
 import android.graphics.Paint;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
@@ -20,10 +21,12 @@ import fhku.leanlabapp.classes.JoinQuery;
 import fhku.leanlabapp.classes.Product;
 import fhku.leanlabapp.classes.User;
 import fhku.leanlabapp.interfaces.database.DbConnection;
+import fhku.leanlabapp.interfaces.database.LoadImageTask;
+
 import static fhku.leanlabapp.classes.JoinQuery.Loaded_JoinQuerys;
 
 
-public class MainActivity extends AppCompatActivity {
+public class MainActivity extends AppCompatActivity implements LoadImageTask.Listener {
 
     int step = 1;
     ArrayList<JoinQuery> liste = exampleArraylist();
@@ -234,8 +237,25 @@ public class MainActivity extends AppCompatActivity {
 
     private void setImageScr(int workstepid){
 
-        DbConnection.loadPicture(this.picture, workstepid+".JPG");
+        loadImage(workstepid+".JPG");
 
+    }
+
+    @Override
+    public void onImageLoaded(Bitmap bitmap) {
+        picture.setImageBitmap(bitmap);
+        Log.d("onImageLoaded", "Set bitmap.");
+    }
+
+    @Override
+    public void onError() {
+        Toast.makeText(this, "Could not load image. ", Toast.LENGTH_SHORT).show();
+        Log.e("onError", "Could not set bitmap");
+    }
+
+    public void loadImage(String url) {
+        LoadImageTask lIt= new LoadImageTask(this);
+        lIt.execute(url);
     }
 
 
