@@ -3,24 +3,31 @@ package fhku.leanlabapp.interfaces.database;
 
 import android.content.Context;
 import android.content.DialogInterface;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
+import android.graphics.drawable.Drawable;
 import android.net.Uri;
 import android.os.AsyncTask;
 import android.os.Looper;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.util.Log;
+import android.view.View;
 import android.widget.ImageView;
 import android.widget.MediaController;
+import android.widget.Toast;
 import android.widget.VideoView;
 
 import java.io.BufferedReader;
 import java.io.DataInputStream;
 import java.io.DataOutputStream;
 import java.io.IOException;
+import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.io.OutputStreamWriter;
 import java.io.UnsupportedEncodingException;
 import java.net.HttpURLConnection;
+import java.net.MalformedURLException;
 import java.net.SocketTimeoutException;
 import java.net.URL;
 import java.net.URLEncoder;
@@ -33,8 +40,10 @@ import java.util.concurrent.TimeUnit;
 import java.util.concurrent.TimeoutException;
 
 import javax.net.ssl.HttpsURLConnection;
+
 import fhku.leanlabapp.R;
 import fhku.leanlabapp.interfaces.Dialog;
+import jp.wasabeef.richeditor.Utils;
 
 /*********************************************************************************
  HOW-TO-USE:
@@ -111,7 +120,7 @@ import fhku.leanlabapp.interfaces.Dialog;
 
 //https://stackoverflow.com/questions/1812891/java-escape-string-to-prevent-sql-injection
 
-public class DbConnection  {
+public class DbConnection {
     //IMPORTANT: DO NOT ADD HTTP OR HTTPS INTO THAT VARIABLE!
     //DEBUG_PURPOSES:
     //private static final String WEBSERVICE_PHP = "leanlab.web.fh-kufstein.ac.at/db_connection.php";
@@ -178,18 +187,18 @@ public class DbConnection  {
 
         String result = null;
         try {
-            result = future.get(TIMEOUT_SOCKET,TimeUnit.MILLISECONDS);
+            result = future.get(TIMEOUT_SOCKET, TimeUnit.MILLISECONDS);
         } catch (Exception e) {
-            Dialog noConnection = Dialog.createDialog(CONTEXT,"Connection failed","Please connect to the WiFi 'FH_LEANLAB' to access this application.\n\nPlease try to reconnect with your WLAN.", R.drawable.fh_kufstein_logo_transparent);
+            Dialog noConnection = Dialog.createDialog(CONTEXT, "Connection failed", "Please connect to the WiFi 'FH_LEANLAB' to access this application.\n\nPlease try to reconnect with your WLAN.", R.drawable.fh_kufstein_logo_transparent);
             noConnection.setPositiveButton(android.R.string.ok, new DialogInterface.OnClickListener() {
                 @Override
                 public void onClick(DialogInterface dialog, int which) {
-                    Log.i("sendRequestFR_Async","Timeout Dialog was confirmed with OK.");
+                    Log.i("sendRequestFR_Async", "Timeout Dialog was confirmed with OK.");
                     android.os.Process.killProcess(android.os.Process.myPid());
                 }
             });
             noConnection.show();
-            Log.e("sendRequestFR_Async","Future could not be retrieved.");
+            Log.e("sendRequestFR_Async", "Future could not be retrieved.");
             e.printStackTrace();
         }
         return result;
@@ -258,7 +267,7 @@ public class DbConnection  {
                 }*/
 
                 //If timeout then show message
-                Log.e("sendRequest_HTTP", "Could not establish connection with database. Timeout of "+TIMEOUT_SOCKET+" ms exceeded.");
+                Log.e("sendRequest_HTTP", "Could not establish connection with database. Timeout of " + TIMEOUT_SOCKET + " ms exceeded.");
                 e.printStackTrace();
             } catch (IOException e) {
                 Log.e("sendRequest_HTTP", "Could not send parameters to webservice!");
@@ -301,9 +310,9 @@ public class DbConnection  {
 
             } catch (SocketTimeoutException e) {
                 //If timeout then show message
-                Log.e("sendRequest_HTTPS", "Could not establish connection with database. Timeout of "+TIMEOUT_SOCKET+" ms exceeded.");
+                Log.e("sendRequest_HTTPS", "Could not establish connection with database. Timeout of " + TIMEOUT_SOCKET + " ms exceeded.");
                 e.printStackTrace();
-            }catch (IOException e) {
+            } catch (IOException e) {
                 Log.e("sendRequest_HTTPS", "Could not send parameters to webservice!");
                 e.printStackTrace();
             }
@@ -320,35 +329,56 @@ public class DbConnection  {
         return str.replace("'", "''");
     }
 
-    public static void loadVideo(VideoView video, String link){
-        try {
-            MediaController mediaController = new MediaController(video.getContext());
-            mediaController.setAnchorView(video);
-            video.setMediaController(mediaController);
-            Uri videolink = Uri.parse("http://192.168.12.115/LeanLabWorking/" + "vid/" + link );
-            video.setVideoURI(videolink);
-            video.start();
-        }catch (Exception e){
-            e.printStackTrace();
+    public static void loadVideo(VideoView video, String link) {
+        if (doesVideoExist(link)) {
+            try {
+                MediaController mediaController = new MediaController(video.getContext());
+                mediaController.setAnchorView(video);
+                video.setMediaController(mediaController);
+                Uri videolink = Uri.parse("http://192.168.12.115/LeanLabWorking/vid/" + link);
+                video.setVideoURI(videolink);
+                video.start();
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+        } else {
+            Log.e("loadVideo","Video not found: http://192.168.12.115/LeanLabWorking/vid/"+link);
+            video.setVisibility(View.GONE);
         }
-
-
-
-
     }
 
-    public static void loadPicture(ImageView image, String link){
+    private static boolean doesVideoExist(final String link) {
+        ExecutorService executorService = Executors.newSingleThreadExecutor();
+        Callable<Boolean> callable = new Callable<Boolean>() {
+            @Override
+            public Boolean call() throws Exception {
+                try {
+                    HttpURLConnection.setFollowRedirects(false);
+                    // note : you may also need
+                    //        HttpURLConnection.setInstanceFollowRedirects(false)
+                    HttpURLConnection con =
+                            (HttpURLConnection) new URL("http://192.168.12.115/LeanLabWorking/vid/"+link).openConnection();
+                    con.setRequestMethod("HEAD");
+                    Log.d("doesVideoExist", "Status-Code: "+con.getResponseCode());
+                    return (con.getResponseCode() == HttpURLConnection.HTTP_PARTIAL) || (con.getResponseCode() == HttpsURLConnection.HTTP_OK);
+                }
+                catch (Exception e) {
+                    e.printStackTrace();
+                    return false;
+                }
+            }
+        };
+        Boolean future = null;
         try {
-            Uri imagelink = Uri.parse("http://192.168.12.115/LeanLabWorking/" + "img/" + link );
-            image.setImageURI(imagelink);
-
-        }catch (Exception e){
+            future = executorService.submit(callable).get();
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        } catch (ExecutionException e) {
             e.printStackTrace();
         }
-
-
-
-
+        executorService.shutdown();
+        Log.e("doesVideoExist","BOOLEAN: "+((future == null) ? "null" : future.toString()));
+        return future;
     }
 
 }

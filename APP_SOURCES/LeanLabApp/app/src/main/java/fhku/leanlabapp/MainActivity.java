@@ -2,35 +2,47 @@ package fhku.leanlabapp;
 
 import android.content.Context;
 import android.content.Intent;
+import android.graphics.Bitmap;
 import android.graphics.Paint;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
+import android.text.Html;
 import android.util.Log;
 import android.view.View;
+import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 import android.widget.VideoView;
+
 import org.w3c.dom.Text;
+
 import java.lang.reflect.Array;
 import java.util.ArrayList;
+
 import fhku.leanlabapp.classes.JoinQuery;
 import fhku.leanlabapp.classes.Product;
 import fhku.leanlabapp.classes.User;
 import fhku.leanlabapp.interfaces.database.DbConnection;
+import fhku.leanlabapp.interfaces.database.LoadImageTask;
+
 import static fhku.leanlabapp.classes.JoinQuery.Loaded_JoinQuerys;
 
 
-public class MainActivity extends AppCompatActivity {
+public class MainActivity extends AppCompatActivity implements LoadImageTask.Listener {
 
     int step = 1;
-    ArrayList<JoinQuery> liste = exampleArraylist();
-    final int maxstep = liste.size();
+    //ArrayList<JoinQuery> liste = exampleArraylist();
+    int maxstep;
     long begintime = getTime();
 
     VideoView video;
     ImageView picture;
+
+    int stationid;
+    int productid;
+    ImageButton buttonback;
 
     final int timePerWorkstep = 60;
     Context context;
@@ -44,102 +56,43 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
 
 
-
         setContentView(R.layout.activity_main);
         this.context = this;
         this.video = (VideoView) findViewById(R.id.btnVideo);
         this.picture = (ImageView) findViewById(R.id.btnCamera);
 
-        TextView view1 = (TextView)findViewById(R.id.edittext);
+        TextView view1 = (TextView) findViewById(R.id.edittext);
 
-        TextView viewstation = (TextView)findViewById(R.id.station);
+        TextView viewstation = (TextView) findViewById(R.id.station);
 
-        TextView viewproduct = (TextView)findViewById(R.id.product);
+        TextView viewproduct = (TextView) findViewById(R.id.product);
 
-        ImageButton buttonforward = (ImageButton)findViewById(R.id.imgbtnforward);
+        ImageButton buttonforward = (ImageButton) findViewById(R.id.imgbtnforward);
 
-        final ImageButton buttonback = (ImageButton)findViewById(R.id.imgbtnback);
+        this.buttonback = (ImageButton) findViewById(R.id.imgbtnback);
         buttonback.setVisibility(View.INVISIBLE);
 
-        final TextView textViewCurrentStep = (TextView)findViewById(R.id.currentstep);
+        final TextView textViewCurrentStep = (TextView) findViewById(R.id.currentstep);
 
-        TextView textViewMaxStep = (TextView)findViewById(R.id.maxstep);
+        TextView textViewMaxStep = (TextView) findViewById(R.id.maxstep);
 
         setCurrentstep(step);
 
-        setMaxstep(liste);
 
-        DbConnection.loadVideo(video, "");
 
         buttonforward.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-
-                if (step < maxstep){
-
-                    step = step + 1;
-
-                    buttonback.setVisibility(View.VISIBLE);
-
-                    setCurrentstep(step);
-
-                } else if (step == maxstep) {
-
-                    long endtime = getTime();
-                    long neededTime = endtime - begintime;
-                    long neededTimeSeconds = neededTime / 1000;
-
-                    String time = String.valueOf(neededTimeSeconds);
-                    String time1 = String.valueOf(neededTime);
-
-                    int achievedPoints = (int) calcPoints(neededTimeSeconds);
-                    User.currentUser.setPoints(User.currentUser.getPoints()+achievedPoints);
-                    User.currentUser.updateUser(context);
-
-                    String points1 = String.valueOf(achievedPoints);
-
-                    Toast.makeText(getApplicationContext(), "Millisekunden: " + time1 + " Sekunden: " + time + " Achieved Points: " + points1, Toast.LENGTH_SHORT).show();
-
-                    Intent intent = new Intent(getApplicationContext(), LastActivity.class);
-
-                    intent.putExtra("Punkte", achievedPoints);
-                    finish();
-                    startActivity(intent);
-
-                }
+                validateNextStep();
             }
         });
 
         buttonback.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-
-                if (step > 1) {
-
-                    step = step - 1;
-
-                    setCurrentstep(step);
-
-                    if (step ==1){
-                        buttonback.setVisibility(View.INVISIBLE);
-                    }
-
-
-                } else if (step == 1) {
-
-                    Toast.makeText(getApplicationContext(), "Erster Schritt",Toast.LENGTH_SHORT);
-                    buttonback.setVisibility(View.INVISIBLE);
-
-                }
-
+                validateBeforeStep();
             }
         });
-
-
-
-
-
-
 
 
         Intent intent = getIntent();
@@ -150,152 +103,151 @@ public class MainActivity extends AppCompatActivity {
         String stationidtemp = intent.getStringExtra("stationid");
         String productidtemp = intent.getStringExtra("productid");
 
-        int stationid = Integer.parseInt(stationidtemp);
-        int productid = Integer.parseInt(productidtemp);
+        this.stationid = Integer.parseInt(stationidtemp);
+        this.productid = Integer.parseInt(productidtemp);
 
         viewproduct.setText(product);
         viewstation.setText(station);
 
-        DbConnection.loadVideo(this.video, productid+"_"+stationid+".mp4");
-        DbConnection.loadPicture(this.picture, productid+"_"+stationid+".JPG");
-
-
-
-/*
-
-        //1. Idee wie man es einbinden könnte
-        TextView test = (TextView) findViewById(R.id.edittext);
-        test.setText("sql_statement=SELECT Contenttext FROM Content WHERE TypID = 3;");
-
-        //hard coded, wir brauchen noch die Funkton für die Abfrage von TypID = 1
-        ImageView image = (ImageView) findViewById(R.id.btnCamera);
-        image.setImageResource(R.drawable.fh_kufstein_logo);
-
-
-        //For the video
-        VideoView videoView = (VideoView) findViewById(R.id.btnVideo);
-
-
-
-
-
-
-
-
-
-
-
-    }
-
-
-    public void loadWorksteps(){ Hier wieder entfernen
-
-        try {
-            String sqlstatement = "sql_statement=SELECT * FROM Content WHERE `WorkstepID` = ANY (Select `WorkstepID` From Workstep Join Productionstep ON Workstep.ProductionstepID Where Productionstep.ProductionstepID = Workstep.ProductionstepID AND StationID = 'stationid' AND ProductID = 'productid' );";
-
-            //String sqlstatement1 = "sql_statement=Select * From Productionstep;";
-            //String sqlstatement2 = "sql_statement=Select * From Content;";
-
-            Loaded_JoinQuerys = (new JoinQuery()).MapJsonRowsToObject(DbConnection.sendRequestForResult_ASYNC(
-                    new String[] {sqlstatement}, "get", false,this
-            ));
-            /*
-            Productionstep.Loaded_Productionsteps = (new Productionstep(1).MapJsonRowsToObject(DbConnection.sendRequestForResult_ASYNC(
-                    new String[] {sqlstatement1}, "get", false,this
-            )));
-            Content.Loaded_Contents = (new Content(1).MapJsonRowsToObject(DbConnection.sendRequestForResult_ASYNC(
-                    new String[] {sqlstatement2}, "get", false,this
-            )));
-*/
-
-/*
-        }catch (Exception e){
-            e.printStackTrace();
-        }
-*/
+        DbConnection.loadVideo(this.video, productid + "_" + stationid + ".mp4");
+        setthecontents(1);
     }
 
 
     //oder könnte es so funktionieren? (Anfang)
-    private void setthecontents(){
+    private void setthecontents(int workstepid) {
 
-        setHtmlText();
+        setHtmlText(workstepid);
 
-        setImageScr();
+        setImageScr(workstepid);
 
-        setVideoScr();
-
+        setMaxstep(Loaded_JoinQuerys);
     }
 
-    private void setImageScr(){
-
+    private void setImageScr(int workstepid) {
+            loadImage(this.productid+"_"+this.stationid+"_"+workstepid + ".JPG");
     }
 
-    private void setVideoScr(){
-
+    @Override
+    public void onImageLoaded(Bitmap bitmap) {
+        picture.setImageBitmap(bitmap);
+        Log.d("onImageLoaded", "Set bitmap.");
     }
 
-    private void setHtmlText(){
-
+    @Override
+    public void onError() {
+        this.picture.setVisibility(View.GONE);
+        //Toast.makeText(this, "Could not load image. ", Toast.LENGTH_SHORT).show();
+        Log.e("onError", "Could not set bitmap");
     }
 
-    private String getVideoScr(){
-        return " ";
+    public void loadImage(String url) {
+        LoadImageTask lIt = new LoadImageTask(this);
+        lIt.execute(url);
     }
 
-    private String getImageScr(){
-        return " ";
+    private void validateBeforeStep() {
+        if (step > 1) {
+
+            step = step - 1;
+
+            setCurrentstep(step);
+
+            if (step == 1) {
+                buttonback.setVisibility(View.INVISIBLE);
+            }
+
+
+            setthecontents(step);
+
+        } else if (step == 1) {
+
+            Toast.makeText(getApplicationContext(), "Erster Schritt", Toast.LENGTH_SHORT).show();
+            buttonback.setVisibility(View.INVISIBLE);
+        }
     }
 
-    private String getHtmlText(){
-        return " ";
+
+        private void validateNextStep() {
+        if (step < maxstep) {
+
+            step = step + 1;
+
+            buttonback.setVisibility(View.VISIBLE);
+
+            setCurrentstep(step);
+
+            setthecontents(step);
+
+        } else if (step == maxstep) {
+
+            long endtime = getTime();
+            long neededTime = endtime - begintime;
+            long neededTimeSeconds = neededTime / 1000;
+
+            String time = String.valueOf(neededTimeSeconds);
+            String time1 = String.valueOf(neededTime);
+
+            int achievedPoints = (int) calcPoints(neededTimeSeconds);
+            User.currentUser.setPoints(User.currentUser.getPoints() + achievedPoints);
+            User.currentUser.updateUser(context);
+
+            String points1 = String.valueOf(achievedPoints);
+
+            Toast.makeText(getApplicationContext(), "Millisekunden: " + time1 + " Sekunden: " + time + " Achieved Points: " + points1, Toast.LENGTH_SHORT).show();
+
+            Intent intent = new Intent(getApplicationContext(), LastActivity.class);
+
+            intent.putExtra("Punkte", achievedPoints);
+            finish();
+            startActivity(intent);
+
+        }
     }
 
-    private int checkLengthList (ArrayList<JoinQuery> list){
-        return list.size();
+
+    private void setHtmlText(int workstepid) {
+        //if (JoinQuery.Loaded_JoinQuerys == null) {
+        Log.d("HTMLTEXT", "JoinQueries null!");
+        try {
+            String sqlstatement = "sql_statement=SELECT * FROM Content WHERE WorkstepID = ANY (Select WorkstepID From Workstep Join Productionstep ON Workstep.ProductionstepID Where Productionstep.ProductionstepID = Workstep.ProductionstepID);";
+            Log.d("HTMLTEXT", "SQL: "+sqlstatement);
+            JoinQuery.Loaded_JoinQuerys = (new JoinQuery()).MapJsonRowsToObject(DbConnection.sendRequestForResult_ASYNC(
+                    new String[]{sqlstatement}, "get", false, this
+            ));
+            Log.d("HTMLTEXT", "Loaded Joinqueries");
+        } catch (Exception e) {
+            e.printStackTrace();
+            Log.d("HTMLTEXT", "Failed to load joinqueries.");
+        }
+        //}
+
+        JoinQuery neededRow = new JoinQuery();
+        for (JoinQuery joinQuery : JoinQuery.Loaded_JoinQuerys) {
+            Log.d("HTMLTEXT", "Made iteration: " + joinQuery.getTypID() + " / " + joinQuery.getWokstepID());
+            Log.d("HTMLTEXT", joinQuery.toString());
+            Log.d("HTMLTEXT", "WI: "+workstepid);
+            if (joinQuery.getTypID() == 3 && joinQuery.getWokstepID() == workstepid && joinQuery.getProductID() == this.productid && joinQuery.getStationID() == this.stationid) {
+                neededRow = joinQuery;
+                Log.d("HTMLTEXT", "ROW: " + neededRow.toString());
+                break;
+            }
+        }
+        TextView htmltxt = ((TextView) findViewById(R.id.htmltext));
+        try {
+            Log.d("HTMLTEXT", "Did it");
+            htmltxt.setText(Html.fromHtml(neededRow.getContenttext()));
+        } catch (NullPointerException e) {
+            htmltxt.setText(Html.fromHtml("<h2 style='text-align:center;'>No data found</h2>"));
+            e.printStackTrace();
+        }
     }
 
-    private ArrayList<JoinQuery> exampleArraylist(){
 
-        ArrayList <JoinQuery> liste = new ArrayList<>();
 
-        JoinQuery querytest = new JoinQuery();
-        querytest.setContentID(1);
-        querytest.setContenttext("Nummer1");
-        querytest.setTypID(1);
-        querytest.setWokstepID(1);
+    public void setCurrentstep(int step) {
 
-        JoinQuery querytest1 = new JoinQuery();
-        querytest1.setContentID(2);
-        querytest1.setWokstepID(1);
-        querytest1.setTypID(1);
-        querytest1.setContenttext("Nummer2");
-
-        JoinQuery querytest2 = new JoinQuery();
-        querytest2.setContenttext("Nummer3");
-        querytest2.setTypID(1);
-        querytest2.setContentID(1);
-        querytest2.setWokstepID(1);
-
-        liste.add(querytest);
-        liste.add(querytest1);
-        liste.add(querytest2);
-
-        return liste;
-
-    }
-
-    public void stepForward(){
-
-    }
-
-    private void stepBack(){
-
-    }
-
-    public void setCurrentstep(int step){
-
-        TextView currentstep = (TextView)findViewById(R.id.currentstep);
+        TextView currentstep = (TextView) findViewById(R.id.currentstep);
 
         String i = String.valueOf(step);
 
@@ -305,13 +257,14 @@ public class MainActivity extends AppCompatActivity {
 
     }
 
-    public void setMaxstep(ArrayList<JoinQuery> liste){
+    public void setMaxstep(ArrayList<JoinQuery> liste) {
 
-        TextView maxstepview = (TextView)findViewById(R.id.maxstep);
+        TextView maxstepview = (TextView) findViewById(R.id.maxstep);
 
-        int a = maxstep;
+        int a = liste.size();
 
         String b = String.valueOf(a);
+        this.maxstep = a;
 
         String output = "Schritt " + b;
 
@@ -319,11 +272,11 @@ public class MainActivity extends AppCompatActivity {
 
     }
 
-    private long getTime(){
+    private long getTime() {
         return System.currentTimeMillis();
     }
 
-    public long calcPoints(long seconds){
+    public long calcPoints(long seconds) {
 
         long maxtime = maxstep * timePerWorkstep;
 
@@ -339,10 +292,9 @@ public class MainActivity extends AppCompatActivity {
 
     }
 
-    private int getMaxSteps(ArrayList<JoinQuery> list){
+    private int getMaxSteps(ArrayList<JoinQuery> list) {
         //Hier muss aus der JoinQuery die Anzahl der verschiedenen Workstep IDs ermittelt werden
-        int maxstep = list.size();
-        return maxstep;
+        return list.size();
     }
 
 }

@@ -15,6 +15,8 @@ public class JoinQuery extends Mapper {
     private int WorkstepID;
     private int TypID;
     private int ContentID;
+    private int StationID;
+    private int ProductID;
     private String Contenttext;
 
 
@@ -22,11 +24,13 @@ public class JoinQuery extends Mapper {
 
     public JoinQuery(){}
 
-    public JoinQuery(int ContentID, String Contenttext, int WorkstepID,int TypID){
+    public JoinQuery(int ContentID, String Contenttext, int WorkstepID, int StationID, int ProductID, int TypID){
       this.setContentID(ContentID);
       this.setWokstepID(WorkstepID);
       this.setTypID(TypID);
       this.setContenttext(Contenttext);
+      this.setStationID(StationID);
+      this.setProductID(ProductID);
       }
 
     @Override
@@ -35,6 +39,8 @@ public class JoinQuery extends Mapper {
         try {
             obj = new JoinQuery(json.getInt("ContentID"), json.getString("Contenttext"),
                     json.getInt("WorkstepID"),
+                    json.getInt("StationID"),
+                    json.getInt("ProductID"),
                     json.getInt("TypID"));
         } catch(JSONException e) {
             Log.e("MapJsonToObject","JSON could not be mapped to Object!");
@@ -77,5 +83,34 @@ public class JoinQuery extends Mapper {
         ContentID = contentID;
     }
 
+    @Override
+    public String toString() {
+        return new StringBuilder().
+                append(this.getContentID())
+                .append(this.getContenttext())
+                .append(this.getTypID())
+                .append(";")
+                .append(this.getWokstepID())
+                .append(";")
+                .append(this.getStationID())
+                .append(";")
+                .append(this.getProductID()).toString();
+    }
 
+
+    public int getStationID() {
+        return StationID;
+    }
+
+    public void setStationID(int stationID) {
+        StationID = stationID;
+    }
+
+    public int getProductID() {
+        return ProductID;
+    }
+
+    public void setProductID(int productID) {
+        ProductID = productID;
+    }
 }
