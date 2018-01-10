@@ -33,8 +33,8 @@ import static fhku.leanlabapp.classes.JoinQuery.Loaded_JoinQuerys;
 public class MainActivity extends AppCompatActivity implements LoadImageTask.Listener {
 
     int step = 1;
-    ArrayList<JoinQuery> liste = exampleArraylist();
-    final int maxstep = liste.size();
+    //ArrayList<JoinQuery> liste = exampleArraylist();
+    int maxstep;
     long begintime = getTime();
 
     VideoView video;
@@ -42,6 +42,7 @@ public class MainActivity extends AppCompatActivity implements LoadImageTask.Lis
 
     int stationid;
     int productid;
+    ImageButton buttonback;
 
     final int timePerWorkstep = 60;
     Context context;
@@ -68,7 +69,7 @@ public class MainActivity extends AppCompatActivity implements LoadImageTask.Lis
 
         ImageButton buttonforward = (ImageButton) findViewById(R.id.imgbtnforward);
 
-        final ImageButton buttonback = (ImageButton) findViewById(R.id.imgbtnback);
+        this.buttonback = (ImageButton) findViewById(R.id.imgbtnback);
         buttonback.setVisibility(View.INVISIBLE);
 
         final TextView textViewCurrentStep = (TextView) findViewById(R.id.currentstep);
@@ -77,75 +78,19 @@ public class MainActivity extends AppCompatActivity implements LoadImageTask.Lis
 
         setCurrentstep(step);
 
-        setMaxstep(liste);
 
 
         buttonforward.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-
-                if (step < maxstep) {
-
-                    step = step + 1;
-
-                    buttonback.setVisibility(View.VISIBLE);
-
-                    setCurrentstep(step);
-
-                    setthecontents(step);
-
-                } else if (step == maxstep) {
-
-                    long endtime = getTime();
-                    long neededTime = endtime - begintime;
-                    long neededTimeSeconds = neededTime / 1000;
-
-                    String time = String.valueOf(neededTimeSeconds);
-                    String time1 = String.valueOf(neededTime);
-
-                    int achievedPoints = (int) calcPoints(neededTimeSeconds);
-                    User.currentUser.setPoints(User.currentUser.getPoints() + achievedPoints);
-                    User.currentUser.updateUser(context);
-
-                    String points1 = String.valueOf(achievedPoints);
-
-                    Toast.makeText(getApplicationContext(), "Millisekunden: " + time1 + " Sekunden: " + time + " Achieved Points: " + points1, Toast.LENGTH_SHORT).show();
-
-                    Intent intent = new Intent(getApplicationContext(), LastActivity.class);
-
-                    intent.putExtra("Punkte", achievedPoints);
-                    finish();
-                    startActivity(intent);
-
-                }
+                validateNextStep();
             }
         });
 
         buttonback.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-
-                if (step > 1) {
-
-                    step = step - 1;
-
-                    setCurrentstep(step);
-
-                    if (step == 1) {
-                        buttonback.setVisibility(View.INVISIBLE);
-                    }
-
-
-                    setthecontents(step);
-
-                } else if (step == 1) {
-
-                    Toast.makeText(getApplicationContext(), "Erster Schritt", Toast.LENGTH_SHORT).show();
-                    buttonback.setVisibility(View.INVISIBLE);
-
-                }
-
-
+                validateBeforeStep();
             }
         });
 
@@ -166,62 +111,6 @@ public class MainActivity extends AppCompatActivity implements LoadImageTask.Lis
 
         DbConnection.loadVideo(this.video, productid + "_" + stationid + ".mp4");
         setthecontents(1);
-
-
-
-
-/*
-
-        //1. Idee wie man es einbinden könnte
-        TextView test = (TextView) findViewById(R.id.edittext);
-        test.setText("sql_statement=SELECT Contenttext FROM Content WHERE TypID = 3;");
-
-        //hard coded, wir brauchen noch die Funkton für die Abfrage von TypID = 1
-        ImageView image = (ImageView) findViewById(R.id.btnCamera);
-        image.setImageResource(R.drawable.fh_kufstein_logo);
-
-
-        //For the video
-        VideoView videoView = (VideoView) findViewById(R.id.btnVideo);
-
-
-
-
-
-
-
-
-
-
-
-    }
-
-
-    public void loadWorksteps(){ Hier wieder entfernen
-
-        try {
-            String sqlstatement = "sql_statement=SELECT * FROM Content WHERE `WorkstepID` = ANY (Select `WorkstepID` From Workstep Join Productionstep ON Workstep.ProductionstepID Where Productionstep.ProductionstepID = Workstep.ProductionstepID AND StationID = 'stationid' AND ProductID = 'productid' );";
-
-            //String sqlstatement1 = "sql_statement=Select * From Productionstep;";
-            //String sqlstatement2 = "sql_statement=Select * From Content;";
-
-            Loaded_JoinQuerys = (new JoinQuery()).MapJsonRowsToObject(DbConnection.sendRequestForResult_ASYNC(
-                    new String[] {sqlstatement}, "get", false,this
-            ));
-            /*
-            Productionstep.Loaded_Productionsteps = (new Productionstep(1).MapJsonRowsToObject(DbConnection.sendRequestForResult_ASYNC(
-                    new String[] {sqlstatement1}, "get", false,this
-            )));
-            Content.Loaded_Contents = (new Content(1).MapJsonRowsToObject(DbConnection.sendRequestForResult_ASYNC(
-                    new String[] {sqlstatement2}, "get", false,this
-            )));
-*/
-
-/*
-        }catch (Exception e){
-            e.printStackTrace();
-        }
-*/
     }
 
 
@@ -232,7 +121,7 @@ public class MainActivity extends AppCompatActivity implements LoadImageTask.Lis
 
         setImageScr(workstepid);
 
-
+        setMaxstep(Loaded_JoinQuerys);
     }
 
     private void setImageScr(int workstepid) {
@@ -254,6 +143,65 @@ public class MainActivity extends AppCompatActivity implements LoadImageTask.Lis
     public void loadImage(String url) {
         LoadImageTask lIt = new LoadImageTask(this);
         lIt.execute(url);
+    }
+
+    private void validateBeforeStep() {
+        if (step > 1) {
+
+            step = step - 1;
+
+            setCurrentstep(step);
+
+            if (step == 1) {
+                buttonback.setVisibility(View.INVISIBLE);
+            }
+
+
+            setthecontents(step);
+
+        } else if (step == 1) {
+
+            Toast.makeText(getApplicationContext(), "Erster Schritt", Toast.LENGTH_SHORT).show();
+            buttonback.setVisibility(View.INVISIBLE);
+        }
+    }
+
+
+        private void validateNextStep() {
+        if (step < maxstep) {
+
+            step = step + 1;
+
+            buttonback.setVisibility(View.VISIBLE);
+
+            setCurrentstep(step);
+
+            setthecontents(step);
+
+        } else if (step == maxstep) {
+
+            long endtime = getTime();
+            long neededTime = endtime - begintime;
+            long neededTimeSeconds = neededTime / 1000;
+
+            String time = String.valueOf(neededTimeSeconds);
+            String time1 = String.valueOf(neededTime);
+
+            int achievedPoints = (int) calcPoints(neededTimeSeconds);
+            User.currentUser.setPoints(User.currentUser.getPoints() + achievedPoints);
+            User.currentUser.updateUser(context);
+
+            String points1 = String.valueOf(achievedPoints);
+
+            Toast.makeText(getApplicationContext(), "Millisekunden: " + time1 + " Sekunden: " + time + " Achieved Points: " + points1, Toast.LENGTH_SHORT).show();
+
+            Intent intent = new Intent(getApplicationContext(), LastActivity.class);
+
+            intent.putExtra("Punkte", achievedPoints);
+            finish();
+            startActivity(intent);
+
+        }
     }
 
 
@@ -362,9 +310,10 @@ public class MainActivity extends AppCompatActivity implements LoadImageTask.Lis
 
         TextView maxstepview = (TextView) findViewById(R.id.maxstep);
 
-        int a = maxstep;
+        int a = liste.size();
 
         String b = String.valueOf(a);
+        this.maxstep = a;
 
         String output = "Schritt " + b;
 
@@ -394,8 +343,7 @@ public class MainActivity extends AppCompatActivity implements LoadImageTask.Lis
 
     private int getMaxSteps(ArrayList<JoinQuery> list) {
         //Hier muss aus der JoinQuery die Anzahl der verschiedenen Workstep IDs ermittelt werden
-        int maxstep = list.size();
-        return maxstep;
+        return list.size();
     }
 
 }
