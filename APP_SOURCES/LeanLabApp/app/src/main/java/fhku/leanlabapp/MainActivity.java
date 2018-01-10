@@ -6,6 +6,7 @@ import android.graphics.Bitmap;
 import android.graphics.Paint;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
+import android.text.Html;
 import android.util.Log;
 import android.view.View;
 import android.widget.EditText;
@@ -14,9 +15,12 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 import android.widget.VideoView;
+
 import org.w3c.dom.Text;
+
 import java.lang.reflect.Array;
 import java.util.ArrayList;
+
 import fhku.leanlabapp.classes.JoinQuery;
 import fhku.leanlabapp.classes.Product;
 import fhku.leanlabapp.classes.User;
@@ -36,6 +40,9 @@ public class MainActivity extends AppCompatActivity implements LoadImageTask.Lis
     VideoView video;
     ImageView picture;
 
+    int stationid;
+    int productid;
+
     final int timePerWorkstep = 60;
     Context context;
 
@@ -48,26 +55,25 @@ public class MainActivity extends AppCompatActivity implements LoadImageTask.Lis
         super.onCreate(savedInstanceState);
 
 
-
         setContentView(R.layout.activity_main);
         this.context = this;
         this.video = (VideoView) findViewById(R.id.btnVideo);
         this.picture = (ImageView) findViewById(R.id.btnCamera);
 
-        TextView view1 = (TextView)findViewById(R.id.edittext);
+        TextView view1 = (TextView) findViewById(R.id.edittext);
 
-        TextView viewstation = (TextView)findViewById(R.id.station);
+        TextView viewstation = (TextView) findViewById(R.id.station);
 
-        TextView viewproduct = (TextView)findViewById(R.id.product);
+        TextView viewproduct = (TextView) findViewById(R.id.product);
 
-        ImageButton buttonforward = (ImageButton)findViewById(R.id.imgbtnforward);
+        ImageButton buttonforward = (ImageButton) findViewById(R.id.imgbtnforward);
 
-        final ImageButton buttonback = (ImageButton)findViewById(R.id.imgbtnback);
+        final ImageButton buttonback = (ImageButton) findViewById(R.id.imgbtnback);
         buttonback.setVisibility(View.INVISIBLE);
 
-        final TextView textViewCurrentStep = (TextView)findViewById(R.id.currentstep);
+        final TextView textViewCurrentStep = (TextView) findViewById(R.id.currentstep);
 
-        TextView textViewMaxStep = (TextView)findViewById(R.id.maxstep);
+        TextView textViewMaxStep = (TextView) findViewById(R.id.maxstep);
 
         setCurrentstep(step);
 
@@ -78,7 +84,7 @@ public class MainActivity extends AppCompatActivity implements LoadImageTask.Lis
             @Override
             public void onClick(View view) {
 
-                if (step < maxstep){
+                if (step < maxstep) {
 
                     step = step + 1;
 
@@ -98,7 +104,7 @@ public class MainActivity extends AppCompatActivity implements LoadImageTask.Lis
                     String time1 = String.valueOf(neededTime);
 
                     int achievedPoints = (int) calcPoints(neededTimeSeconds);
-                    User.currentUser.setPoints(User.currentUser.getPoints()+achievedPoints);
+                    User.currentUser.setPoints(User.currentUser.getPoints() + achievedPoints);
                     User.currentUser.updateUser(context);
 
                     String points1 = String.valueOf(achievedPoints);
@@ -125,7 +131,7 @@ public class MainActivity extends AppCompatActivity implements LoadImageTask.Lis
 
                     setCurrentstep(step);
 
-                    if (step ==1){
+                    if (step == 1) {
                         buttonback.setVisibility(View.INVISIBLE);
                     }
 
@@ -134,7 +140,7 @@ public class MainActivity extends AppCompatActivity implements LoadImageTask.Lis
 
                 } else if (step == 1) {
 
-                    Toast.makeText(getApplicationContext(), "Erster Schritt",Toast.LENGTH_SHORT).show();
+                    Toast.makeText(getApplicationContext(), "Erster Schritt", Toast.LENGTH_SHORT).show();
                     buttonback.setVisibility(View.INVISIBLE);
 
                 }
@@ -142,12 +148,6 @@ public class MainActivity extends AppCompatActivity implements LoadImageTask.Lis
 
             }
         });
-
-
-
-
-
-
 
 
         Intent intent = getIntent();
@@ -158,13 +158,13 @@ public class MainActivity extends AppCompatActivity implements LoadImageTask.Lis
         String stationidtemp = intent.getStringExtra("stationid");
         String productidtemp = intent.getStringExtra("productid");
 
-        int stationid = Integer.parseInt(stationidtemp);
-        int productid = Integer.parseInt(productidtemp);
+        this.stationid = Integer.parseInt(stationidtemp);
+        this.productid = Integer.parseInt(productidtemp);
 
         viewproduct.setText(product);
         viewstation.setText(station);
 
-        DbConnection.loadVideo(this.video, productid+"_"+stationid+".mp4");
+        DbConnection.loadVideo(this.video, productid + "_" + stationid + ".mp4");
         setthecontents(1);
 
 
@@ -226,7 +226,7 @@ public class MainActivity extends AppCompatActivity implements LoadImageTask.Lis
 
 
     //oder könnte es so funktionieren? (Anfang)
-    private void setthecontents(int workstepid){
+    private void setthecontents(int workstepid) {
 
         setHtmlText(workstepid);
 
@@ -235,10 +235,8 @@ public class MainActivity extends AppCompatActivity implements LoadImageTask.Lis
 
     }
 
-    private void setImageScr(int workstepid){
-
-        loadImage(workstepid+".JPG");
-
+    private void setImageScr(int workstepid) {
+            loadImage(this.productid+"_"+this.stationid+"_"+workstepid + ".JPG");
     }
 
     @Override
@@ -254,58 +252,65 @@ public class MainActivity extends AppCompatActivity implements LoadImageTask.Lis
     }
 
     public void loadImage(String url) {
-        LoadImageTask lIt= new LoadImageTask(this);
+        LoadImageTask lIt = new LoadImageTask(this);
         lIt.execute(url);
     }
 
 
-
     private void setHtmlText(int workstepid) {
-        if (JoinQuery.Loaded_JoinQuerys == null) {
-            try {
-                String sqlstatement = "sql_statement=SELECT * FROM Content WHERE `WorkstepID` = ANY (Select `WorkstepID` From Workstep Join Productionstep ON Workstep.ProductionstepID Where Productionstep.ProductionstepID = Workstep.ProductionstepID AND StationID = 'stationid' AND ProductID = 'productid' );";
-
-                JoinQuery.Loaded_JoinQuerys = (new JoinQuery()).MapJsonRowsToObject(DbConnection.sendRequestForResult_ASYNC(
-                        new String[]{sqlstatement}, "get", false, this
-                ));
-            } catch (Exception e) {
-                e.printStackTrace();
-            }
+        //if (JoinQuery.Loaded_JoinQuerys == null) {
+        Log.d("HTMLTEXT", "JoinQueries null!");
+        try {
+            String sqlstatement = "sql_statement=SELECT * FROM Content WHERE WorkstepID = ANY (Select WorkstepID From Workstep Join Productionstep ON Workstep.ProductionstepID Where Productionstep.ProductionstepID = Workstep.ProductionstepID);";
+            Log.d("HTMLTEXT", "SQL: "+sqlstatement);
+            JoinQuery.Loaded_JoinQuerys = (new JoinQuery()).MapJsonRowsToObject(DbConnection.sendRequestForResult_ASYNC(
+                    new String[]{sqlstatement}, "get", false, this
+            ));
+            Log.d("HTMLTEXT", "Loaded Joinqueries");
+        } catch (Exception e) {
+            e.printStackTrace();
+            Log.d("HTMLTEXT", "Failed to load joinqueries.");
         }
+        //}
 
         JoinQuery neededRow = new JoinQuery();
         for (JoinQuery joinQuery : JoinQuery.Loaded_JoinQuerys) {
-            if (joinQuery.getTypID() == 3 && joinQuery.getWokstepID() == workstepid) {
+            Log.d("HTMLTEXT", "Made iteration: " + joinQuery.getTypID() + " / " + joinQuery.getWokstepID());
+            Log.d("HTMLTEXT", joinQuery.toString());
+            Log.d("HTMLTEXT", "WI: "+workstepid);
+            if (joinQuery.getTypID() == 3 && joinQuery.getWokstepID() == workstepid && joinQuery.getProductID() == this.productid && joinQuery.getStationID() == this.stationid) {
                 neededRow = joinQuery;
+                Log.d("HTMLTEXT", "ROW: " + neededRow.toString());
                 break;
             }
         }
         try {
-            ((TextView) findViewById(R.id.htmltext)).setText(neededRow.getContenttext());
+            Log.d("HTMLTEXT", "Did it");
+            ((TextView) findViewById(R.id.htmltext)).setText(Html.fromHtml(neededRow.getContenttext()));
         } catch (NullPointerException e) {
             e.printStackTrace();
         }
     }
 
-    private String getVideoScr(){
+    private String getVideoScr() {
         return " ";
     }
 
-    private String getImageScr(){
+    private String getImageScr() {
         return " ";
     }
 
-    private String getHtmlText(){
+    private String getHtmlText() {
         return " ";
     }
 
-    private int checkLengthList (ArrayList<JoinQuery> list){
+    private int checkLengthList(ArrayList<JoinQuery> list) {
         return list.size();
     }
 
-    private ArrayList<JoinQuery> exampleArraylist(){
+    private ArrayList<JoinQuery> exampleArraylist() {
 
-        ArrayList <JoinQuery> liste = new ArrayList<>();
+        ArrayList<JoinQuery> liste = new ArrayList<>();
 
         JoinQuery querytest = new JoinQuery();
         querytest.setContentID(1);
@@ -333,17 +338,17 @@ public class MainActivity extends AppCompatActivity implements LoadImageTask.Lis
 
     }
 
-    public void stepForward(){
+    public void stepForward() {
 
     }
 
-    private void stepBack(){
+    private void stepBack() {
 
     }
 
-    public void setCurrentstep(int step){
+    public void setCurrentstep(int step) {
 
-        TextView currentstep = (TextView)findViewById(R.id.currentstep);
+        TextView currentstep = (TextView) findViewById(R.id.currentstep);
 
         String i = String.valueOf(step);
 
@@ -353,9 +358,9 @@ public class MainActivity extends AppCompatActivity implements LoadImageTask.Lis
 
     }
 
-    public void setMaxstep(ArrayList<JoinQuery> liste){
+    public void setMaxstep(ArrayList<JoinQuery> liste) {
 
-        TextView maxstepview = (TextView)findViewById(R.id.maxstep);
+        TextView maxstepview = (TextView) findViewById(R.id.maxstep);
 
         int a = maxstep;
 
@@ -367,11 +372,11 @@ public class MainActivity extends AppCompatActivity implements LoadImageTask.Lis
 
     }
 
-    private long getTime(){
+    private long getTime() {
         return System.currentTimeMillis();
     }
 
-    public long calcPoints(long seconds){
+    public long calcPoints(long seconds) {
 
         long maxtime = maxstep * timePerWorkstep;
 
@@ -387,7 +392,7 @@ public class MainActivity extends AppCompatActivity implements LoadImageTask.Lis
 
     }
 
-    private int getMaxSteps(ArrayList<JoinQuery> list){
+    private int getMaxSteps(ArrayList<JoinQuery> list) {
         //Hier muss aus der JoinQuery die Anzahl der verschiedenen Workstep IDs ermittelt werden
         int maxstep = list.size();
         return maxstep;

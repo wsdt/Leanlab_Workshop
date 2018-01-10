@@ -16,6 +16,8 @@ public class Content extends Mapper{
     private static final String LOG_TAG = "CONTENT";
     private int Contentid;
     private String Contenttext; // PRODUCTID_STATIONID_CONTENTID.EXTENSION
+    private int ProductID;
+    private int StationID;
     private int Workstepid;
     private int Typid;
 
@@ -24,14 +26,17 @@ public class Content extends Mapper{
 
 
     //Constructor
-    public Content(int Contentid, String Contenttext, int Workstepid, int Typid) {
+    public Content(int Contentid, String Contenttext, int StationID, int ProductID, int Workstepid, int Typid) {
         this.setContentid(Contentid);
         this.setContenttext(Contenttext);
         this.setWorkstepid(Workstepid);
         this.setTypid(Typid);
+        this.setStationID(StationID);
+        this.setProductID(ProductID);
     }
 
-    //Constructor
+    //Constrcutor
+
     public Content(int Contentid) {
         this.setContentid(Contentid); //because of primary key
     }
@@ -80,7 +85,7 @@ public class Content extends Mapper{
     public Content MapJsonToObject(JSONObject json) throws JsonToObjectMapper_Exception {
         Content obj;
         try {
-            obj = new Content(json.getInt("ContentID"), json.getString("Contenttext"),json.getInt("WorkstepID"),json.getInt("TypID"));
+            obj = new Content(json.getInt("ContentID"), json.getString("Contenttext"),json.getInt("StationID"),json.getInt("ProductID"),json.getInt("WorkstepID"),json.getInt("TypID"));
         } catch(JSONException e) {
             Log.e("MapJsonToObject","JSON could not be mapped to Object!");
             e.printStackTrace();
@@ -89,5 +94,20 @@ public class Content extends Mapper{
         return obj;
     }
 
+    public int getProductID() {
+        return ProductID;
+    }
+
+    public void setProductID(int productID) {
+        ProductID = productID;
+    }
+
+    public int getStationID() {
+        return StationID;
+    }
+
+    public void setStationID(int stationID) {
+        StationID = stationID;
+    }
 }
 
