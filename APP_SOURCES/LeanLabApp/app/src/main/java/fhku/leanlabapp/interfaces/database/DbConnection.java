@@ -330,16 +330,20 @@ public class DbConnection {
     }
 
     public static void loadVideo(VideoView video, String link) {
-        try {
-            MediaController mediaController = new MediaController(video.getContext());
-            mediaController.setAnchorView(video);
-            video.setMediaController(mediaController);
-            Uri videolink = Uri.parse("http://192.168.12.115/LeanLabWorking/vid/" + link);
-            video.setVideoURI(videolink);
+        if (doesVideoExist(link)) {
+            try {
+                MediaController mediaController = new MediaController(video.getContext());
+                mediaController.setAnchorView(video);
+                video.setMediaController(mediaController);
+                Uri videolink = Uri.parse("http://192.168.12.115/LeanLabWorking/vid/" + link);
+                video.setVideoURI(videolink);
 
-            video.start();
-        } catch (Exception e) {
-            e.printStackTrace();
+                video.start();
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+        } else {
+            Log.e("loadVideo","Video not found.");
         }
     }
 
