@@ -2,11 +2,13 @@ package fhku.leanlabapp;
 
 import android.content.Context;
 import android.content.Intent;
+import android.graphics.Bitmap;
 import android.graphics.Paint;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.View;
+import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.TextView;
@@ -19,10 +21,12 @@ import fhku.leanlabapp.classes.JoinQuery;
 import fhku.leanlabapp.classes.Product;
 import fhku.leanlabapp.classes.User;
 import fhku.leanlabapp.interfaces.database.DbConnection;
+import fhku.leanlabapp.interfaces.database.LoadImageTask;
+
 import static fhku.leanlabapp.classes.JoinQuery.Loaded_JoinQuerys;
 
 
-public class MainActivity extends AppCompatActivity {
+public class MainActivity extends AppCompatActivity implements LoadImageTask.Listener {
 
     int step = 1;
     ArrayList<JoinQuery> liste = exampleArraylist();
@@ -69,7 +73,6 @@ public class MainActivity extends AppCompatActivity {
 
         setMaxstep(liste);
 
-        DbConnection.loadVideo(video, "");
 
         buttonforward.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -82,6 +85,8 @@ public class MainActivity extends AppCompatActivity {
                     buttonback.setVisibility(View.VISIBLE);
 
                     setCurrentstep(step);
+
+                    setthecontents(step);
 
                 } else if (step == maxstep) {
 
@@ -125,12 +130,15 @@ public class MainActivity extends AppCompatActivity {
                     }
 
 
+                    setthecontents(step);
+
                 } else if (step == 1) {
 
-                    Toast.makeText(getApplicationContext(), "Erster Schritt",Toast.LENGTH_SHORT);
+                    Toast.makeText(getApplicationContext(), "Erster Schritt",Toast.LENGTH_SHORT).show();
                     buttonback.setVisibility(View.INVISIBLE);
 
                 }
+
 
             }
         });
@@ -157,7 +165,8 @@ public class MainActivity extends AppCompatActivity {
         viewstation.setText(station);
 
         DbConnection.loadVideo(this.video, productid+"_"+stationid+".mp4");
-        DbConnection.loadPicture(this.picture, productid+"_"+stationid+".JPG");
+        setthecontents(1);
+
 
 
 
@@ -217,26 +226,65 @@ public class MainActivity extends AppCompatActivity {
 
 
     //oder könnte es so funktionieren? (Anfang)
-    private void setthecontents(){
+    private void setthecontents(int workstepid){
 
-        setHtmlText();
+        setHtmlText(workstepid);
 
-        setImageScr();
+        setImageScr(workstepid);
 
-        setVideoScr();
-
-    }
-
-    private void setImageScr(){
 
     }
 
-    private void setVideoScr(){
+    private void setImageScr(int workstepid){
+
+        loadImage(workstepid+".JPG");
 
     }
 
-    private void setHtmlText(){
+    @Override
+    public void onImageLoaded(Bitmap bitmap) {
+        picture.setImageBitmap(bitmap);
+        Log.d("onImageLoaded", "Set bitmap.");
+    }
 
+    @Override
+    public void onError() {
+        Toast.makeText(this, "Could not load image. ", Toast.LENGTH_SHORT).show();
+        Log.e("onError", "Could not set bitmap");
+    }
+
+    public void loadImage(String url) {
+        LoadImageTask lIt= new LoadImageTask(this);
+        lIt.execute(url);
+    }
+
+
+
+    private void setHtmlText(int workstepid) {
+        if (JoinQuery.Loaded_JoinQuerys == null) {
+            try {
+                String sqlstatement = "sql_statement=SELECT * FROM Content WHERE `WorkstepID` = ANY (Select `WorkstepID` From Workstep Join Productionstep ON Workstep.ProductionstepID Where Productionstep.ProductionstepID = Workstep.ProductionstepID AND StationID = 'stationid' AND ProductID = 'productid' );";
+
+                JoinQuery.Loaded_JoinQuerys = (new JoinQuery()).MapJsonRowsToObject(DbConnection.sendRequestForResult_ASYNC(
+                        new String[]{sqlstatement}, "get", false, this
+                ));
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+        }
+
+        JoinQuery neededRow = new JoinQuery();
+        for (JoinQuery joinQuery : JoinQuery.Loaded_JoinQuerys) {
+            if (joinQuery.getTypID() == 3 && joinQuery.getWokstepID() == workstepid) {
+                neededRow = joinQuery;
+                break;
+            }
+        }
+        try {
+            ((TextView) findViewById(R.id.htmltext)).setText(neededRow.getContenttext());
+        } catch (NullPointerException e) {
+            e.printStackTrace();
+        }
     }
 
     private String getVideoScr(){
