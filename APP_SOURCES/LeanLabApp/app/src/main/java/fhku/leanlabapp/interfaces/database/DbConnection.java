@@ -341,12 +341,22 @@ public class DbConnection {
         } catch (Exception e) {
             e.printStackTrace();
         }
-
-
     }
 
-    public static void loadPicture(final ImageView image, final String link) {
-
-
+    private static void doesVideoExist() {
+        try {
+            HttpURLConnection.setFollowRedirects(false);
+            // note : you may also need
+            //        HttpURLConnection.setInstanceFollowRedirects(false)
+            HttpURLConnection con =
+                    (HttpURLConnection) new URL(URLName).openConnection();
+            con.setRequestMethod("HEAD");
+            return (con.getResponseCode() == HttpURLConnection.HTTP_OK);
+        }
+        catch (Exception e) {
+            e.printStackTrace();
+            return false;
+        }
     }
+
 }
