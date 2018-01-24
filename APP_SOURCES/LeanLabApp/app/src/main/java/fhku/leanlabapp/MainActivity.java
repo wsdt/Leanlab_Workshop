@@ -136,8 +136,8 @@ public class MainActivity extends AppCompatActivity implements LoadImageTask.Lis
 
     @Override
     public void onError() {
-        //this.picture.setVisibility(View.GONE);
-        //Toast.makeText(this, "Could not load image. ", Toast.LENGTH_SHORT).show();
+        this.picture.setVisibility(View.GONE);
+        Toast.makeText(this, "Could not load image. ", Toast.LENGTH_SHORT).show();
         Log.e("onError", "Could not set bitmap");
     }
 
