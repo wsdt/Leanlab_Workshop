@@ -1,9 +1,6 @@
 package fhku.leanlabapp;
 
-import android.content.DialogInterface;
 import android.content.Intent;
-import android.media.DeniedByServerException;
-import android.media.Image;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
@@ -14,16 +11,12 @@ import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.Spinner;
 import android.widget.Toast;
-import org.json.JSONObject;
+
 import java.util.ArrayList;
-import java.util.concurrent.ExecutionException;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 import fhku.leanlabapp.classes.Product;
 import fhku.leanlabapp.classes.Station;
-import fhku.leanlabapp.classes.User;
-import fhku.leanlabapp.interfaces.Dialog;
-import fhku.leanlabapp.interfaces.JsonStrConverter;
 import fhku.leanlabapp.interfaces.database.DbConnection;
 
 public class StartActivity extends AppCompatActivity implements AdapterView.OnItemClickListener {
@@ -38,13 +31,14 @@ public class StartActivity extends AppCompatActivity implements AdapterView.OnIt
     public class OnItemSelectedListener implements AdapterView.OnItemSelectedListener {
         @Override
         public void onItemSelected(AdapterView<?> arg0, View arg1, int position,long id) {
+            //position--;
 
             Spinner spinner = (Spinner) arg0;
 
             //TODO: Receive values from QRCode Activity and setText() to Spinner
 
-            if (spinner.getId() == R.id.spinnerStations) {
-                product = spinnerStations.getItemAtPosition(position).toString();
+            if (spinner.getId() == R.id.spinnerProducts) {
+                product = spinnerProducts.getItemAtPosition(position).toString();
                 String tmp = product;
 
                 Pattern p = Pattern.compile("[+-]?[0-9]+");
@@ -55,8 +49,8 @@ public class StartActivity extends AppCompatActivity implements AdapterView.OnIt
                 }
 
 
-            } else if (spinner.getId() == R.id.spinnerProducts){
-                station = spinnerProducts.getItemAtPosition(position).toString();
+            } else if (spinner.getId() == R.id.spinnerStations){
+                station = spinnerStations.getItemAtPosition(position).toString();
                 String tmp = station;
 
                 Pattern p = Pattern.compile("[+-]?[0-9]+");
@@ -141,7 +135,7 @@ public class StartActivity extends AppCompatActivity implements AdapterView.OnIt
         Log.e("onActivityResult","Got a result");
         switch(requestCode) {
             case QrActivity.REQUEST_CODE:
-                if (resultCode == RESULT_OK) {
+                if (resultCode == RESULT_OK||resultCode==1) {
                     //Setting the ArrayAdapter data on the Spinner
                     Log.d("StartActivity_Result","Got valid qrcode: "+data.getStringExtra(QrActivity.EXTRA_Message));
                     setScannedValues(data);
@@ -157,15 +151,15 @@ public class StartActivity extends AppCompatActivity implements AdapterView.OnIt
     }
 
     private void setScannedValues(Intent data) {
-        int position = data.getIntExtra(QrActivity.EXTRA_Message+"_id",0);
+        int position = data.getIntExtra(QrActivity.EXTRA_Message+"_id",1)-1;
         String category = data.getStringExtra(QrActivity.EXTRA_Message+"_category");
-        Log.e("setScannedValues", "Pos.: "+aa.getItem(position));
+
 
         //TODO: Gescannter Value noch nicht gesetzt!
         if (category.equals("station")) {
-            spinnerStations.setSelection(aa.getPosition(position));
+            spinnerStations.setSelection(bb.getPosition(bb.getItem(position)));
         } else if (category.equals("product")) {
-            spinnerProducts.setSelection(bb.getPosition(position));
+            spinnerProducts.setSelection(aa.getPosition(aa.getItem(position)));
         } else {
             Log.e("setScannedValues","Could not set default value!");
         }
@@ -180,8 +174,8 @@ public class StartActivity extends AppCompatActivity implements AdapterView.OnIt
 
 
         //Creating the ArrayAdapter instance having the country list
-        aa = new ArrayAdapter(this,android.R.layout.simple_spinner_item,loadStations());
-        bb = new ArrayAdapter(this,android.R.layout.simple_spinner_item,loadProducts());
+        aa = new ArrayAdapter(this,android.R.layout.simple_spinner_item,loadProducts());
+        bb = new ArrayAdapter(this,android.R.layout.simple_spinner_item,loadStations());
         aa.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         bb.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         //Setting the ArrayAdapter data on the Spinner
