@@ -62,13 +62,23 @@
                 android:text="Schritt 2" />
 
             <Button
-                android:id="@+id/heading"
+            android:id="@+id/heading"
+            android:layout_width="60dp"
+            android:layout_height="40dp"
+            android:layout_below="@id/currentstep"
+            android:layout_marginLeft="50dp"
+            android:layout_marginBottom="10dp"
+            android:text="Titel"
+            android:textSize="13dp" />
+
+            <Button
+                android:id="@+id/red"
                 android:layout_width="60dp"
                 android:layout_height="40dp"
                 android:layout_below="@id/currentstep"
-                android:layout_marginLeft="50dp"
+                android:layout_marginLeft="120dp"
                 android:layout_marginBottom="10dp"
-                android:text="Titel"
+                android:text="Red"
                 android:textSize="13dp" />
 
             <RelativeLayout
