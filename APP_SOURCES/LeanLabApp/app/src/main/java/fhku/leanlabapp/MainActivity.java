@@ -203,6 +203,7 @@ public class MainActivity extends AppCompatActivity implements LoadImageTask.Lis
             startActivity(intent);
 
         }
+
     }
 
 

@@ -39,20 +39,19 @@
         android:textSize="40sp" />
 
     <Spinner
-        android:id="@+id/spinnerStations"
+        android:id="@+id/spinnerProducts"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_below="@+id/leanlab"
         android:layout_centerHorizontal="true"
         android:layout_marginStart="200dp"
-        android:layout_marginTop="54dp"
-        />
+        android:layout_marginTop="54dp" />
 
     <Spinner
-        android:id="@+id/spinnerProducts"
+        android:id="@+id/spinnerStations"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/spinnerStations"
+        android:layout_below="@+id/spinnerProducts"
         android:layout_centerHorizontal="true"
         android:layout_marginStart="200dp"
         android:layout_marginTop="21dp"
@@ -63,7 +62,7 @@
         android:id="@+id/go"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/spinnerProducts"
+        android:layout_below="@+id/spinnerStations"
         android:layout_centerHorizontal="true"
         android:layout_marginTop="37dp"
         android:text="Los Geht's"
