@@ -137,7 +137,7 @@ public class MainActivity extends AppCompatActivity implements LoadImageTask.Lis
     @Override
     public void onError() {
         this.picture.setVisibility(View.GONE);
-        Toast.makeText(this, "Could not load image. ", Toast.LENGTH_SHORT).show();
+        Toast.makeText(this, "Bild konnte nicht geladen werden. ", Toast.LENGTH_SHORT).show();
         Log.e("onError", "Could not set bitmap");
     }
 
@@ -239,7 +239,7 @@ public class MainActivity extends AppCompatActivity implements LoadImageTask.Lis
             Log.d("HTMLTEXT", "Did it");
             htmltxt.setText(Html.fromHtml(neededRow.getContenttext()));
         } catch (NullPointerException e) {
-            htmltxt.setText(Html.fromHtml("<h2 style='text-align:center;'>No data found</h2>"));
+            htmltxt.setText(Html.fromHtml("<h2 style='text-align:center;'>Daten konnten nicht gefunden werden.</h2>"));
             e.printStackTrace();
         }
     }
