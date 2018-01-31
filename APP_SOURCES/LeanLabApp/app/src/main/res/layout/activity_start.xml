@@ -38,14 +38,21 @@
         android:textColor="@color/colorBlack"
         android:textSize="40sp" />
 
-    <Spinner
-        android:id="@+id/spinnerProducts"
-        android:layout_width="match_parent"
+    <TextView
+        android:id="@+id/chooseProduct"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/leanlab"
-        android:layout_centerHorizontal="true"
-        android:layout_marginStart="200dp"
-        android:layout_marginTop="54dp" />
+        android:layout_alignTop="@+id/spinnerProducts"
+        android:layout_toStartOf="@+id/leanlab"
+        android:text="@string/products" />
+
+    <TextView
+        android:id="@+id/chooseStation"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignTop="@+id/spinnerStations"
+        android:layout_toStartOf="@+id/leanlab"
+        android:text="@string/stations" />
 
     <Spinner
         android:id="@+id/spinnerStations"
@@ -55,6 +62,16 @@
         android:layout_centerHorizontal="true"
         android:layout_marginStart="200dp"
         android:layout_marginTop="21dp"
+        />
+
+    <Spinner
+        android:id="@+id/spinnerProducts"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/leanlab"
+        android:layout_centerHorizontal="true"
+        android:layout_marginStart="200dp"
+        android:layout_marginTop="54dp"
         android:textColor="@color/colorBlack"
         />
 
@@ -62,9 +79,8 @@
         android:id="@+id/go"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/spinnerStations"
         android:layout_centerHorizontal="true"
-        android:layout_marginTop="37dp"
+        android:layout_alignParentBottom="true"
         android:text="Los Geht's"
         android:textColor="@color/colorBlack" />
 
