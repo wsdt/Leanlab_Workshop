@@ -343,7 +343,7 @@ public class DbConnection {
             }
         } else {
             Log.e("loadVideo","Video not found: http://192.168.12.115/LeanLabWorking/vid/"+link);
-            //video.setVisibility(View.GONE);
+            video.setVisibility(View.GONE);
         }
     }
 

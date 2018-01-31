@@ -66,7 +66,12 @@ public class QrActivity extends AppCompatActivity implements ZXingScannerView.Re
         String qrcode = result.getText();
 
         //IMPORTANT: Needed syntax for qrcode: station_{station_id} or product_{product_id}
-        String qrcodeIdentifier = qrcode.substring(0,8);
+        String qrcodeIdentifier = "";
+        try {
+             qrcodeIdentifier = qrcode.substring(0, 8);
+        } catch (StringIndexOutOfBoundsException e) {
+            e.printStackTrace();
+        }
         boolean doesExist = false;
         if (qrcodeIdentifier.equals("station_") || qrcodeIdentifier.equals("product_")) {
             Log.d("QRCode","ID: "+qrcode.substring(8));
@@ -98,8 +103,7 @@ public class QrActivity extends AppCompatActivity implements ZXingScannerView.Re
                 intent.putExtra(EXTRA_Message + "_category", category);
                 setResult(Activity.RESULT_OK, intent);
                 zXingScannerView.stopCameraPreview();
-                finishActivity(QrActivity.REQUEST_CODE);
-                startActivity(intent);
+                finish();
             } else {
                 Log.e("QRCode","QRCode is valid but instance does not exist: "+category);
                 Toast.makeText(this,"Scanned "+category+" does not exist.",Toast.LENGTH_LONG).show();

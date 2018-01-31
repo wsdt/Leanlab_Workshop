@@ -49,8 +49,8 @@
             <TextView
                 android:id="@+id/htmltext"
                 android:layout_width="match_parent"
-                android:layout_height="100dp"
-                android:layout_below="@+id/trennstrich"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/trennstrich1"
                 android:layout_marginLeft="60dp"
                 android:layout_marginRight="60dp"
                 android:layout_marginTop="20dp" />
@@ -72,14 +72,16 @@
                 android:layout_height="300dp"
                 android:layout_below="@id/btnCamera"
                 android:layout_centerHorizontal="true"
-                android:layout_marginTop="20dp" />
+                android:layout_marginTop="20dp"
+                android:layout_marginBottom="20dp"
+                />
 
 
             <TextView
                 android:id="@+id/trennstrich1"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_below="@+id/btnVideo"
+                android:layout_below="@+id/trennstrich"
                 android:layout_centerHorizontal="true"
                 android:layout_marginTop="20dp"
                 android:text="|" />
@@ -89,7 +91,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_alignEnd="@+id/trennstrich"
-                android:layout_below="@+id/btnVideo"
+                android:layout_below="@+id/trennstrich"
                 android:layout_marginRight="20dp"
                 android:layout_marginTop="20dp"
                 android:text="Schritt 2" />
@@ -99,7 +101,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_alignStart="@+id/trennstrich"
-                android:layout_below="@+id/btnVideo"
+                android:layout_below="@+id/trennstrich"
                 android:layout_centerHorizontal="true"
                 android:layout_marginLeft="20dp"
                 android:layout_marginTop="20dp"
