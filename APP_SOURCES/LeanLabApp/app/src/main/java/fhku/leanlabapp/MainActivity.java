@@ -263,7 +263,13 @@ public class MainActivity extends AppCompatActivity implements LoadImageTask.Lis
 
         TextView maxstepview = (TextView) findViewById(R.id.maxstep);
 
-        int a = liste.size();
+		int a = 0;
+        for (JoinQuery joinQuery : liste) {
+			if (joinQuery.getProductID() == this.productid && joinQuery.getStationID() == this.stationid) {
+				a++;
+			}
+		}
+	
 
         String b = String.valueOf(a);
         this.maxstep = a;
