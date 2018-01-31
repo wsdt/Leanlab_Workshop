@@ -79,14 +79,14 @@ public class MainActivity extends AppCompatActivity implements LoadImageTask.Lis
         setCurrentstep(step);
 
 
-
+//Button zum Weiterklicken auf den nächsten Arbeitsschritt
         buttonforward.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 validateNextStep();
             }
         });
-
+//Button zum Zurückklicken auf den vorigen Arbeitsschritt
         buttonback.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -97,7 +97,7 @@ public class MainActivity extends AppCompatActivity implements LoadImageTask.Lis
 
         Intent intent = getIntent();
 
-
+//Hier wird der Context geholt
         String station = intent.getStringExtra("station");
         String product = intent.getStringExtra("product");
         String stationidtemp = intent.getStringExtra("stationid");
@@ -108,13 +108,13 @@ public class MainActivity extends AppCompatActivity implements LoadImageTask.Lis
 
         viewproduct.setText(product);
         viewstation.setText(station);
-
+//Methode loadVideo aus der Klasse DbConnection wird aufgerufen
         DbConnection.loadVideo(this.video, productid + "_" + stationid + ".mp4");
         setthecontents(1);
     }
 
 
-    //oder könnte es so funktionieren? (Anfang)
+// Methoden zum Laden der verschiedenen Ressourcen
     private void setthecontents(int workstepid) {
 
         setHtmlText(workstepid);
@@ -146,6 +146,7 @@ public class MainActivity extends AppCompatActivity implements LoadImageTask.Lis
         lIt.execute(url);
     }
 
+//Überprüfungen für die Arbeitsschritte (Vor/Zurück)
     private void validateBeforeStep() {
         if (step > 1) {
 
@@ -273,6 +274,7 @@ public class MainActivity extends AppCompatActivity implements LoadImageTask.Lis
 
     }
 
+//Methoden zur Berechnung der benötigten Zeit und der Berechnung der Punkte
     private long getTime() {
         return System.currentTimeMillis();
     }

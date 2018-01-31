@@ -22,7 +22,7 @@ public class LastActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_last);
 
-        //die Textviews usw. hohlen
+        //die Textviews usw. holen
         TextView levelActivity = (TextView)findViewById(R.id.level);
         TextView currentPointsActivity = (TextView)findViewById(R.id.currentPoints);
         TextView maxPointsActivity = (TextView)findViewById(R.id.maxPoints);
@@ -34,6 +34,7 @@ public class LastActivity extends AppCompatActivity {
         maxPointsActivity.setText("Punkte " + String.valueOf(levelPoints));
         currentPointsActivity.setText("Punkte " + calcPointsToNextLevel(playerPoints));
 
+        //Zurück zum Hauptmenü
 
         buttonBackToMain.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -53,6 +54,8 @@ public class LastActivity extends AppCompatActivity {
 
     }
 
+
+//Berechnung des Levels
     private String calcLevel(int playerPoints){
 
         double levelDouble = (playerPoints / levelPoints) + 1;
@@ -64,7 +67,7 @@ public class LastActivity extends AppCompatActivity {
         return level;
 
     }
-
+//Berechnung der Punkte für das nächste Level
     private String calcPointsToNextLevel(int playerPoints){
 
         int points = playerPoints % levelPoints;

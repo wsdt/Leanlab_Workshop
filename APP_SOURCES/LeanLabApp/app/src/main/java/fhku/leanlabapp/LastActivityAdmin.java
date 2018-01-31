@@ -3,6 +3,7 @@ package fhku.leanlabapp;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 
+//Bisher nicht benötigt
 
 public class LastActivityAdmin extends AppCompatActivity{
     @Override

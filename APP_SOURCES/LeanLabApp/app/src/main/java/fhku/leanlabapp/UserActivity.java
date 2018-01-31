@@ -47,6 +47,7 @@ public class UserActivity extends AppCompatActivity {
         final Button goButton = (Button) findViewById(R.id.go);
         final EditText user = (EditText)findViewById(R.id.edittext);
 
+        //Überprüfungen für Usernamen
         goButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

@@ -61,8 +61,13 @@ public class MainActivityAdmin extends AppCompatActivity implements View.OnClick
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main_admin);
 
+
+        //Erstellen des HTML Editors
+
         editorHtml = new HTMLEditor((RichEditor) findViewById(R.id.editor), (Button) findViewById(R.id.heading), (Button) findViewById(R.id.red));
         editorHtml.getEditor().setOnTextChangeListener(new RichEditor.OnTextChangeListener() {
+
+            //Methode die bei Änderung des HTML-Texts aufgerufen wird
             @Override
             public void onTextChange(String text) {
 
@@ -78,6 +83,7 @@ public class MainActivityAdmin extends AppCompatActivity implements View.OnClick
 
         RelativeLayout layout = (RelativeLayout) findViewById(R.id.mainlayout);
 
+//Tastatur verschwindet bei Klick aus dem Textfeld
         layout.setOnTouchListener(new View.OnTouchListener() {
             @Override
             public boolean onTouch(View view, MotionEvent event) {
@@ -87,6 +93,9 @@ public class MainActivityAdmin extends AppCompatActivity implements View.OnClick
         });
 
 
+
+
+//Funktionen für Kamerazugriff FUNKTIONIERT NOCH NICHT
         takeIntent();
 
         TextView stationview = (TextView) findViewById(R.id.station);
@@ -272,7 +281,7 @@ public class MainActivityAdmin extends AppCompatActivity implements View.OnClick
     }
 
 
-
+//Speichern des HTML FUNKTIONIERT NOCH NICHT
 
     private void saveHtml(String text, int contentId) {
         try {
@@ -283,6 +292,7 @@ public class MainActivityAdmin extends AppCompatActivity implements View.OnClick
 
     }
 
+//Zugriff auf aktuelle HTML-Datei FUNKTIONIERT NOCH NICHT
     private void getHtml(int contentId) {
         Content tmp = new Content(1);
         try {
@@ -293,12 +303,15 @@ public class MainActivityAdmin extends AppCompatActivity implements View.OnClick
         }
     }
 
+
+//Speichern FUNKTIONIERT NOCH NICHT
     private void saveToForm(String form) {
 
         editorHtml.getEditor().setHtml(form);
 
     }
 
+//Holen der Daten von MainActivity
     private void takeIntent() {
         Intent intent = getIntent();
 

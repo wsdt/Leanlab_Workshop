@@ -29,6 +29,7 @@ public class StartActivity extends AppCompatActivity implements AdapterView.OnIt
     String productid = "";
 
     public class OnItemSelectedListener implements AdapterView.OnItemSelectedListener {
+        // Methode, wenn ein Produkt oder eine Station ausgewählt wird mit Überprüfungen
         @Override
         public void onItemSelected(AdapterView<?> arg0, View arg1, int position,long id) {
             //position--;
@@ -102,7 +103,7 @@ public class StartActivity extends AppCompatActivity implements AdapterView.OnIt
            }
         });*/
 
-
+//Übergeben eines Intent an die MainActivity
         buttonGo.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
