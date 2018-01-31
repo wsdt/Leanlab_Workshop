@@ -13,7 +13,7 @@
         android:layout_above="@id/level"
         android:layout_centerHorizontal="true"
         android:textSize="25sp"
-        android:text="@string/geschaft"
+        android:text="@string/geschafft"
         android:gravity="center_horizontal|center_vertical"
         />
 

@@ -4,8 +4,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="fhku.leanlabapp.StartActivity"
-    android:background="@color/colorWhite">
+    android:background="@color/colorWhite"
+    tools:context="fhku.leanlabapp.StartActivity">
 
     <Button
         android:id="@+id/admin1"
@@ -20,9 +20,9 @@
         android:id="@+id/fh_logo"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="10dp"
-        android:layout_centerHorizontal="true"
         android:layout_below="@+id/admin1"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="10dp"
         app:srcCompat="@drawable/fhkufsteingrau"
         tools:ignore="ContentDescription" />
 
@@ -38,60 +38,73 @@
         android:textColor="@color/colorBlack"
         android:textSize="40sp" />
 
+    <TextView
+        android:id="@+id/chooseProduct"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignTop="@+id/spinnerStations"
+        android:layout_toStartOf="@+id/leanlab"
+        android:text="@string/products" />
+
+    <TextView
+        android:id="@+id/chooseStation"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignTop="@+id/spinnerProducts"
+        android:layout_toStartOf="@+id/leanlab"
+        android:text="@string/stations" />
+
     <Spinner
         android:id="@+id/spinnerStations"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/leanlab"
+        android:layout_below="@+id/qrButton"
         android:layout_centerHorizontal="true"
         android:layout_marginStart="200dp"
-        android:layout_marginTop="54dp"
-        />
+        android:layout_marginTop="35dp" />
 
     <Spinner
         android:id="@+id/spinnerProducts"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_below="@+id/spinnerStations"
+        android:layout_marginTop="20dp"
         android:layout_centerHorizontal="true"
         android:layout_marginStart="200dp"
-        android:layout_marginTop="21dp"
-        android:textColor="@color/colorBlack"
-        />
+        android:textColor="@color/colorBlack" />
 
     <Button
         android:id="@+id/go"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/spinnerProducts"
+        android:layout_alignParentBottom="true"
         android:layout_centerHorizontal="true"
-        android:layout_marginTop="37dp"
         android:text="Los Geht's"
         android:textColor="@color/colorBlack" />
 
     <ImageButton
-        android:contentDescription="qrCode"
         android:id="@+id/qrButton"
         android:layout_width="30dp"
         android:layout_height="30dp"
-        android:layout_marginStart="10dp"
-        android:layout_centerHorizontal="true"
-        android:layout_below="@id/leanlab"
-        android:background="@drawable/qr_image"
         android:layout_above="@id/spinner2"
+        android:layout_below="@id/leanlab"
+        android:layout_centerHorizontal="true"
+        android:layout_marginStart="10dp"
+        android:background="@drawable/qr_image"
+        android:contentDescription="qrCode"
         android:text="Button" />
 
-<!--
-    <ImageButton
-        android:contentDescription="qrCode"
-        android:id="@+id/buttonqr2"
-        android:layout_width="40dp"
-        android:layout_height="40dp"
-        android:layout_marginStart="10dp"
-        android:layout_toEndOf="@+id/spinnerProducts"
-        android:background="@drawable/qr_image"
-        android:layout_below="@id/spinner1"
-        android:layout_marginTop="10dp"
-        android:text="Button" />-->
+    <!--
+        <ImageButton
+            android:contentDescription="qrCode"
+            android:id="@+id/buttonqr2"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:layout_marginStart="10dp"
+            android:layout_toEndOf="@+id/spinnerProducts"
+            android:background="@drawable/qr_image"
+            android:layout_below="@id/spinner1"
+            android:layout_marginTop="10dp"
+            android:text="Button" />-->
 
 </RelativeLayout>

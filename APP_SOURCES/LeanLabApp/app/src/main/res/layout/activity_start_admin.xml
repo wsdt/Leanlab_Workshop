@@ -36,6 +36,22 @@
         android:textColor="@color/colorBlack"
         android:textSize="40sp" />
 
+    <TextView
+        android:id="@+id/chooseProduct"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignTop="@+id/spinner1"
+        android:layout_toStartOf="@+id/leanlab"
+        android:text="@string/products" />
+
+    <TextView
+        android:id="@+id/chooseStation"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignTop="@+id/spinner2"
+        android:layout_toStartOf="@+id/leanlab"
+        android:text="@string/stations" />
+
     <Spinner
         android:id="@+id/spinner1"
         android:layout_width="match_parent"
@@ -44,7 +60,6 @@
         android:layout_centerHorizontal="true"
         android:layout_marginStart="200dp"
         android:layout_marginTop="54dp"
-
         />
 
     <Spinner
