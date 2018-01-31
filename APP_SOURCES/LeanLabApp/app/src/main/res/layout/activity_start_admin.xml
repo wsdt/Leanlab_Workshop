@@ -11,16 +11,16 @@
         android:id="@+id/admin"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Bearbeitungsmodus deaktivieren"/>
+        android:text="Bearbeitungsmodus deaktivieren" />
 
 
     <ImageView
         android:id="@+id/fh_logo"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="10dp"
-        android:layout_centerHorizontal="true"
         android:layout_below="@+id/admin"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="10dp"
         app:srcCompat="@drawable/fhkufsteingrau"
         tools:ignore="ContentDescription" />
 
@@ -59,8 +59,7 @@
         android:layout_below="@+id/leanlab"
         android:layout_centerHorizontal="true"
         android:layout_marginStart="200dp"
-        android:layout_marginTop="54dp"
-        />
+        android:layout_marginTop="54dp" />
 
     <Spinner
         android:id="@+id/spinner2"
@@ -68,29 +67,27 @@
         android:layout_height="wrap_content"
         android:layout_below="@+id/spinner1"
         android:layout_centerHorizontal="true"
+        android:layout_marginBottom="21dp"
         android:layout_marginStart="200dp"
         android:layout_marginTop="21dp"
-        android:layout_marginBottom="21dp"
-        android:textColor="@color/colorBlack"
-        />
+        android:textColor="@color/colorBlack" />
+
     <TextView
+        android:id="@+id/leer"
         android:layout_width="0dp"
         android:layout_height="0dp"
         android:layout_below="@+id/spinner2"
-        android:text="|"
         android:layout_centerHorizontal="true"
-        android:id="@+id/leer"
-        />
+        android:text="|" />
 
     <Button
         android:id="@+id/add"
         android:layout_width="150dp"
         android:layout_height="60dp"
-        android:layout_marginStart="13dp"
         android:layout_below="@+id/spinner2"
+        android:layout_marginStart="13dp"
         android:layout_toLeftOf="@+id/leer"
-        android:text="Hinzufügen"
-        />
+        android:text="Hinzufügen" />
 
     <Button
         android:id="@+id/edit"
@@ -100,10 +97,6 @@
         android:layout_marginStart="13dp"
         android:layout_toEndOf="@+id/leer"
         android:text="Bearbeiten" />
-
-
-
-
 
 
 </RelativeLayout>
