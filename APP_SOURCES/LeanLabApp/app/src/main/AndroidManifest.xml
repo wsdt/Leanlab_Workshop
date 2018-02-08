@@ -34,15 +34,20 @@
 
         </activity>
 
-        <activity android:name=".StartActivityAdmin"></activity>
+        <activity android:name=".StartActivityAdmin"
+            android:screenOrientation="portrait"></activity>
 
-        <activity android:name=".MainActivity"></activity>
+        <activity android:name=".MainActivity"
+            android:screenOrientation="portrait"></activity>
 
-        <activity android:name=".MainActivityAdmin"></activity>
+        <activity android:name=".MainActivityAdmin"
+            android:screenOrientation="portrait"></activity>
 
-        <activity android:name=".LastActivity"></activity>
+        <activity android:name=".LastActivity"
+            android:screenOrientation="portrait"></activity>
 
-        <activity android:name=".LastActivityAdmin"></activity>
+        <activity android:name=".LastActivityAdmin"
+            android:screenOrientation="portrait"></activity>
 
         <activity android:name=".QrActivity" />
 

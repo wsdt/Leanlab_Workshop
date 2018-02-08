@@ -84,16 +84,16 @@ public class StartActivity extends AppCompatActivity implements AdapterView.OnIt
 
         Button buttonAdmin = (Button) findViewById(R.id.admin1);
 
-        buttonAdmin.setOnClickListener(new View.OnClickListener() {
+        /*buttonAdmin.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Toast.makeText(getApplicationContext(),"Bearbeitungsmodus noch nicht verfügbar!",Toast.LENGTH_SHORT).show();
             }
-        });
+        });*/
 
         //Bearbeitungsmodus funktioniert
 
-       /* buttonAdmin.setOnLongClickListener(new View.OnLongClickListener() {
+        buttonAdmin.setOnLongClickListener(new View.OnLongClickListener() {
             @Override
             public boolean onLongClick(View v) {
                 Intent intentAdmin = new Intent(StartActivity.this, StartActivityAdmin.class);
@@ -101,7 +101,7 @@ public class StartActivity extends AppCompatActivity implements AdapterView.OnIt
                 Log.i("info", "went to startactivityadmin");
                 return false;
            }
-        });*/
+        });
 
 //Übergeben eines Intent an die MainActivity
         buttonGo.setOnClickListener(new View.OnClickListener() {
